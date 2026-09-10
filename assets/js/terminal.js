@@ -122,7 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
       '1. <span class="term-cyan">VulnEye</span> - Enterprise Web Vulnerability & SOC Intelligence Platform (Python, Flask, SSE, ApexCharts, AI) | <a href="https://vuln-eye-seven.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>',
       '2. <span class="term-cyan">AeroSky</span> - Advanced Weather Intelligence PWA (Vanilla JS, Open-Meteo, AQI, SVG Sparklines) | <a href="https://aero-sky.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>',
       '3. <span class="term-cyan">LaunchDesk</span> - AI-Supercharged Customer Support SaaS (Next.js, TypeScript, Tailwind CSS v4, Recharts) | <a href="https://launchdesk-pied.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>',
-      '4. <span class="term-cyan">Aurora Store</span> - Premium E-Commerce SPA (React 19, Redux Toolkit, React Router v7, Vitest) | <a href="https://aurora-inky-chi.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>'
+      '4. <span class="term-cyan">Aurora Store</span> - Premium E-Commerce SPA (React 19, Redux Toolkit, React Router v7, Vitest) | <a href="https://aurora-inky-chi.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>',
+      '5. <span class="term-cyan">Zenith Tasks</span> - Dynamic Workspace & Kanban PWA (HTML5 Drag & Drop, Glassmorphism, Confetti, Chart.js)'
     ],
     hackathon: () => [
       '<span class="term-yellow">🏆 Achievement Spotlight:</span>',

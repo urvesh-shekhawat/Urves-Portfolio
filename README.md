@@ -30,6 +30,7 @@ Modern, high-performance portfolio for **Urvesh Shekhawat** — Full Stack Devel
 | **AeroSky** | Weather Intelligence & Analytics PWA | Vanilla JS (ES6+), PWA, Service Workers, Open-Meteo, SVG Charts | [🔗 aero-sky.vercel.app](https://aero-sky.vercel.app/) | [GitHub](https://github.com/Urvesh-Shekhawat/AeroSky) |
 | **LaunchDesk** | AI-Supercharged Customer Support SaaS | Next.js (App Router), TypeScript, Tailwind CSS v4, Recharts | [🔗 launchdesk-pied.vercel.app](https://launchdesk-pied.vercel.app/) | [GitHub](https://github.com/Urvesh-Shekhawat/launchdesk) |
 | **Aurora Store** | Premium E-Commerce Capstone SPA | React 19, TypeScript, Redux Toolkit, Vite 8, Vitest | [🔗 aurora-inky-chi.vercel.app](https://aurora-inky-chi.vercel.app/) | [GitHub](https://github.com/Urvesh-Shekhawat/Aurora) |
+| **Zenith Tasks** | Dynamic Workspace & Drag-and-Drop Kanban PWA | Vanilla JS (ES6+), HTML5 Drag & Drop, CSS3 Glassmorphism, Chart.js, PWA | [Offline-Ready PWA] | [GitHub](https://github.com/Urvesh-Shekhawat/Zenith-Tasks) |
 
 ---
 

@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: 'View AeroSky Weather PWA Details', category: 'Projects', shortcut: 'P A', action: () => window.openProjectModal('aerosky') },
     { title: 'View LaunchDesk AI SaaS Details', category: 'Projects', shortcut: 'P L', action: () => window.openProjectModal('launchdesk') },
     { title: 'View Aurora Store Details', category: 'Projects', shortcut: 'P S', action: () => window.openProjectModal('aurora') },
+    { title: 'View Zenith Tasks PWA Details', category: 'Projects', shortcut: 'P Z', action: () => window.openProjectModal('zenith') },
     { title: 'Download Resume (PDF)', category: 'Actions', shortcut: 'D R', action: () => downloadResume() },
     { title: 'Copy Email Address', category: 'Actions', shortcut: 'C E', action: () => window.copyToClipboard('urvesh.shekhawat24@gmail.com', 'Email copied!') },
     { title: 'Copy Phone Number', category: 'Actions', shortcut: 'C P', action: () => window.copyToClipboard('+917378254896', 'Phone copied!') },

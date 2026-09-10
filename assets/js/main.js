@@ -355,6 +355,23 @@ document.addEventListener('DOMContentLoaded', () => {
       techStack: ['React 19', 'TypeScript', 'Redux Toolkit', 'React Router v7', 'Vite 8', 'Vitest', 'Tailwind CSS v4', 'Lucide React'],
       github: 'https://github.com/Urvesh-Shekhawat/Aurora',
       liveDemo: 'https://aurora-inky-chi.vercel.app/'
+    },
+    zenith: {
+      title: 'Zenith Tasks — Dynamic Workspace & Kanban PWA',
+      badge: 'Progressive Web App • Drag-and-Drop • Glassmorphism',
+      status: 'Offline-Ready PWA',
+      description: 'Zenith Tasks is a sleek, modern, glassmorphic task management web application designed to help users organize their daily workflows. It features a responsive UI with dark/light theme switching, interactive drag-and-drop Kanban board, powerful category filtering and sorting, ambient background animations, celebratory confetti physics, and an offline-ready Progressive Web App (PWA) architecture.',
+      highlights: [
+        'Interactive Drag-and-Drop Kanban Board: Intuitive HTML5 Drag & Drop API interface allowing users to move tasks fluidly between "To Do", "In Progress", and "Done" columns.',
+        'Glassmorphic UI & Ambient Glow Animations: Modern cyber-glass panels with slow-moving animated background glow elements that react dynamically to theme toggling.',
+        'Quick-Add & Confetti Celebrations: Inline quick brain-dump field for rapid task entry paired with explosive canvas-confetti particle celebrations when completing objectives.',
+        'Progressive Web App (PWA) & Offline Support: Built-in Service Worker (sw.js) and Cache API storage enabling full offline resilience and instant load times.',
+        'Productivity Analytics Dashboard: Visual SVG progress rings and Chart.js integration tracking real-time completion velocity and category breakdown.',
+        'Persistent Local Storage: Full client-side state synchronization persisting task metadata, priority labels, due dates, and column arrangements directly in localStorage.'
+      ],
+      techStack: ['Vanilla JavaScript (ES6+)', 'HTML5 (Drag & Drop)', 'CSS3 (Glassmorphism)', 'PWA', 'Service Workers', 'Chart.js', 'canvas-confetti', 'marked.js', 'LocalStorage'],
+      github: 'https://github.com/Urvesh-Shekhawat/Zenith-Tasks',
+      liveDemo: ''
     }
   };
 
