@@ -114,15 +114,15 @@ document.addEventListener('DOMContentLoaded', () => {
       '<span class="term-purple">Achievement: 2nd Position in MP Police Cyber Security Hackathon (2025)</span>'
     ],
     skills: () => [
-      '<span class="term-yellow">⚡ Languages:</span> Python, Java, C/C++, JavaScript (ES6+), TypeScript, SQL, HTML5/CSS3',
-      '<span class="term-cyan">⚡ Frameworks:</span> React.js, Node.js, Express.js, Flask, SQLAlchemy, Tailwind/Vanilla CSS',
-      '<span class="term-purple">⚡ Security & Tools:</span> OWASP Top 10, Nmap, TCP Recon, Bearer/JWT, Google OAuth 2.0, Postman, Git'
+      '<span class="term-yellow">⚡ Languages:</span> Python, Java, C, C++, JavaScript (ES6+), TypeScript, SQL, HTML5, CSS3',
+      '<span class="term-cyan">⚡ Frameworks & Web:</span> React 19, Next.js (App Router), Flask, Node.js, Express.js, Redux Toolkit, React Router v7, SQLAlchemy, Tailwind CSS v4, Recharts, PWA',
+      '<span class="term-purple">⚡ Security & Tools:</span> OWASP Top 10, TCP Recon, Nmap, TLS/SSL, CVSS v3.1, SIEM Alerting, SSRF Mitigation, Google OAuth 2.0, JWT, Postman, Docker, Git'
     ],
     projects: () => [
-      '1. <span class="term-cyan">VulnEye</span> - Enterprise-grade Web Vulnerability & SOC Platform (Flask, Python, OWASP, SSE)',
-      '2. <span class="term-cyan">AeroSky</span> - Advanced Weather Dashboard PWA (Open-Meteo, SVG Sparklines, Offline Cache)',
-      '3. <span class="term-cyan">LaunchDesk</span> - Modern workspace & productivity suite (TypeScript, React)',
-      '4. <span class="term-cyan">Aurora</span> - Interactive Web Platform (TypeScript)'
+      '1. <span class="term-cyan">VulnEye</span> - Enterprise Web Vulnerability & SOC Intelligence Platform (Python, Flask, SSE, ApexCharts, AI) | <a href="https://vuln-eye-seven.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>',
+      '2. <span class="term-cyan">AeroSky</span> - Advanced Weather Intelligence PWA (Vanilla JS, Open-Meteo, AQI, SVG Sparklines) | <a href="https://aero-sky.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>',
+      '3. <span class="term-cyan">LaunchDesk</span> - AI-Supercharged Customer Support SaaS (Next.js, TypeScript, Tailwind CSS v4, Recharts) | <a href="https://launchdesk-pied.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>',
+      '4. <span class="term-cyan">Aurora Store</span> - Premium E-Commerce SPA (React 19, Redux Toolkit, React Router v7, Vitest) | <a href="https://aurora-inky-chi.vercel.app/" target="_blank" class="term-green">Live Demo ↗</a>'
     ],
     hackathon: () => [
       '<span class="term-yellow">🏆 Achievement Spotlight:</span>',
@@ -130,11 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'Recognized for rapid vulnerability analysis, defensive perimeter strategy, and threat intelligence tooling.'
     ],
     experience: () => [
-      '<span class="term-green">Oxella Technologies Pvt. Ltd.</span> | Full Stack Developer Intern',
-      '<span class="term-muted">Duration:</span> 7 July 2025 – 18 Aug 2025',
-      '• Built RUM (Real User Monitoring) backend and frontend modules (React, Node, Express, MySQL)',
+      '<span class="term-green">Oxella Technologies Pvt. Ltd.</span> | Full Stack Developer Intern (Jaipur, Rajasthan)',
+      '<span class="term-muted">Duration:</span> 7 July 2025 – 18 Aug 2025 (Real User Monitoring RUM Team)',
+      '• Built RUM backend and frontend modules using React.js, Node.js, Express.js, and MySQL',
       '• Implemented Google OAuth 2.0 & JWT-based authorization for protected user sessions',
-      '• Created secure RESTful APIs with structured validation and Axios frontend integration'
+      '• Created validated RESTful APIs with Axios frontend integration & Postman testing'
     ],
     contact: () => [
       '<span class="term-yellow">📡 Contact Endpoints:</span>',

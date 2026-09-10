@@ -54,9 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const typingElement = document.getElementById('typing-text');
   const roles = [
     'Full Stack Developer',
-    'Cybersecurity Enthusiast',
-    'Hackathon Runner-Up',
-    'Lead @ Amity Coding Club'
+    'Cybersecurity Specialist',
+    'Software Engineer'
   ];
   let roleIdx = 0;
   let charIdx = 0;
@@ -213,21 +212,56 @@ document.addEventListener('DOMContentLoaded', () => {
         link.classList.add('active');
       }
     });
+
+    // Sync Mobile Bottom Dock active state
+    const dockItems = document.querySelectorAll('.mobile-dock-item[data-dock]');
+    dockItems.forEach((item) => {
+      item.classList.remove('active');
+      const dockTarget = item.getAttribute('data-dock');
+      if (dockTarget === currentSectionId) {
+        item.classList.add('active');
+      }
+    });
   });
 
-  // Mobile Menu Toggle
+  // --- Mobile Drawer & Menu Toggle Handlers ---
   const mobileToggle = document.getElementById('mobile-menu-toggle');
-  const navLinksContainer = document.querySelector('.nav-links');
-  if (mobileToggle && navLinksContainer) {
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+  const mobileDrawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+  if (mobileToggle && mobileDrawer) {
     mobileToggle.addEventListener('click', () => {
-      navLinksContainer.classList.toggle('mobile-open');
-    });
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinksContainer.classList.remove('mobile-open');
-      });
+      mobileDrawer.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
     });
   }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', closeMobileDrawer);
+  }
+
+  if (mobileDrawer) {
+    mobileDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileDrawer) {
+        closeMobileDrawer();
+      }
+    });
+  }
+
+  mobileDrawerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileDrawer();
+    });
+  });
+
 
   // --- 5. Projects Filtering ---
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -255,59 +289,72 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 6. Project Details Data & Modal ---
   const projectData = {
     vulneye: {
-      title: 'VulnEye — Enterprise Web Vulnerability & SOC Platform',
-      badge: 'Cybersecurity & Full Stack',
+      title: 'VulnEye — Enterprise Web Vulnerability & SOC Intelligence Platform',
+      badge: 'Cybersecurity & SOC Intelligence • Flask & Python',
       status: 'Flagship Production Platform',
-      description: 'An enterprise-grade, automated perimeter assessment platform designed to identify critical attack surfaces, verify OWASP Top 10 vulnerabilities, and provide AI-generated remediation patches for DevOps teams.',
+      description: 'VulnEye is an enterprise-grade cybersecurity scanning and threat intelligence platform engineered for security engineers, DevOps specialists, and penetration testers. It delivers non-intrusive perimeter audits that detect critical exposures—such as missing OWASP security headers, exposed database ports, TLS/SSL cipher weaknesses, sensitive dotfile leaks (.env, .git), and CORS misconfigurations—without launching destructive payloads. Paired with an AI Threat Explainer delivering dual-language (English & Hindi) remediation guides and automated Nginx/Linux UFW hardening scripts.',
       highlights: [
-        'Multi-vector vulnerability scanner with multi-threaded TCP reconnaissance, SSL/TLS certificate cipher validation, and SSRF-safe target checks.',
-        'Real-time Server-Sent Events (SSE) audit terminal and interactive SOC dashboard displaying risk analytics and asset monitoring.',
-        'AI-Powered Bilingual Threat Analyzer generating vulnerability impact analysis and instant Nginx/Linux UFW configuration hardening scripts.',
-        'RESTful APIs with Bearer-token authentication, Discord/Slack alerting webhooks, dynamic SVG status badges, and automated PDF/JSON audit reports.',
-        'OAuth 2.0 user authentication, SQLAlchemy persistence, CVSS v3.1 scoring utilities, deployed across Vercel & Render.'
+        'Multi-Vector Perimeter Scanner: Multi-threaded TCP sweep across 13+ ports (21-27017), TLS/SSL protocol inspection, OWASP headers (HSTS, CSP, X-Frame-Options), sensitive file exposure (.env, .git, .sql), CORS wildcard checks, and built-in SSRF-safe subnet blocking.',
+        'Real-Time SSE Audit Terminal: Live telemetry streaming via Server-Sent Events (/scan/stream) with visual HUD radar animations and Web Audio sound synthesizer feedback.',
+        'AI Bilingual Threat Explainer (/analyzer): Dual-language executive summaries and exploit walkthroughs (English & Hindi / हिंग्लिश) with auto-generated drop-in Nginx server blocks and UFW firewall commands.',
+        'Executive SOC Command Center & 24/7 Watchlist: ApexCharts risk distribution charts, continuous domain risk drift monitoring, and side-by-side target audit comparator (/compare).',
+        'Cyber Defense Utilities Suite (/tools): Integrated CVSS v3.1 calculator, SSL certificate chain inspector, OWASP headers checker, subdomain enumerator, and password entropy calculator.',
+        'SIEM Alerts & Dynamic Badges: Automated Discord/Slack webhook alert dispatchers for high/critical risks, dynamic SVG security grade badges (/api/v1/badge), and ReportLab 4.x corporate PDF dossiers.',
+        'Commercial SaaS Tiering: 3 membership tiers with working multi-gateway checkout (Credit Cards, UPI/QR, PayPal, Crypto) and auto-generated PDF receipts.'
       ],
-      techStack: ['Python', 'Flask', 'SQLAlchemy', 'PostgreSQL', 'JavaScript', 'OWASP Top 10', 'Nmap', 'Docker', 'Vercel', 'Render'],
-      github: 'https://github.com/Urvesh-Shekhawat/VulnEye'
+      techStack: ['Python 3.9+', 'Flask 3.x', 'SQLAlchemy', 'PostgreSQL / SQLite', 'Server-Sent Events (SSE)', 'ApexCharts', 'ReportLab 4.x', 'Authlib (Google OAuth 2.0)', 'Web Audio API', 'Vercel / Render'],
+      github: 'https://github.com/Urvesh-Shekhawat/VulnEye',
+      liveDemo: 'https://vuln-eye-seven.vercel.app/'
     },
     aerosky: {
       title: 'AeroSky — Advanced Weather Dashboard & Analytics PWA',
-      badge: 'Progressive Web App',
+      badge: 'Progressive Web App • Vanilla JS • Open-Meteo',
       status: 'Live & Offline-Ready',
-      description: 'A lightning-fast, highly aesthetic Progressive Web App (PWA) delivering hyper-localized weather analytics, Air Quality Index (AQI) metrics, and interactive visualizations.',
+      description: 'AeroSky is a premium, modern, and fully asynchronous weather dashboard built with Vanilla JavaScript, HTML5, and CSS3. Designed as an installable Progressive Web App (PWA) with offline support through Service Workers and caching, it delivers real-time weather metrics, comprehensive Air Quality Index (AQI) data, a detailed 7-day forecast, and an hourly forecast complete with dynamic SVG sparkline charts and live weather-based theme shifting.',
       highlights: [
-        'Integrates Open-Meteo and OpenStreetMap APIs with fuzzy search, geolocation-based weather retrieval, and reverse geocoding.',
-        'Interactive SVG visualizations featuring real-time temperature sparklines and animated sun-position arc tracker.',
-        'Full offline support powered by Service Workers and Cache API, storing favorite cities and custom configurations.',
-        'Dynamic weather-based themes and instant Celsius/Fahrenheit metric conversion.'
+        'Progressive Web App (PWA): Fully installable on mobile and desktop devices with complete offline UI resilience powered by Service Workers (sw.js) and Cache API storage.',
+        'Real-Time Weather Metrics & AQI: High-accuracy tracking of temperature, feels-like, humidity, wind speed, barometric pressure, cloud cover, UV index, and dedicated Air Quality Index health grading.',
+        'Dynamic SVG Sparklines & Sun Tracker: Horizontally scrollable 24-hour forecast with custom SVG sparkline graphs and an animated SVG arc tracking the sun\'s position between sunrise and sunset.',
+        '7-Day Meteorological Predictions: Daily high/low temperature range visualizations and 7-day weather outlooks with instant °C / °F client-side conversion without data re-fetching.',
+        'Dynamic Glassmorphic Themes & Pinned Cities: UI palette shifts in real time based on active weather conditions (sunny, night, rain, snow, thunderstorm) with localStorage pinned favorite locations.',
+        'Smart Geolocation & Location Search: Auto-suggest geocoding via Open-Meteo API and reverse geocoding via OpenStreetMap Nominatim with HTML5 Geolocation support.'
       ],
-      techStack: ['JavaScript (ES6+)', 'HTML5', 'CSS3', 'PWA', 'Service Workers', 'Open-Meteo API', 'SVG Charts'],
-      github: 'https://github.com/Urvesh-Shekhawat/AeroSky'
+      techStack: ['JavaScript (ES6+)', 'HTML5', 'CSS3 (Variables)', 'PWA', 'Service Workers', 'Open-Meteo API', 'OSM Nominatim', 'SVG Charts', 'Lucide Icons'],
+      github: 'https://github.com/Urvesh-Shekhawat/AeroSky',
+      liveDemo: 'https://aero-sky.vercel.app/'
     },
     launchdesk: {
-      title: 'LaunchDesk — Developer Workspace & Productivity Hub',
-      badge: 'TypeScript Full Stack',
-      status: 'Public Repository',
-      description: 'A streamlined workspace designed for developers and engineering teams to organize workflows, monitor project milestones, and manage API integrations seamlessly.',
+      title: 'LaunchDesk — AI-Supercharged Customer Support SaaS',
+      badge: 'Next.js App Router • TypeScript • AI Copilot',
+      status: 'Live & Fully Interactive',
+      description: 'Customer support, supercharged by AI. LaunchDesk is a modern, responsive, and highly interactive SaaS frontend engineered for customer support teams. It demonstrates production-level UI/UX, robust state management, and detailed component architecture designed to streamline support workflows.',
       highlights: [
-        'Built with modern TypeScript ensuring strong type safety and maintainable software architecture.',
-        'Modular dashboard layouts with drag-and-drop workflow tracking.',
-        'Integrated API client simulation for rapid endpoint testing and status monitoring.'
+        'Unified Support Inbox: Manage, filter, and reply to customer tickets in real-time with priority categorization and search.',
+        'AI Copilot UI: Interface design for AI-generated response drafts, intelligent ticket summaries, and internal team collaboration notes.',
+        'Interactive Analytics Dashboard: Comprehensive support performance metrics, resolution tracking, and charts built with Recharts.',
+        'Client-Side State Persistence: Global AppContext state management saving ticket creations, profile changes, and avatars directly to browser localStorage without a backend.',
+        'Production Component Architecture: Engineered with Next.js App Router, strict TypeScript interfaces, Tailwind CSS v4, Lucide React icons, and seamless dark/light theme toggle.'
       ],
-      techStack: ['TypeScript', 'React.js', 'Node.js', 'CSS Modules', 'REST APIs'],
-      github: 'https://github.com/Urvesh-Shekhawat/launchdesk'
+      techStack: ['Next.js (App Router)', 'TypeScript', 'Tailwind CSS v4', 'Recharts', 'Lucide React', 'React.js', 'LocalStorage'],
+      github: 'https://github.com/Urvesh-Shekhawat/launchdesk',
+      liveDemo: 'https://launchdesk-pied.vercel.app/'
     },
     aurora: {
-      title: 'Aurora — Modern Interactive Web Application',
-      badge: 'Frontend Engineering',
-      status: 'Public Repository',
-      description: 'A responsive and intuitive web application focusing on high-polish UI design, fluid micro-interactions, and optimized render performance.',
+      title: 'Aurora Store — Premium E-Commerce Capstone Project',
+      badge: 'React 19 • Redux Toolkit • Full Stack',
+      status: 'Live & Fully Tested',
+      description: 'Aurora Store is a premium, high-fidelity Single Page Application (SPA) designed to showcase modern enterprise-grade web engineering practices. It features a scalable Redux Toolkit architecture, robust routing with React Router v7, a secure mock authentication system, an interactive shopping cart drawer, a validated checkout process, and an administrative dashboard to manage products with real-time inventory analytics.',
       highlights: [
-        'Engineered with TypeScript for scalable and clean architecture.',
-        'Modern component structure with customizable theme tokens and glassmorphism styling.',
-        'Optimized for fast first contentful paint (FCP) and smooth 60fps animations.'
+        'Enterprise State Management: Built on Redux Toolkit (cartSlice, productSlice, themeSlice, authSlice) for predictable, synchronized state that seamlessly persists sessions, cart contents, and themes to localStorage.',
+        'Industry Standard Routing & Security: Powered by React Router v7 with <ProtectedRoute> wrappers securing Admin Dashboard & Checkout views behind mock JWT authentication.',
+        'Sliding Cart Drawer: Blur-backdrop sliding drawer with promo coupon inputs (e.g., AURORA20 for 20% off), real-time tax/shipping calculations, and item quantity controls.',
+        'Validated Checkout & Billing: Secure payment checkout form with 16-digit credit card masking, expiry validation, and payment authorization feedback loaders.',
+        'Admin CRUD Dashboard: Administrative panel with real-time analytics overview cards (Inventory Valuations, Catalog Items, Average Ratings, Low Stock alerts) and full Product CRUD forms.',
+        'Comprehensive Testing & Modern Tooling: Integrated Vitest and React Testing Library unit test suites for core business logic, bundled via Vite 8 (Rolldown) and styled with Tailwind CSS v4 and custom design tokens.'
       ],
-      techStack: ['TypeScript', 'JavaScript', 'CSS3', 'Responsive Design'],
-      github: 'https://github.com/Urvesh-Shekhawat/Aurora'
+      techStack: ['React 19', 'TypeScript', 'Redux Toolkit', 'React Router v7', 'Vite 8', 'Vitest', 'Tailwind CSS v4', 'Lucide React'],
+      github: 'https://github.com/Urvesh-Shekhawat/Aurora',
+      liveDemo: 'https://aurora-inky-chi.vercel.app/'
     }
   };
 
@@ -345,13 +392,23 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
 
       <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-        <a href="${data.github}" target="_blank" class="btn btn-primary">
+        ${data.liveDemo ? `
+          <a href="${data.liveDemo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Launch Live Demo ↗
+          </a>
+        ` : ''}
+        <a href="${data.github}" target="_blank" rel="noopener noreferrer" class="btn ${data.liveDemo ? 'btn-secondary' : 'btn-primary'}">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
           </svg>
           Explore Source on GitHub
         </a>
-        <button onclick="document.getElementById('project-modal-backdrop').classList.remove('active')" class="btn btn-secondary">Close Details</button>
+        <button onclick="document.getElementById('project-modal-backdrop').classList.remove('active')" class="btn btn-outline">Close Details</button>
       </div>
     `;
 

@@ -12,9 +12,20 @@ Modern, high-performance portfolio for **Urvesh Shekhawat** — Full Stack Devel
 
 - **🛡️ Interactive SOC Terminal**: Live cybersecurity perimeter audit simulator, architecture matrix, and interactive CLI.
 - **✨ Cyber-Glassmorphism UI**: High-impact dark/light mode aesthetic with ambient particle constellation background.
-- **💼 Work Experience & Projects**: Detailed breakdowns of Oxella Technologies internship, VulnEye, AeroSky, and LaunchDesk.
+- **💼 Work Experience & Projects**: Detailed breakdowns of Oxella Technologies internship, VulnEye, AeroSky, LaunchDesk, and Aurora Store.
 - **🏆 Hackathon Spotlight**: 2nd Position in MP Police Cyber Security Hackathon (2025).
 - **⌘K Command Palette**: Fast keyboard navigation across all sections.
+
+---
+
+## 🌟 Featured Projects & Live Deployments
+
+| Project | Description | Tech Stack | Live Demo | Repository |
+| :--- | :--- | :--- | :--- | :--- |
+| **VulnEye** | Enterprise Web Vulnerability & SOC Intelligence Platform | Python 3.9+, Flask 3.x, SSE, ApexCharts, ReportLab | [🔗 vuln-eye-seven.vercel.app](https://vuln-eye-seven.vercel.app/) | [GitHub](https://github.com/Urvesh-Shekhawat/VulnEye) |
+| **AeroSky** | Weather Intelligence & Analytics PWA | Vanilla JS (ES6+), PWA, Service Workers, Open-Meteo, SVG Charts | [🔗 aero-sky.vercel.app](https://aero-sky.vercel.app/) | [GitHub](https://github.com/Urvesh-Shekhawat/AeroSky) |
+| **LaunchDesk** | AI-Supercharged Customer Support SaaS | Next.js (App Router), TypeScript, Tailwind CSS v4, Recharts | [🔗 launchdesk-pied.vercel.app](https://launchdesk-pied.vercel.app/) | [GitHub](https://github.com/Urvesh-Shekhawat/launchdesk) |
+| **Aurora Store** | Premium E-Commerce Capstone SPA | React 19, TypeScript, Redux Toolkit, Vite 8, Vitest | [🔗 aurora-inky-chi.vercel.app](https://aurora-inky-chi.vercel.app/) | [GitHub](https://github.com/Urvesh-Shekhawat/Aurora) |
 
 ---
 

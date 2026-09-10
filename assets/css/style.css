@@ -90,14 +90,15 @@
 /* --- Base Reset & Global Styles --- */
 *, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
   font-size: 16px;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -105,6 +106,8 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
   transition: background-color var(--transition-normal), color var(--transition-normal);
   position: relative;
@@ -174,6 +177,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   font-weight: 700;
   line-height: 1.2;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 a {
@@ -200,7 +205,8 @@ button {
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  display: inline;
+  word-break: break-word;
 }
 
 .mono {
@@ -211,10 +217,12 @@ button {
   width: 100%;
   max-width: var(--container-max-w);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
+
 
 .section {
   padding: 100px 0;
@@ -599,16 +607,21 @@ button {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.03em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .typing-wrapper {
   color: var(--accent-cyan);
   border-bottom: 2px solid var(--accent-cyan);
   padding-bottom: 2px;
+  display: inline;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .hero-description {
@@ -650,8 +663,11 @@ button {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textShimmer 6s linear infinite;
-  display: inline-block;
+  display: inline;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
+
 
 /* Infinite Tech Stack Marquee */
 .tech-marquee-section {
@@ -1425,6 +1441,13 @@ button {
   gap: 6px;
 }
 
+.project-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
 /* ==========================================================================
    Hackathons & Leadership Spotlight
    ========================================================================== */
@@ -1961,73 +1984,803 @@ button {
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   Mobile-First Exclusive Components (Hidden on Desktop)
    ========================================================================== */
+.mobile-bottom-dock,
+.mobile-drawer-overlay,
+.mobile-story-chips {
+  display: none;
+}
+
+/* ==========================================================================
+   Comprehensive Responsive Architecture (All Device Breakpoints)
+   ========================================================================== */
+
+/* --- Ultra-Wide / Large Displays (> 1400px) --- */
+@media (min-width: 1400px) {
+  :root {
+    --container-max-w: 1320px;
+  }
+}
+
+/* --- Laptops & Small Desktops (<= 1200px) --- */
+@media (max-width: 1200px) {
+  .hero-grid {
+    gap: 36px;
+  }
+  .about-grid {
+    gap: 30px;
+  }
+}
+
+/* --- Tablets Landscape & Small Laptops (<= 1024px) --- */
 @media (max-width: 1024px) {
+  .section {
+    padding: 80px 0;
+  }
+  
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  
+  .hero-content {
+    text-align: left;
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
+
   .skills-categories-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
+
   .achievements-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
+
   .education-card {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
+
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
+/* --- Tablets Portrait & Large Smartphones (<= 768px) --- */
 @media (max-width: 768px) {
-  .navbar .nav-links {
-    display: none;
-    position: absolute;
-    top: var(--navbar-height);
-    left: 0;
+  :root {
+    --navbar-height: 60px;
+  }
+
+  body {
+    padding-bottom: 76px; /* Space for Mobile Floating Dock */
     width: 100%;
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-subtle);
-    flex-direction: column;
-    padding: 24px;
-    gap: 16px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
-  .navbar .nav-links.mobile-open {
-    display: flex;
+
+  html {
+    scroll-padding-top: 70px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
+
+  .container {
+    padding: 0 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+  }
+
+  .section {
+    padding: 45px 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .section-header {
+    margin-bottom: 30px;
+  }
+
+  .section-title {
+    font-size: clamp(1.65rem, 6vw, 2.2rem);
+    word-break: break-word;
+  }
+
+  .section-subtitle {
+    font-size: 0.92rem;
+  }
+
+  /* Desktop Navigation elements to hide */
+  .navbar .nav-links,
+  .cmd-k-trigger,
+  .desktop-resume-btn {
+    display: none !important;
+  }
+
   .mobile-menu-toggle {
     display: flex;
   }
-  .cmd-k-trigger {
+
+  /* ========================================================================
+     Mobile Fullscreen / Sliding Drawer Navigation Overlay
+     ======================================================================== */
+  .mobile-drawer-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 23, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-drawer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-drawer-content {
+    width: 85vw;
+    max-width: 320px;
+    height: 100%;
+    background: var(--bg-secondary);
+    border-right: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(6, 182, 212, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 16px;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+
+  .mobile-drawer-overlay.active .mobile-drawer-content {
+    transform: translateX(0);
+  }
+
+  .mobile-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mobile-drawer-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-drawer-close-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.2s;
+  }
+  .mobile-drawer-close-btn:active {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+
+  .mobile-drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 0;
+  }
+
+  .mobile-drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  .mobile-drawer-link:active, .mobile-drawer-link.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+    border-color: var(--accent-cyan);
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  .drawer-icon {
+    font-size: 1.05rem;
+  }
+
+  .mobile-drawer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .drawer-social-btn {
+    flex: 1;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+  }
+  .drawer-social-btn:active {
+    background: var(--accent-cyan);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  /* ========================================================================
+     Mobile Story Chips (Horizontal Scrollable Badges)
+     ======================================================================== */
+  .mobile-story-chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 0 8px;
+    margin: 4px 0 12px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .mobile-story-chips::-webkit-scrollbar {
     display: none;
   }
-  .projects-grid {
-    grid-template-columns: 1fr;
+
+  .story-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.74rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    flex-shrink: 0;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
-  .skills-categories-grid {
-    grid-template-columns: 1fr;
+
+  .story-chip-gold {
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.1);
   }
-  .about-highlights {
-    grid-template-columns: 1fr;
+
+  .story-chip-cyan {
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    color: #38bdf8;
+    background: rgba(6, 182, 212, 0.1);
   }
-  .hero-ctas {
+
+  .story-chip-purple {
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    color: #c084fc;
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .story-chip-emerald {
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  /* ========================================================================
+     Mobile Floating Bottom HUD Navigation Dock
+     ======================================================================== */
+  .mobile-bottom-dock {
+    display: flex;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 390px;
+    height: 58px;
+    background: rgba(13, 19, 33, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 25px rgba(6, 182, 212, 0.2);
+    align-items: center;
+    justify-content: space-around;
+    padding: 3px 8px;
+    z-index: 990;
+    box-sizing: border-box;
+  }
+
+  .mobile-dock-item {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: #94a3b8;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 16px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    background: transparent;
+  }
+
+  .mobile-dock-item:active, .mobile-dock-item.active {
+    color: var(--accent-cyan);
+    background: rgba(6, 182, 212, 0.14);
+    transform: translateY(-2px);
+  }
+
+  .dock-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .dock-scan-btn {
+    background: var(--gradient-cyber) !important;
+    color: #fff !important;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    margin-top: -14px;
+    box-shadow: 0 4px 18px rgba(6, 182, 212, 0.6), 0 0 15px rgba(99, 102, 241, 0.5);
+    padding: 0 !important;
+    border: 2px solid var(--bg-primary);
+  }
+  .dock-scan-btn .dock-icon-radar {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .dock-scan-btn .dock-label {
+    display: none;
+  }
+  .dock-scan-btn:active {
+    transform: scale(0.92) !important;
+  }
+
+  /* ========================================================================
+     Mobile Hero Profile Card with Neon Glowing Ring
+     ======================================================================== */
+  .hero-profile-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 20px 16px;
+    gap: 14px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.7) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(6, 182, 212, 0.2);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @keyframes neonSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .profile-avatar-wrapper {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    padding: 3px;
+    position: relative;
+    background: conic-gradient(from 0deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
+    animation: neonSpin 8s linear infinite;
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+  }
+
+  .profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 16%;
+    border: 2px solid var(--bg-primary);
+  }
+
+  .profile-status-beacon {
+    bottom: 2px;
+    right: 2px;
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     width: 100%;
   }
+
+  .profile-badges {
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* Hero Adjustments */
+  .hero-section {
+    padding-top: calc(var(--navbar-height) + 12px);
+    padding-bottom: 24px;
+    min-height: auto;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 14px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.65rem, 6.5vw, 2.2rem) !important;
+    line-height: 1.2;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  .status-badge {
+    font-size: 0.74rem !important;
+    padding: 4px 10px !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-description {
+    font-size: 0.94rem;
+    line-height: 1.55;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .hero-ctas .btn {
     width: 100%;
+    max-width: 100%;
+    padding: 12px 18px;
+    font-size: 0.92rem;
+    box-sizing: border-box;
   }
+
+  .hero-socials {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .social-pill {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+
+  /* Projects Showcase on Mobile */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 20px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 100%);
+  }
+
+  .project-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .project-card-actions {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .project-card-actions .btn {
+    flex: 1;
+    padding: 10px 14px;
+    font-size: 0.84rem;
+  }
+
+  /* Experience & Achievements on Mobile */
+  .experience-card {
+    padding: 20px;
+  }
+
+  .exp-badge-top {
+    position: static;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
   .exp-header {
     flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
   }
+
+  .exp-meta {
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 0.8rem;
+  }
+
+  .achievement-card-hackathon {
+    padding: 22px;
+  }
+
+  .hackathon-trophy {
+    font-size: 2.3rem;
+  }
+
+  /* Skills Matrix on Mobile */
+  .skills-categories-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .skill-category-card {
+    padding: 18px;
+  }
+
+  .skill-pill {
+    font-size: 0.8rem;
+    padding: 6px 11px;
+  }
+
+  /* Stats Grid on Mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-item {
+    padding: 10px 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+  }
+
+  /* Contact Channels */
+  .contact-channel-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .channel-left {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .channel-text {
+    overflow: hidden;
+    word-break: break-word;
+  }
+
+  .channel-text a, .channel-text span {
+    font-size: 0.92rem;
+  }
+
+  .contact-channel-card .copy-btn {
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+  }
+
+  /* Modals & Command Palette on Mobile */
+  .modal-window {
+    width: 95vw;
+    max-height: 88vh;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-header {
+    padding: 16px 18px;
+  }
+
+  .modal-body {
+    padding: 18px;
+  }
+
+  .cmd-palette-window {
+    width: 94vw;
+  }
+
+  /* Toast Notifications on Mobile */
+  .toast-container {
+    right: 14px;
+    left: 14px;
+    bottom: 84px; /* Stacked cleanly above the mobile dock */
+    align-items: center;
+  }
+
+  .toast {
+    width: 100%;
+    max-width: 380px;
+    padding: 12px 16px;
+    font-size: 0.86rem;
+  }
 }
+
+/* --- Compact / Small Smartphones (<= 480px) --- */
+@media (max-width: 480px) {
+  .nav-logo span {
+    font-size: 1.1rem;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .status-badge {
+    font-size: 0.76rem;
+    padding: 4px 12px;
+  }
+
+  .project-title {
+    font-size: 1.22rem;
+  }
+
+  .project-desc {
+    font-size: 0.86rem;
+  }
+
+  .exp-title-block h3 {
+    font-size: 1.2rem;
+  }
+
+  .edu-main h3 {
+    font-size: 1.22rem;
+  }
+
+  .coursework-wrap {
+    gap: 6px;
+  }
+
+  .course-chip {
+    font-size: 0.74rem;
+    padding: 4px 8px;
+  }
+
+  .about-portrait-img-wrap {
+    height: 240px;
+  }
+
+  .info-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .info-val {
+    text-align: left;
+  }
+}
+
+/* --- Ultra-Compact Screens & Foldables (<= 360px) --- */
+@media (max-width: 360px) {
+  .nav-logo-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+  }
+
+  .project-card-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .btn {
+    padding: 10px 14px;
+    font-size: 0.86rem;
+  }
+}
+
+
