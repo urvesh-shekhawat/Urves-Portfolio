@@ -1,12 +1,16 @@
 # Urvesh Shekhawat — Developer & Cybersecurity Portfolio
 
-[![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat&logo=vercel)](https://vercel.com)
+[![Live Portfolio](https://img.shields.io/badge/Live%20Site-urves--portfolio.vercel.app-06b6d4?style=for-the-badge&logo=vercel&logoColor=white)](https://urves-portfolio.vercel.app/)
+[![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat&logo=vercel)](https://urves-portfolio.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![HTML5 / CSS3 / JS](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20JS-cyan.svg)](https://developer.mozilla.org)
+
+🌐 **Live Deployment**: **[https://urves-portfolio.vercel.app/](https://urves-portfolio.vercel.app/)**
 
 Modern, high-performance portfolio for **Urvesh Shekhawat** — Full Stack Developer and Cybersecurity Specialist.
 
 ---
+
 
 ## ⚡ Highlights & Features
 
