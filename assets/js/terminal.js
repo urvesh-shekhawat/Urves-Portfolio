@@ -10,36 +10,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Automated Quick Scan Simulation
   window.runAuditSimulation = function() {
+    const hudFill = document.getElementById('hud-audit-fill');
+    const hudPct = document.getElementById('hud-audit-pct');
+    const hudTitle = document.getElementById('hud-audit-title');
+    const liveScanText = document.getElementById('hero-live-scan-text');
+
     if (window.showToast) window.showToast('🛡️ Initiating VulnEye Perimeter Assessment...');
 
-    if (auditIndicator) {
-      auditIndicator.innerHTML = '<span style="color: var(--accent-amber);">[*] RESOLVING HOST &amp; TLS 1.3 CIPHERS...</span>';
-    }
+    if (hudFill) hudFill.style.width = '25%';
+    if (hudPct) hudPct.textContent = '25% RESOLVING';
+    if (hudTitle) hudTitle.textContent = 'RESOLVING TARGET & TLS 1.3 CIPHERS...';
+    if (liveScanText) liveScanText.innerHTML = '<span class="text-amber">SCANNER: PROBING PORTS &amp; TLS...</span>';
 
     setTimeout(() => {
-      if (auditIndicator) {
-        auditIndicator.innerHTML = '<span style="color: var(--accent-cyan);">[*] PROBING OWASP HEADERS (HSTS, CSP, X-FRAME)...</span>';
-      }
+      if (hudFill) hudFill.style.width = '60%';
+      if (hudPct) hudPct.textContent = '60% AUDITING';
+      if (hudTitle) hudTitle.textContent = 'PROBING OWASP HEADERS (CSP, HSTS, X-FRAME)...';
     }, 600);
 
     setTimeout(() => {
-      if (auditIndicator) {
-        auditIndicator.innerHTML = '<span style="color: var(--accent-purple);">[*] MULTI-THREADED TCP RECON ACROSS 13+ PORTS...</span>';
-      }
+      if (hudFill) hudFill.style.width = '88%';
+      if (hudPct) hudPct.textContent = '88% ANALYZING';
+      if (hudTitle) hudTitle.textContent = 'AI BILINGUAL THREAT EXPLAINER COMPILING DOSSIER...';
+      if (liveScanText) liveScanText.innerHTML = '<span class="text-cyan">SCANNER: AI THREAT ANALYSIS ACTIVE</span>';
     }, 1200);
 
     setTimeout(() => {
-      if (auditIndicator) {
-        auditIndicator.innerHTML = '<span style="color: var(--accent-cyan);">[*] AI BILINGUAL THREAT EXPLAINER COMPILING DOSSIER...</span>';
-      }
-    }, 1800);
-
-    setTimeout(() => {
-      if (auditIndicator) {
-        auditIndicator.innerHTML = '<span style="color: var(--accent-emerald);">[✔] 100% HARDENED. 0 CRITICAL CVEs DETECTED.</span>';
-      }
-      if (window.showToast) window.showToast('🛡️ VulnEye Audit Complete: All Perimeters Hardened');
-    }, 2400);
+      if (hudFill) hudFill.style.width = '100%';
+      if (hudPct) hudPct.textContent = '100% HARDENED';
+      if (hudTitle) hudTitle.textContent = 'VULNEYE REAL-TIME TELEMETRY STREAM';
+      if (liveScanText) liveScanText.innerHTML = 'SCANNER: IDLE // THREAT LEVEL: ZERO';
+      if (window.showToast) window.showToast('🛡️ VulnEye Audit Complete: All Perimeters Hardened (0 CVEs)');
+    }, 2000);
   };
 
   // Interactive CLI Logic

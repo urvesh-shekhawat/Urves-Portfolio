@@ -555,21 +555,38 @@ img {
 }
 
 .cmd-k-btn {
-  display: none;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 7px 12px;
+  padding: 8px 10px;
   font-size: 0.8rem;
   color: var(--text-secondary);
   transition: all var(--transition-fast);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.cmd-k-label {
+  display: none;
+}
+
+.cmd-k-kbd {
+  display: none;
 }
 
 @media (min-width: 640px) {
   .cmd-k-btn {
-    display: flex;
+    padding: 7px 12px;
+    gap: 8px;
+  }
+  .cmd-k-label {
+    display: inline;
+  }
+  .cmd-k-kbd {
+    display: inline-block;
   }
 }
 
@@ -659,6 +676,23 @@ img {
 }
 
 /* Mobile Slide Drawer */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 199;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .mobile-drawer {
   position: fixed;
   top: 0;
@@ -3042,6 +3076,18 @@ img {
 
 .beacon-inner-radar {
   font-size: 1rem;
+}
+
+/* Global Mobile Touch Optimization */
+button, a, .dock-nav-item, .dock-center-beacon-btn, .chain-node, .filter-pill, .btn-hero, .btn-card, .btn-copy-sm, .theme-btn, .cmd-k-btn, .mobile-toggle {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding-bottom: 96px;
+  }
 }
 
 /* Reduced Motion */

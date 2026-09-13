@@ -419,17 +419,17 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
     if (!data || !projectModalBackdrop || !projectModalBody) return;
 
     projectModalBody.innerHTML = `
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
         <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); font-weight: 700;">${data.badge}</span>
         <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald); font-weight: 700;">● ${data.status}</span>
       </div>
-      <h2 style="font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); margin-bottom: 16px; font-weight: 800;">${data.title}</h2>
+      <h2 style="font-family: var(--font-display); font-size: clamp(1.3rem, 2.5vw, 1.8rem); margin-bottom: 16px; font-weight: 800;">${data.title}</h2>
       <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px;">
         ${data.description}
       </p>
 
       <h4 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 14px; color: var(--text-primary); font-weight: 700;">Architecture &amp; Core Highlights</h4>
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px;">
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; padding: 0;">
         ${data.highlights.map(h => `
           <li style="position: relative; padding-left: 20px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
             <span style="position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold;">▹</span>
@@ -452,36 +452,52 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
         <a href="${data.github}" target="_blank" rel="noopener noreferrer" class="btn-card ${data.liveDemo ? 'btn-card-secondary' : 'btn-card-primary'}">
           Explore Repository on GitHub
         </a>
-        <button onclick="document.getElementById('project-modal-backdrop').classList.remove('active')" class="btn-card btn-card-inspect">Close Specification</button>
+        <button onclick="window.closeProjectModal()" class="btn-card btn-card-inspect">Close Specification</button>
       </div>
     `;
 
     projectModalBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeProjectModal = function() {
+    if (projectModalBackdrop) {
+      projectModalBackdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   };
 
   if (projectModalClose) {
-    projectModalClose.addEventListener('click', () => {
-      projectModalBackdrop.classList.remove('active');
-    });
+    projectModalClose.addEventListener('click', window.closeProjectModal);
   }
 
   if (projectModalBackdrop) {
     projectModalBackdrop.addEventListener('click', (e) => {
       if (e.target === projectModalBackdrop) {
-        projectModalBackdrop.classList.remove('active');
+        window.closeProjectModal();
       }
     });
   }
+
+  // Escape key global listener for modal and drawer
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.closeProjectModal();
+      closeMobileDrawer();
+    }
+  });
 
   // --- 8. Mobile Drawer Handlers ---
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const mobileDrawer = document.getElementById('mobile-drawer');
   const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+  const drawerBackdrop = document.getElementById('drawer-backdrop');
   const drawerLinks = document.querySelectorAll('.drawer-link');
 
   if (mobileToggle && mobileDrawer) {
     mobileToggle.addEventListener('click', () => {
       mobileDrawer.classList.add('active');
+      if (drawerBackdrop) drawerBackdrop.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
   }
@@ -489,12 +505,17 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
   function closeMobileDrawer() {
     if (mobileDrawer) {
       mobileDrawer.classList.remove('active');
+      if (drawerBackdrop) drawerBackdrop.classList.remove('active');
       document.body.style.overflow = '';
     }
   }
 
   if (mobileDrawerClose) {
     mobileDrawerClose.addEventListener('click', closeMobileDrawer);
+  }
+
+  if (drawerBackdrop) {
+    drawerBackdrop.addEventListener('click', closeMobileDrawer);
   }
 
   drawerLinks.forEach(link => {
@@ -531,7 +552,7 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
         item.classList.add('active');
       }
     });
-  });
+  }, { passive: true });
 
   // --- 10. Toast Notifications & Clipboard Utilities ---
   window.showToast = function(msg) {
@@ -558,12 +579,38 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
     }, 3500);
   };
 
-  window.copyToClipboard = function(text, label = 'Copied to clipboard!') {
-    navigator.clipboard.writeText(text).then(() => {
-      window.showToast(label);
-    }).catch(() => {
+  function fallbackCopyText(text, label) {
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-999999px';
+      textArea.style.left = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const success = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (success) {
+        window.showToast(label);
+      } else {
+        window.showToast('Copied: ' + text);
+      }
+    } catch (err) {
       window.showToast('Copied: ' + text);
-    });
+    }
+  }
+
+  window.copyToClipboard = function(text, label = 'Copied to clipboard!') {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(() => {
+        window.showToast(label);
+      }).catch(() => {
+        fallbackCopyText(text, label);
+      });
+    } else {
+      fallbackCopyText(text, label);
+    }
   };
 
   document.querySelectorAll('[data-copy]').forEach(el => {
