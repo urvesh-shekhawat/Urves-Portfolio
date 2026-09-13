@@ -113,31 +113,37 @@
       </div>
     </div>
 
-    <!-- Mobile Slide Drawer -->
-    <div id="mobile-drawer" class="mobile-drawer">
+    <!-- Mobile Slide Drawer Overlay -->
+    <div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation Menu">
       <div class="drawer-header">
-        <div class="brand-monogram">
-          <span class="monogram-text">US</span>
+        <div class="drawer-brand">
+          <div class="brand-monogram">
+            <span class="monogram-text">US</span>
+          </div>
+          <div class="drawer-user-meta">
+            <div class="drawer-name">URVESH SHEKHAWAT</div>
+            <div class="drawer-role"><span class="status-pulse"></span>SYSTEM ONLINE // SWE &amp; SEC</div>
+          </div>
         </div>
-        <div class="drawer-user-meta">
-          <div class="drawer-name">Urvesh Shekhawat</div>
-          <div class="drawer-role">Full Stack &amp; Cybersecurity</div>
-        </div>
-        <button id="mobile-drawer-close" class="drawer-close-btn" aria-label="Close menu">&times;</button>
+        <button id="mobile-drawer-close" class="drawer-close-btn" aria-label="Close navigation menu">&times;</button>
       </div>
 
-      <nav class="drawer-nav">
-        <a href="#hero" class="drawer-link"><span>Command Center</span></a>
-        <a href="#projects" class="drawer-link"><span>Selected Work</span></a>
-        <a href="#security-lab" class="drawer-link"><span>Interactive Security Lab</span></a>
-        <a href="#about" class="drawer-link"><span>Profile &amp; Biography</span></a>
-        <a href="#experience" class="drawer-link"><span>Oxella Internship</span></a>
-        <a href="#achievements" class="drawer-link"><span>Hackathon Honors</span></a>
-        <a href="#stack" class="drawer-link"><span>Technical Stack</span></a>
-        <a href="#contact" class="drawer-link"><span>Get In Touch</span></a>
+      <nav class="drawer-nav" aria-label="Mobile Navigation Links">
+        <a href="#hero" class="drawer-link"><span class="drawer-link-icon">⚡</span><span>Home / Command</span><span class="drawer-link-arrow">→</span></a>
+        <a href="#projects" class="drawer-link"><span class="drawer-link-icon">💼</span><span>Selected Work</span><span class="drawer-link-arrow">→</span></a>
+        <a href="#security-lab" class="drawer-link"><span class="drawer-link-icon">🛡️</span><span>Security Lab</span><span class="drawer-link-arrow">→</span></a>
+        <a href="#about" class="drawer-link"><span class="drawer-link-icon">👤</span><span>Profile &amp; Biography</span><span class="drawer-link-arrow">→</span></a>
+        <a href="#experience" class="drawer-link"><span class="drawer-link-icon">🏢</span><span>Experience</span><span class="drawer-link-arrow">→</span></a>
+        <a href="#achievements" class="drawer-link"><span class="drawer-link-icon">🏆</span><span>Honors &amp; Hackathons</span><span class="drawer-link-arrow">→</span></a>
+        <a href="#stack" class="drawer-link"><span class="drawer-link-icon">⚙️</span><span>Technical Stack</span><span class="drawer-link-arrow">→</span></a>
+        <a href="#contact" class="drawer-link"><span class="drawer-link-icon">📡</span><span>Get In Touch</span><span class="drawer-link-arrow">→</span></a>
       </nav>
 
       <div class="drawer-footer">
+        <button onclick="window.runAuditSimulation(); window.closeMobileDrawer();" class="btn btn-drawer-audit">
+          <span class="audit-icon">🛡️</span>
+          <span>Execute Security Audit</span>
+        </button>
         <a href="assets/Urvesh_Shekhawat_Resume.pdf" download="Urvesh_Shekhawat_Resume.pdf" class="btn btn-primary btn-block">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           Download Resume (PDF)
@@ -145,7 +151,7 @@
         <div class="drawer-social-row">
           <a href="https://github.com/Urvesh-Shekhawat" target="_blank" rel="noopener" class="drawer-social-link">GitHub ↗</a>
           <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" rel="noopener" class="drawer-social-link">LinkedIn ↗</a>
-          <a href="mailto:urvesh.shekhawat24@gmail.com" class="drawer-social-link">Email ↗</a>
+          <button class="drawer-social-link btn-drawer-copy" data-copy="urvesh.shekhawat24@gmail.com" data-copy-label="Email copied!">Copy Email 📋</button>
         </div>
       </div>
     </div>
@@ -1530,22 +1536,40 @@ add_header X-Content-Type-Options "nosniff" always;</div>
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-  <!-- Premium Floating Glass/Metal Navigation Dock (Mobile) -->
-  <nav class="floating-metal-dock" aria-label="Mobile Quick Dock">
-    <a href="#hero" class="dock-nav-item active" data-dock="hero">
-      <span class="dock-label">HOME</span>
+  <!-- Premium Floating Metal/Glass Navigation Dock (Mobile) -->
+  <nav class="floating-metal-dock" id="mobile-dock" aria-label="Mobile Quick Dock">
+    <a href="#hero" class="dock-item active" data-dock="hero" aria-label="Home / Command">
+      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span class="dock-label">Home</span>
     </a>
-    <a href="#projects" class="dock-nav-item" data-dock="projects">
-      <span class="dock-label">WORK</span>
+    <a href="#projects" class="dock-item" data-dock="projects" aria-label="Selected Work">
+      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+      </svg>
+      <span class="dock-label">Work</span>
     </a>
-    <button onclick="window.runAuditSimulation()" class="dock-center-beacon-btn" data-dock="scan" title="Run VulnEye SOC Audit">
-      <span class="beacon-inner-radar">◉</span>
+    <button onclick="window.runAuditSimulation ? window.runAuditSimulation() : null" class="dock-item dock-audit-btn" data-dock="scan" title="Execute Vulnerability & SOC Audit" aria-label="Execute Security Audit">
+      <div class="dock-audit-icon-wrap">
+        <span class="dock-audit-dot">◉</span>
+      </div>
+      <span class="dock-label dock-audit-label">Audit</span>
     </button>
-    <a href="#security-lab" class="dock-nav-item" data-dock="security-lab">
-      <span class="dock-label">LAB</span>
+    <a href="#security-lab" class="dock-item" data-dock="security-lab" aria-label="Security Lab">
+      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      <span class="dock-label">Lab</span>
     </a>
-    <a href="#contact" class="dock-nav-item" data-dock="contact">
-      <span class="dock-label">CONTACT</span>
+    <a href="#contact" class="dock-item" data-dock="contact" aria-label="Contact">
+      <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+      <span class="dock-label">Contact</span>
     </a>
   </nav>
 

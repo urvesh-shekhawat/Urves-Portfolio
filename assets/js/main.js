@@ -509,6 +509,7 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
       document.body.style.overflow = '';
     }
   }
+  window.closeMobileDrawer = closeMobileDrawer;
 
   if (mobileDrawerClose) {
     mobileDrawerClose.addEventListener('click', closeMobileDrawer);
@@ -525,7 +526,7 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
   // --- 9. Navbar & Mobile Floating Dock Scrollspy ---
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
-  const dockItems = document.querySelectorAll('.dock-nav-item[data-dock]');
+  const dockItems = document.querySelectorAll('.dock-item[data-dock]');
 
   window.addEventListener('scroll', () => {
     let currentSectionId = '';

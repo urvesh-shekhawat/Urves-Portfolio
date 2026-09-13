@@ -724,19 +724,21 @@ img {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 86vw;
-  max-width: 360px;
+  width: 90vw;
+  max-width: 400px;
   height: 100vh;
+  height: 100dvh;
   background: var(--bg-surface);
   border-left: 1px solid var(--border-medium);
   z-index: 200;
-  padding: 24px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: var(--shadow-lg);
-  transition: right var(--transition-normal);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.85);
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-drawer.active {
@@ -747,67 +749,162 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .drawer-user-meta {
-  flex: 1;
-  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
 }
 
 .drawer-name {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--text-primary);
 }
 
 .drawer-role {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .drawer-close-btn {
-  font-size: 1.8rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
   color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
   line-height: 1;
+  transition: all var(--transition-fast);
+}
+
+.drawer-close-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
 }
 
 .drawer-nav {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin: 20px 0;
+  gap: 8px;
+  margin: 16px 0;
+  flex: 1;
 }
 
 .drawer-link {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1rem;
+  justify-content: space-between;
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--text-secondary);
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+  min-height: 44px;
 }
 
-.drawer-link:hover {
+.drawer-link:hover, .drawer-link:active {
   color: var(--text-primary);
+  border-color: var(--accent-cyan-border);
+  background: var(--bg-surface-hover);
+  transform: translateX(3px);
 }
 
-.drawer-num {
+.drawer-link-icon {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.drawer-link-arrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   color: var(--accent-cyan);
+}
+
+.drawer-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.btn-drawer-audit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--accent-cyan-dim);
+  border: 1px solid var(--accent-cyan-border);
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 44px;
+}
+
+.btn-drawer-audit:hover, .btn-drawer-audit:active {
+  background: var(--accent-cyan);
+  color: var(--bg-base);
+  box-shadow: var(--shadow-cyan-bloom);
 }
 
 .drawer-social-row {
   display: flex;
-  justify-content: space-around;
-  margin-top: 16px;
-  font-size: 0.85rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.drawer-social-link {
+  flex: 1;
+  text-align: center;
+  padding: 8px 6px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawer-social-link:hover {
   color: var(--accent-cyan);
+  border-color: var(--accent-cyan-border);
 }
 
 /* --- 5. Hero Section: Command Center & Architecture Visual --- */
@@ -3131,28 +3228,34 @@ img {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Floating Metal/Glass Navigation Dock (Mobile) */
+/* Floating Metal/Glass Navigation Dock (Mobile Redesign) */
 .floating-metal-dock {
   position: fixed;
-  bottom: 14px;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
-  width: auto;
-  min-width: 270px;
-  max-width: 92vw;
-  height: 48px;
-  background: rgba(12, 18, 29, 0.94);
+  width: calc(100% - 24px);
+  max-width: 440px;
+  height: 66px;
+  background: rgba(10, 15, 25, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius-pill);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75), 0 0 1px rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 14px;
-  gap: 6px;
-  z-index: 99;
+  justify-content: space-around;
+  padding: 0 8px;
+  gap: 4px;
+  z-index: 150;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .floating-metal-dock {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 @media (min-width: 768px) {
@@ -3161,52 +3264,97 @@ img {
   }
 }
 
-.dock-nav-item {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  height: 100%;
+  min-width: 44px;
+  min-height: 48px;
   color: var(--text-secondary);
-  padding: 6px 6px;
-  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 4px 2px;
   transition: all var(--transition-fast);
+  cursor: pointer;
 }
 
-.dock-nav-item:hover, .dock-nav-item.active {
+.dock-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.dock-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: inherit;
+}
+
+.dock-item:hover, .dock-item:focus-visible, .dock-item.active {
   color: var(--accent-cyan);
 }
 
-.dock-center-beacon-btn {
-  width: 32px;
-  height: 32px;
+.dock-item:hover .dock-icon, .dock-item.active .dock-icon {
+  transform: translateY(-2px);
+  color: var(--accent-cyan);
+}
+
+/* Center Audit Action in Dock */
+.dock-audit-btn {
+  position: relative;
+}
+
+.dock-audit-icon-wrap {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: var(--accent-cyan);
-  color: var(--bg-base);
-  border: 2px solid var(--bg-metal);
+  background: var(--accent-cyan-dim);
+  border: 1px solid var(--accent-cyan-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 12px var(--accent-cyan);
-  transition: transform var(--transition-spring);
-  flex-shrink: 0;
+  color: var(--accent-cyan);
+  transition: all var(--transition-fast);
 }
 
-.dock-center-beacon-btn:active {
-  transform: scale(0.9);
+.dock-audit-dot {
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
-.beacon-inner-radar {
-  font-size: 0.88rem;
+.dock-audit-label {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.dock-audit-btn:hover .dock-audit-icon-wrap, 
+.dock-audit-btn:active .dock-audit-icon-wrap,
+.dock-audit-btn.active .dock-audit-icon-wrap {
+  background: var(--accent-cyan);
+  color: var(--bg-base);
+  box-shadow: 0 0 16px var(--accent-cyan);
+  transform: scale(1.08);
 }
 
 /* Global Mobile Touch Optimization */
-button, a, .dock-nav-item, .dock-center-beacon-btn, .chain-node, .filter-pill, .btn-hero, .btn-card, .btn-copy-sm, .theme-btn, .cmd-k-btn, .mobile-toggle {
+button, a, .dock-item, .chain-node, .filter-pill, .btn-hero, .btn-card, .btn-copy-sm, .theme-btn, .cmd-k-btn, .mobile-toggle {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 768px) {
   .site-footer {
-    padding-bottom: 96px;
+    padding-bottom: calc(105px + env(safe-area-inset-bottom, 0px));
   }
 }
 
