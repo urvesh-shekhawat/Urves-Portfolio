@@ -2,63 +2,91 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urvesh Shekhawat | Full Stack Developer & Cybersecurity Specialist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Urvesh Shekhawat — Full Stack Engineer &amp; Cybersecurity Specialist</title>
   
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Portfolio of Urvesh Shekhawat - Full Stack Developer and Cybersecurity Specialist. Experienced in React.js, Node.js, Flask, Python, Web Security, and SOC Platform development. Winner of 2nd Position in MP Police Cyber Security Hackathon.">
-  <meta name="keywords" content="Urvesh Shekhawat, Full Stack Developer, Cybersecurity, Python, Flask, React.js, Node.js, VulnEye, AeroSky, MP Police Hackathon, Portfolio">
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Portfolio of Urvesh Shekhawat — Full Stack Engineer & Cybersecurity Specialist. Building secure digital products from interface to infrastructure. Winner of 2nd Position in MP Police Cyber Security Hackathon.">
+  <meta name="keywords" content="Urvesh Shekhawat, Full Stack Engineer, Cybersecurity, Python, Flask, React 19, Next.js, Web Application Security, VulnEye, AeroSky, MP Police Hackathon">
   <meta name="author" content="Urvesh Shekhawat">
   
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Urvesh Shekhawat | Full Stack Developer & Cybersecurity Specialist">
-  <meta property="og:description" content="Explore projects, internships, security tools, and achievements of Urvesh Shekhawat.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Urvesh Shekhawat — Full Stack Engineer &amp; Cybersecurity Specialist">
+  <meta property="og:description" content="Building secure digital products from interface to infrastructure. Explore selected work, security architecture, and case studies.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/profile.jpg">
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Google Fonts: Space Grotesk + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css?v=1.3">
 </head>
 <body>
 
-  <!-- Ambient Dynamic Canvas Background -->
-  <canvas id="ambient-canvas"></canvas>
-  <div class="glow-orb glow-orb-1"></div>
-  <div class="glow-orb glow-orb-2"></div>
-  <div class="glow-orb glow-orb-3"></div>
+  <!-- Custom Cursor Glow (Desktop) -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Layered Background System: Radial Glows, Technical Grid, Scanline, Canvas Particles -->
+  <div class="bg-depth-layer" aria-hidden="true">
+    <div class="radial-glow glow-cyan"></div>
+    <div class="radial-glow glow-indigo"></div>
+    <div class="radial-glow glow-emerald"></div>
+    <div class="blueprint-grid"></div>
+    <div class="scanning-light-beam"></div>
+    <div class="noise-overlay"></div>
+  </div>
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Technical Spatial Coordinates (Corner Watermarks) -->
+  <div class="spatial-coordinate coord-tl" aria-hidden="true">SYS_ID: US-SEC-2026 // NODE_01</div>
+  <div class="spatial-coordinate coord-tr" aria-hidden="true">GEO: 26.2183° N, 78.1828° E</div>
 
   <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <a href="#hero" class="nav-logo">
-        <div class="nav-logo-badge">US</div>
-        <span>Urvesh<span style="color: var(--accent-cyan)">.dev</span></span>
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand" aria-label="Urvesh Shekhawat Home">
+        <div class="brand-monogram">
+          <span class="monogram-text">US</span>
+          <span class="monogram-pulse"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">URVESH SHEKHAWAT</span>
+          <span class="brand-sub"><span class="status-pulse"></span>SYSTEM ONLINE // SWE &amp; SEC</span>
+        </div>
       </a>
 
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#achievements" class="nav-link">Achievements</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#education" class="nav-link">Education</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+      <!-- Desktop Nav Links -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active"><span class="nav-txt">Command</span></a></li>
+          <li><a href="#projects" class="nav-link"><span class="nav-txt">Selected Work</span></a></li>
+          <li><a href="#security-lab" class="nav-link"><span class="nav-txt">Security Lab</span></a></li>
+          <li><a href="#about" class="nav-link"><span class="nav-txt">Profile</span></a></li>
+          <li><a href="#experience" class="nav-link"><span class="nav-txt">Experience</span></a></li>
+          <li><a href="#achievements" class="nav-link"><span class="nav-txt">Honors</span></a></li>
+          <li><a href="#stack" class="nav-link"><span class="nav-txt">Stack</span></a></li>
+          <li><a href="#contact" class="nav-link"><span class="nav-txt">Contact</span></a></li>
         </ul>
       </nav>
 
+      <!-- Nav Utility Actions -->
       <div class="nav-actions">
-        <button class="cmd-k-trigger" title="Open Command Palette (Ctrl+K)">
-          <span>Search</span>
-          <span class="cmd-k-key">⌘K</span>
+        <button class="cmd-k-btn cmd-k-trigger" title="Search & Quick Actions (Ctrl/Cmd + K)" aria-label="Open Command Palette">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span class="cmd-k-label">Search</span>
+          <kbd class="cmd-k-kbd">⌘K</kbd>
         </button>
 
-        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle dark/light theme">
+        <button id="theme-toggle-btn" class="theme-btn" title="Toggle Dark/Light Theme" aria-label="Toggle dark/light theme">
           <span id="theme-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -72,1290 +100,1453 @@
           </span>
         </button>
 
-        <a href="assets/Urvesh_Shekhawat_Resume.pdf" download="Urvesh_Shekhawat_Resume.pdf" class="btn btn-primary btn-sm desktop-resume-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
+        <a href="assets/Urvesh_Shekhawat_Resume.pdf" download="Urvesh_Shekhawat_Resume.pdf" class="btn-nav-resume">
           <span>Resume</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
         </a>
 
-        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
+        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Toggle navigation drawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Interactive Drawer Overlay -->
-    <div id="mobile-drawer" class="mobile-drawer-overlay">
-      <div class="mobile-drawer-content">
-        <div class="mobile-drawer-header">
-          <div class="mobile-drawer-user">
-            <div class="nav-logo-badge">US</div>
-            <div>
-              <div style="font-weight: 800; font-size: 1.1rem; color: #fff;">Urvesh Shekhawat</div>
-              <div style="font-size: 0.8rem; color: var(--accent-cyan); font-family: var(--font-mono);">Full Stack &amp; Security</div>
-            </div>
-          </div>
-          <button id="mobile-drawer-close" class="mobile-drawer-close-btn" aria-label="Close menu">&times;</button>
+    <!-- Mobile Slide Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="drawer-header">
+        <div class="brand-monogram">
+          <span class="monogram-text">US</span>
         </div>
-
-        <div class="mobile-drawer-nav">
-          <a href="#hero" class="mobile-drawer-link">
-            <span class="drawer-icon">⚡</span>
-            <span>Home &amp; Terminal</span>
-          </a>
-          <a href="#about" class="mobile-drawer-link">
-            <span class="drawer-icon">👤</span>
-            <span>About Me &amp; Bio</span>
-          </a>
-          <a href="#experience" class="mobile-drawer-link">
-            <span class="drawer-icon">💼</span>
-            <span>Work Experience</span>
-          </a>
-          <a href="#projects" class="mobile-drawer-link">
-            <span class="drawer-icon">🚀</span>
-            <span>Projects Showcase</span>
-          </a>
-          <a href="#achievements" class="mobile-drawer-link">
-            <span class="drawer-icon">🏆</span>
-            <span>Honors &amp; Hackathon</span>
-          </a>
-          <a href="#skills" class="mobile-drawer-link">
-            <span class="drawer-icon">🛠️</span>
-            <span>Technical Skills</span>
-          </a>
-          <a href="#education" class="mobile-drawer-link">
-            <span class="drawer-icon">🎓</span>
-            <span>Academics</span>
-          </a>
-          <a href="#contact" class="mobile-drawer-link">
-            <span class="drawer-icon">✉️</span>
-            <span>Get In Touch</span>
-          </a>
+        <div class="drawer-user-meta">
+          <div class="drawer-name">Urvesh Shekhawat</div>
+          <div class="drawer-role">Full Stack &amp; Cybersecurity</div>
         </div>
+        <button id="mobile-drawer-close" class="drawer-close-btn" aria-label="Close menu">&times;</button>
+      </div>
 
-        <div class="mobile-drawer-footer">
-          <a href="assets/Urvesh_Shekhawat_Resume.pdf" download="Urvesh_Shekhawat_Resume.pdf" class="btn btn-primary" style="width: 100%; margin-bottom: 14px;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            Download Resume (PDF)
-          </a>
+      <nav class="drawer-nav">
+        <a href="#hero" class="drawer-link"><span>Command Center</span></a>
+        <a href="#projects" class="drawer-link"><span>Selected Work</span></a>
+        <a href="#security-lab" class="drawer-link"><span>Interactive Security Lab</span></a>
+        <a href="#about" class="drawer-link"><span>Profile &amp; Biography</span></a>
+        <a href="#experience" class="drawer-link"><span>Oxella Internship</span></a>
+        <a href="#achievements" class="drawer-link"><span>Hackathon Honors</span></a>
+        <a href="#stack" class="drawer-link"><span>Technical Stack</span></a>
+        <a href="#contact" class="drawer-link"><span>Get In Touch</span></a>
+      </nav>
 
-          <div class="mobile-drawer-socials">
-            <a href="https://github.com/Urvesh-Shekhawat" target="_blank" class="drawer-social-btn" title="GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            </a>
-            <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" class="drawer-social-btn" title="LinkedIn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-            </a>
-            <a href="mailto:urvesh.shekhawat24@gmail.com" class="drawer-social-btn" title="Email">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </a>
-            <a href="https://wa.me/917378254896" target="_blank" class="drawer-social-btn" title="WhatsApp">
-              <span style="font-size: 1rem;">💬</span>
-            </a>
-          </div>
+      <div class="drawer-footer">
+        <a href="assets/Urvesh_Shekhawat_Resume.pdf" download="Urvesh_Shekhawat_Resume.pdf" class="btn btn-primary btn-block">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download Resume (PDF)
+        </a>
+        <div class="drawer-social-row">
+          <a href="https://github.com/Urvesh-Shekhawat" target="_blank" rel="noopener" class="drawer-social-link">GitHub ↗</a>
+          <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" rel="noopener" class="drawer-social-link">LinkedIn ↗</a>
+          <a href="mailto:urvesh.shekhawat24@gmail.com" class="drawer-social-link">Email ↗</a>
         </div>
       </div>
     </div>
   </header>
 
-
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="status-badge">
-          <span class="status-dot"></span>
-          <span>Open to Software Engineering & Security Roles</span>
+  <main id="main-content">
+    
+    <!-- Hero Section: Premium Developer Portfolio + Interactive Cybersecurity Command Center -->
+    <section id="hero" class="hero-section">
+      <div class="section-container hero-container">
+        
+        <!-- Floating Micro-Metadata Badges (Desktop & Tablet) -->
+        <div class="hero-floating-meta meta-left" aria-hidden="true">
+          <div class="meta-tag"><span class="m-txt">FULL STACK SWE</span></div>
+          <div class="meta-tag"><span class="m-txt">CYBERSECURITY</span></div>
+          <div class="meta-tag"><span class="m-txt">PRODUCT BUILDER</span></div>
         </div>
 
-        <div class="hero-name-intro">Hi, my name is</div>
-        <h1 class="hero-title">
-          <span class="gradient-shimmer">Urvesh Shekhawat</span><br>
-          <span class="gradient-text typing-wrapper" id="typing-text">Full Stack Developer</span>
+        <div class="hero-floating-meta meta-right" aria-hidden="true">
+          <div class="meta-tag"><span class="m-key">STACK:</span><span class="m-val">React / Next / Flask</span></div>
+          <div class="meta-tag"><span class="m-key">FOCUS:</span><span class="m-val">Perimeter Hardening</span></div>
+          <div class="meta-tag"><span class="m-key">HONOR:</span><span class="m-val text-amber">2nd @ MP Police</span></div>
+        </div>
+
+        <!-- Top Status Pill -->
+        <div class="hero-status-pill">
+          <span class="radar-status-dot"></span>
+          <span class="status-text">AVAILABLE FOR SOFTWARE &amp; SECURITY ROLES</span>
+          <span class="status-sep">|</span>
+          <span class="status-code">SYS_STATUS: 100% ONLINE</span>
+        </div>
+
+        <!-- Role Subtitle Tag -->
+        <div class="hero-discipline-tag">
+          <span class="tag-bracket">[</span>
+          <span>FULL STACK DEVELOPER // CYBERSECURITY SPECIALIST</span>
+          <span class="tag-bracket">]</span>
+        </div>
+
+        <!-- Oversized Editorial Layered Typography -->
+        <h1 class="hero-heroic-title">
+          <span class="title-line-1">URVESH</span>
+          <span class="title-line-2">SHEKHAWAT</span>
         </h1>
 
-        <p class="hero-description">
-          Computer Science Engineer specializing in building <strong>secure, high-performance web systems</strong> and <strong>automated cybersecurity tools</strong>. Proven experience in enterprise RUM platforms, threat vulnerability auditing, and modern full-stack architectures.
-        </p>
-
-        <!-- Mobile Featured Story Chips (Exclusive to Mobile) -->
-        <div class="mobile-story-chips">
-          <div class="story-chip story-chip-gold">
-            <span>🥈</span>
-            <span>2nd @ MP Police Hackathon</span>
-          </div>
-          <div class="story-chip story-chip-cyan">
-            <span>🛡️</span>
-            <span>VulnEye Creator</span>
-          </div>
-          <div class="story-chip story-chip-purple">
-            <span>💼</span>
-            <span>Ex-Oxella RUM Intern</span>
-          </div>
-          <div class="story-chip story-chip-emerald">
-            <span>⚛️</span>
-            <span>React 19 &amp; Next.js</span>
-          </div>
-        </div>
-
-        <div class="hero-ctas">
-          <a href="#projects" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-              <polyline points="2 17 12 22 22 17"></polyline>
-              <polyline points="2 12 12 17 22 12"></polyline>
-            </svg>
-            Explore Projects
-          </a>
-          <button onclick="window.runAuditSimulation()" class="btn btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-            Run SOC Audit
-          </button>
-          <a href="#contact" class="btn btn-outline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            Get In Touch
-          </a>
-        </div>
-
-        <div class="hero-socials">
-          <a href="https://github.com/Urvesh-Shekhawat" target="_blank" class="social-pill" title="GitHub Profile">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            <span>GitHub</span>
-          </a>
-          <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" class="social-pill" title="LinkedIn Profile">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-            <span>LinkedIn</span>
-          </a>
-          <button class="social-pill" data-copy="urvesh.shekhawat24@gmail.com" data-copy-label="Email copied!">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span>Copy Email</span>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Hero Visuals: Crisp Profile Card + Multi-Tab Interactive SOC Console -->
-      <div class="hero-visual">
-        <div class="hero-profile-card glass-card">
-          <div class="profile-avatar-wrapper">
-            <img src="assets/images/profile.jpg" alt="Urvesh Shekhawat" class="profile-avatar">
-            <span class="profile-status-beacon" title="Available for hire">✓</span>
-          </div>
-          <div class="profile-info">
-            <h3>Urvesh Shekhawat</h3>
-            <p>B.Tech CSE '27 • Amity University</p>
-            <div class="profile-badges">
-              <span class="badge badge-cyan">Full Stack</span>
-              <span class="badge badge-purple">Cybersecurity</span>
-              <span class="badge badge-amber">🥈 Hackathon #2</span>
-              <span class="badge badge-emerald">🐍 Python / Flask</span>
-              <span class="badge badge-cyan">⚛️ React.js</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Multi-Tab Interactive SOC Terminal Simulator -->
-        <div class="hero-terminal">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-            </div>
-            <div class="terminal-title">urvesh@soc-terminal: ~ (VulnEye Core)</div>
-            <button class="quick-scan-btn" id="quick-scan-trigger">⚡ Fast Scan</button>
-          </div>
-
-          <!-- Terminal Tabs Navigation -->
-          <div class="terminal-tabs">
-            <button class="term-tab-btn active" data-tab="audit">⚡ Live SOC Audit</button>
-            <button class="term-tab-btn" data-tab="arch">📊 Tech Stack</button>
-            <button class="term-tab-btn" data-tab="hackathon">🏆 Honors</button>
-            <button class="term-tab-btn" data-tab="cli">💻 Shell CLI</button>
-          </div>
-
-          <!-- Tab 1: Live Audit -->
-          <div class="term-tab-content active" id="tab-audit">
-            <div style="color: #38bdf8; font-weight: 600; margin-bottom: 6px;">[VulnEye Security Perimeter Assessment Engine]</div>
-            <div style="color: #94a3b8; font-size: 0.8rem;">Target: <span class="term-green">prod.perimeter.local</span> | Protocol: <span class="term-yellow">TLS 1.3</span></div>
+        <!-- Signature Interactive Security System Architecture Visualization -->
+        <div class="hero-system-visual" id="hero-system-visual">
+          <div class="visual-blueprint-box">
             
-            <div class="audit-progress-container">
-              <div class="audit-progress-bar" id="audit-progress-bar" style="width: 100%;"></div>
-            </div>
-
-            <div id="audit-status-text" style="margin-bottom: 8px;">
-              <span class="term-green">[✔] 100% Perimeter Hardened. 0 Critical CVEs Found.</span>
-            </div>
-
-            <div style="font-size: 0.78rem; color: #64748b; line-height: 1.5;">
-              • OWASP Headers: <span class="term-green">Pass (HSTS, CSP, XFO)</span><br>
-              • SSL/TLS Cipher Suite: <span class="term-green">AES-256-GCM / Strict</span><br>
-              • AI Remediation: <span class="term-cyan">Auto-generated Nginx patch ready</span>
-            </div>
-          </div>
-
-          <!-- Tab 2: Architecture Matrix -->
-          <div class="term-tab-content" id="tab-arch">
-            <div style="color: #38bdf8; font-weight: 600; margin-bottom: 8px;">[Full Stack Core Architecture]</div>
-            <div style="font-size: 0.82rem; line-height: 1.6;">
-              • <span class="term-cyan">Frontend:</span> React.js, Vite, TypeScript, PWA, Tailwind/Vanilla CSS<br>
-              • <span class="term-green">Backend:</span> Node.js, Express.js, Python Flask, SQLAlchemy<br>
-              • <span class="term-purple">Security:</span> OWASP Top 10, JWT, Google OAuth 2.0, Nmap, TCP Recon<br>
-              • <span class="term-yellow">Database:</span> MySQL, PostgreSQL, Live SQL
-            </div>
-          </div>
-
-          <!-- Tab 3: Hackathon Spotlight -->
-          <div class="term-tab-content" id="tab-hackathon">
-            <div style="color: #fbbf24; font-weight: 700; margin-bottom: 6px;">🏆 2nd Place Winner - MP Police Cyber Security Hackathon</div>
-            <div style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 8px;">February 2025 • State Level Hackathon</div>
-            <div style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;">
-              Recognized by MP Police Department for engineering defensive vulnerability mitigation tools and rapid threat analysis pipelines.
-            </div>
-          </div>
-
-          <!-- Tab 4: Interactive Shell CLI -->
-          <div class="term-tab-content" id="tab-cli" style="padding: 10px 18px;">
-            <div id="terminal-body" style="min-height: 160px; max-height: 180px; overflow-y: auto;"></div>
-            <div class="terminal-input-row" style="padding-top: 8px;">
-              <span class="term-prompt">urvesh@security-soc:~$</span>
-              <input type="text" id="terminal-input" class="terminal-input" placeholder="type 'help'..." autocomplete="off" spellcheck="false">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Infinite Tech Stack Marquee Banner -->
-  <section class="tech-marquee-section">
-    <div class="marquee-track">
-      <div class="marquee-item"><span>⚡</span> PYTHON & FLASK</div>
-      <div class="marquee-item"><span>⚛️</span> REACT.JS</div>
-      <div class="marquee-item"><span>🚀</span> NODE.JS & EXPRESS</div>
-      <div class="marquee-item"><span>🛡️</span> OWASP WEB SECURITY</div>
-      <div class="marquee-item"><span>📘</span> TYPESCRIPT</div>
-      <div class="marquee-item"><span>🗄️</span> MYSQL & POSTGRESQL</div>
-      <div class="marquee-item"><span>🔑</span> GOOGLE OAUTH 2.0 & JWT</div>
-      <div class="marquee-item"><span>🌤️</span> PWA & SERVICE WORKERS</div>
-      <div class="marquee-item"><span>🔍</span> NMAP & TCP RECON</div>
-      <div class="marquee-item"><span>☁️</span> VERCEL & RENDER</div>
-      <div class="marquee-item"><span>🎨</span> UI/UX & BRANDING</div>
-      <!-- Duplicate for seamless infinite loop -->
-      <div class="marquee-item"><span>⚡</span> PYTHON & FLASK</div>
-      <div class="marquee-item"><span>⚛️</span> REACT.JS</div>
-      <div class="marquee-item"><span>🚀</span> NODE.JS & EXPRESS</div>
-      <div class="marquee-item"><span>🛡️</span> OWASP WEB SECURITY</div>
-      <div class="marquee-item"><span>📘</span> TYPESCRIPT</div>
-      <div class="marquee-item"><span>🗄️</span> MYSQL & POSTGRESQL</div>
-      <div class="marquee-item"><span>🔑</span> GOOGLE OAUTH 2.0 & JWT</div>
-      <div class="marquee-item"><span>🌤️</span> PWA & SERVICE WORKERS</div>
-      <div class="marquee-item"><span>🔍</span> NMAP & TCP RECON</div>
-      <div class="marquee-item"><span>☁️</span> VERCEL & RENDER</div>
-      <div class="marquee-item"><span>🎨</span> UI/UX & BRANDING</div>
-    </div>
-  </section>
-
-  <!-- Quick Stats Ribbon -->
-  <section class="stats-ribbon">
-    <div class="container stats-grid">
-      <div class="stat-item">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">Production & Security Projects</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">2nd</div>
-        <div class="stat-label">MP Police Cyber Hackathon</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Full Stack & Auth Implementation</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">Lead</div>
-        <div class="stat-label">Amity Coding Club Design & Mktg</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">
-          <span>// 01. ABOUT ME</span>
-        </div>
-        <h2 class="section-title">Bridging Full Stack Engineering & Security</h2>
-        <p class="section-subtitle">A glimpse into my background, core engineering philosophy, and what drives me to build impactful digital solutions.</p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-text-content">
-          <p class="about-paragraph">
-            I am a Computer Science and Engineering student at <strong>Amity University, Gwalior (2023–2027)</strong> with hands-on experience in modern web technologies, backend API design, and defensive cybersecurity operations.
-          </p>
-          <p class="about-paragraph">
-            During my internship at <strong>Oxella Technologies</strong>, I engineered critical modules for a Real User Monitoring (RUM) platform using <strong>React.js, Node.js, Express, and MySQL</strong>, implementing robust Google OAuth 2.0 authentication and tokenized session controls.
-          </p>
-          <p class="about-paragraph">
-            Beyond development, I have a deep passion for <strong>vulnerability assessment and SOC tools</strong>. My flagship tool, <strong>VulnEye</strong>, performs automated perimeter assessments with real-time SSE streaming and AI-assisted remediation. I also proudly achieved <strong>2nd Position in the MP Police Cyber Security Hackathon</strong>.
-          </p>
-
-          <div class="about-highlights">
-            <div class="highlight-box">
-              <div class="highlight-icon">🛡️</div>
-              <div class="highlight-info">
-                <h4>Security First</h4>
-                <p>OWASP compliance, SSL auditing & threat mitigation</p>
+            <div class="blueprint-topbar">
+              <div class="bp-left">
+                <span class="bp-dot dot-red"></span>
+                <span class="bp-dot dot-yellow"></span>
+                <span class="bp-dot dot-green"></span>
+                <span class="bp-label">DEFENSE_TOPOLOGY_MAP // CORE_MATRIX</span>
+              </div>
+              <div class="bp-right">
+                <span class="bp-telemetry" id="hero-live-scan-text">SCANNER: IDLE // THREAT LEVEL: ZERO</span>
               </div>
             </div>
-            <div class="highlight-box">
-              <div class="highlight-icon">⚡</div>
-              <div class="highlight-info">
-                <h4>Full Stack Mastery</h4>
-                <p>Scalable React & Node.js/Flask architectures</p>
-              </div>
-            </div>
-            <div class="highlight-box">
-              <div class="highlight-icon">👥</div>
-              <div class="highlight-info">
-                <h4>Leadership & Teamwork</h4>
-                <p>Design & Marketing Lead at Amity Coding Club</p>
-              </div>
-            </div>
-            <div class="highlight-box">
-              <div class="highlight-icon">🎯</div>
-              <div class="highlight-info">
-                <h4>High Precision</h4>
-                <p>Clean code, structured RESTful API documentation</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="about-cards-col">
-          <!-- Portrait Showcase Card -->
-          <div class="about-portrait-card">
-            <div class="about-portrait-img-wrap">
-              <img src="assets/images/profile.jpg" alt="Urvesh Shekhawat Portrait" class="about-portrait-img">
-              <div class="about-portrait-overlay">
-                <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;">Urvesh Shekhawat</div>
-                <div style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-mono);">Full Stack Developer & Security Researcher</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="glass-card info-card">
-            <div class="info-card-header">
-              <div class="info-card-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <h3 style="font-size: 1.15rem;">Fast Facts</h3>
-            </div>
-            <ul class="info-list">
-              <li class="info-list-item">
-                <span class="info-label">Name</span>
-                <span class="info-val">Urvesh Shekhawat</span>
-              </li>
-              <li class="info-list-item">
-                <span class="info-label">Location</span>
-                <span class="info-val">Gwalior, Madhya Pradesh, India</span>
-              </li>
-              <li class="info-list-item">
-                <span class="info-label">Education</span>
-                <span class="info-val">B.Tech in CSE (2023–2027)</span>
-              </li>
-              <li class="info-list-item">
-                <span class="info-label">University</span>
-                <span class="info-val">Amity University, MP</span>
-              </li>
-              <li class="info-list-item">
-                <span class="info-label">Primary Email</span>
-                <span class="info-val">urvesh.shekhawat24@gmail.com</span>
-              </li>
-              <li class="info-list-item">
-                <span class="info-label">Phone</span>
-                <span class="info-val">+91 7378254896</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section (Internships) -->
-  <section id="experience" class="section" style="background: rgba(15, 23, 42, 0.3);">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">
-          <span>// 02. EXPERIENCE</span>
-        </div>
-        <h2 class="section-title">Where I've Worked</h2>
-        <p class="section-subtitle">Real-world engineering impact, production deployments, and industry experience.</p>
-      </div>
-
-      <div class="experience-timeline">
-        <div class="glass-card experience-card">
-          <div class="exp-badge-top">
-            <span class="badge badge-emerald">Internship</span>
-          </div>
-
-          <div class="exp-header">
-            <div class="company-logo-avatar">OX</div>
-            <div class="exp-title-block">
-              <h3>Full Stack Developer Intern</h3>
-              <div class="exp-company">Oxella Technologies Pvt. Ltd.</div>
-              <div class="exp-meta">
-                <span>📍 Jaipur, Rajasthan</span>
-                <span>•</span>
-                <span>🗓️ 7 July 2025 – 18 Aug 2025</span>
-              </div>
-            </div>
-          </div>
-
-          <ul class="exp-bullets">
-            <li>
-              Built backend and frontend modules for an enterprise <strong>Real User Monitoring (RUM) platform</strong> using <strong>React.js, Node.js, Express.js, and MySQL</strong>.
-            </li>
-            <li>
-              Implemented hardened authentication workflows with <strong>Google OAuth 2.0</strong> and <strong>JWT-based authorization</strong> for session security and protected user dashboards.
-            </li>
-            <li>
-              Architected high-throughput <strong>RESTful APIs</strong> for user login, team creation, invitation systems, and team listing with structured validation and unified error handling.
-            </li>
-            <li>
-              Designed responsive React.js interfaces and integrated API clients using <strong>Axios</strong>, rigorously testing endpoints and user workflows via <strong>Postman</strong>.
-            </li>
-          </ul>
-
-          <div class="exp-tech-tags">
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Express.js</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">Google OAuth 2.0</span>
-            <span class="tech-tag">JWT</span>
-            <span class="tech-tag">Axios</span>
-            <span class="tech-tag">REST APIs</span>
-            <span class="tech-tag">Postman</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Showcase Section -->
-  <section id="projects" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">
-          <span>// 03. FEATURED WORK</span>
-        </div>
-        <h2 class="section-title">Projects I've Built</h2>
-        <p class="section-subtitle">A showcase of production tools, cybersecurity scanners, and web applications.</p>
-      </div>
-
-      <div class="projects-filter-bar">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="security">Security & Backend</button>
-        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
-        <button class="filter-btn" data-filter="frontend">Frontend & PWA</button>
-      </div>
-
-      <div class="projects-grid">
-        <!-- VulnEye - Featured Flagship -->
-        <div class="project-card-wrapper" data-categories="security fullstack">
-          <div class="glass-card project-card" style="border-color: rgba(6, 182, 212, 0.4);">
-            <div>
-              <div class="project-featured-banner">★ FLAGSHIP SOC & CYBERSECURITY PLATFORM</div>
-              <div class="project-card-header">
-                <div class="project-icon">🛡️</div>
-                <div class="project-links">
-                  <a href="https://vuln-eye-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="Live Deployment">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                  <a href="https://github.com/Urvesh-Shekhawat/VulnEye" target="_blank" class="project-link-icon" title="Source Code">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                  <button onclick="window.openProjectModal('vulneye')" class="project-link-icon" title="View Details">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </button>
+            <!-- Interactive Core Nodes Map -->
+            <div class="interactive-nodes-canvas">
+              
+              <!-- Central Core Node -->
+              <div class="core-hub-node active" data-hub="core">
+                <div class="hub-radar-ring"></div>
+                <div class="hub-center-beacon">
+                  <span class="hub-symbol">◉</span>
+                  <span class="hub-title">URVESH</span>
                 </div>
+                <span class="hub-sub">SYSTEM CORE</span>
+              </div>
+
+              <!-- Satellite Node 1: Web App / Frontend -->
+              <div class="satellite-node sat-web" data-sat="web">
+                <div class="sat-icon">⚛️</div>
+                <div class="sat-details">
+                  <span class="sat-name">WEB SYSTEMS</span>
+                  <span class="sat-status">React 19 / Next.js / PWA</span>
+                </div>
+                <div class="sat-ping"></div>
+              </div>
+
+              <!-- Satellite Node 2: API Gateway / Flask -->
+              <div class="satellite-node sat-api" data-sat="api">
+                <div class="sat-icon">⚡</div>
+                <div class="sat-details">
+                  <span class="sat-name">API GATEWAY</span>
+                  <span class="sat-status">Flask / Node / SSE Stream</span>
+                </div>
+                <div class="sat-ping"></div>
+              </div>
+
+              <!-- Satellite Node 3: SOC / VulnEye -->
+              <div class="satellite-node sat-soc" data-sat="soc">
+                <div class="sat-icon">🛡️</div>
+                <div class="sat-details">
+                  <span class="sat-name">SOC DEFENSE</span>
+                  <span class="sat-status">OWASP / Port Recon / CVE</span>
+                </div>
+                <div class="sat-ping"></div>
+              </div>
+
+              <!-- Satellite Node 4: Auth & Database -->
+              <div class="satellite-node sat-auth" data-sat="auth">
+                <div class="sat-icon">🔑</div>
+                <div class="sat-details">
+                  <span class="sat-name">AUTH &amp; DATABASE</span>
+                  <span class="sat-status">OAuth 2.0 / JWT / Postgres</span>
+                </div>
+                <div class="sat-ping"></div>
+              </div>
+
+              <!-- Dynamic Connecting Circuit Lines (SVG) -->
+              <svg class="nodes-circuit-svg" viewBox="0 0 760 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                  <linearGradient id="lineGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.2"/>
+                  </linearGradient>
+                </defs>
+                <path class="circuit-path path-1" d="M 380 130 L 150 50" />
+                <path class="circuit-path path-2" d="M 380 130 L 610 50" />
+                <path class="circuit-path path-3" d="M 380 130 L 150 210" />
+                <path class="circuit-path path-4" d="M 380 130 L 610 210" />
+              </svg>
+
+            </div>
+
+            <!-- Dynamic Node Details Inspector -->
+            <div class="blueprint-inspector" id="hero-node-inspector">
+              <div class="inspector-badge">NODE_INSPECTOR // ACTIVE</div>
+              <div class="inspector-text" id="hero-node-text">
+                <span class="text-cyan">CORE ARCHITECTURE:</span> Full stack engineer building end-to-end applications with hardened perimeter security, high-throughput APIs, and modern responsive interfaces.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Hero Thesis Statement -->
+        <div class="hero-thesis-statement">
+          "Building secure digital products <br class="thesis-break">
+          <span class="text-gradient-cyan">from interface to infrastructure.</span>"
+        </div>
+
+        <!-- Premium Interactive CTAs -->
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn-hero btn-hero-primary">
+            <span class="btn-text">VIEW SELECTED WORK</span>
+            <span class="btn-arrow">→</span>
+          </a>
+          <a href="#about" class="btn-hero btn-hero-secondary">
+            <span class="btn-text">ABOUT ME</span>
+            <span class="btn-arrow">↗</span>
+          </a>
+          <button onclick="window.runAuditSimulation()" class="btn-hero btn-hero-audit" title="Execute VulnEye Security Simulation">
+            <span class="audit-icon">🛡️</span>
+            <span class="btn-text">AUDIT PERIMETER</span>
+          </button>
+        </div>
+
+        <!-- Minimal Horizontal Social Rail -->
+        <div class="hero-social-rail">
+          <a href="https://github.com/Urvesh-Shekhawat" target="_blank" rel="noopener" class="rail-item">
+            <span class="rail-prefix">GH</span>
+            <span class="rail-label">GITHUB</span>
+            <span class="rail-arrow">↗</span>
+          </a>
+          <span class="rail-sep">/</span>
+          <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" rel="noopener" class="rail-item">
+            <span class="rail-prefix">IN</span>
+            <span class="rail-label">LINKEDIN</span>
+            <span class="rail-arrow">↗</span>
+          </a>
+          <span class="rail-sep">/</span>
+          <button class="rail-item" data-copy="urvesh.shekhawat24@gmail.com" data-copy-label="Email address copied to clipboard!">
+            <span class="rail-prefix">@</span>
+            <span class="rail-label">COPY EMAIL</span>
+            <span class="rail-arrow">📋</span>
+          </button>
+          <span class="rail-sep">/</span>
+          <a href="tel:+917378254896" class="rail-item">
+            <span class="rail-prefix">TEL</span>
+            <span class="rail-label">+91 7378254896</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 00B: Signature System Status Command Dashboard Panel -->
+    <section class="system-status-section" aria-label="Engineering System Status">
+      <div class="section-container">
+        <div class="status-hud-panel">
+          
+          <div class="hud-top-bar">
+            <div class="hud-title-wrap">
+              <span class="hud-beacon"></span>
+              <span class="hud-main-title">SYSTEM STATUS // TELEMETRY COMMAND CONSOLE</span>
+            </div>
+            <div class="hud-uptime-tag">UPTIME: 99.99% // LATENCY: 14ms</div>
+          </div>
+
+          <div class="hud-grid">
+            
+            <!-- Module 1: Frontend -->
+            <div class="hud-stat-cell">
+              <div class="stat-cell-top">
+                <span class="stat-name">FRONTEND SUBSYSTEM</span>
+                <span class="stat-pill pill-online">ONLINE</span>
+              </div>
+              <div class="stat-value">React 19 / Next.js / TypeScript</div>
+              <div class="stat-sparkline">
+                <span class="spark-bar h-80"></span>
+                <span class="spark-bar h-100"></span>
+                <span class="spark-bar h-90"></span>
+                <span class="spark-bar h-95"></span>
+                <span class="spark-bar h-100"></span>
+              </div>
+            </div>
+
+            <!-- Module 2: Backend -->
+            <div class="hud-stat-cell">
+              <div class="stat-cell-top">
+                <span class="stat-name">BACKEND SUBSYSTEM</span>
+                <span class="stat-pill pill-online">ONLINE</span>
+              </div>
+              <div class="stat-value">Python Flask / Node.js / SSE</div>
+              <div class="stat-sparkline">
+                <span class="spark-bar h-90"></span>
+                <span class="spark-bar h-85"></span>
+                <span class="spark-bar h-100"></span>
+                <span class="spark-bar h-95"></span>
+                <span class="spark-bar h-100"></span>
+              </div>
+            </div>
+
+            <!-- Module 3: Security -->
+            <div class="hud-stat-cell">
+              <div class="stat-cell-top">
+                <span class="stat-name">PERIMETER DEFENSE</span>
+                <span class="stat-pill pill-active">ACTIVE</span>
+              </div>
+              <div class="stat-value">OWASP / Port Recon / 0 CVEs</div>
+              <div class="stat-sparkline">
+                <span class="spark-bar h-100"></span>
+                <span class="spark-bar h-100"></span>
+                <span class="spark-bar h-100"></span>
+                <span class="spark-bar h-100"></span>
+                <span class="spark-bar h-100"></span>
+              </div>
+            </div>
+
+            <!-- Module 4: Auth & Database -->
+            <div class="hud-stat-cell">
+              <div class="stat-cell-top">
+                <span class="stat-name">AUTHENTICATION &amp; DB</span>
+                <span class="stat-pill pill-secured">SECURED</span>
+              </div>
+              <div class="stat-value">OAuth 2.0 / JWT / PostgreSQL</div>
+              <div class="stat-sparkline">
+                <span class="spark-bar h-95"></span>
+                <span class="spark-bar h-90"></span>
+                <span class="spark-bar h-100"></span>
+                <span class="spark-bar h-95"></span>
+                <span class="spark-bar h-100"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Audit Progress Bar -->
+          <div class="hud-audit-bar-wrap">
+            <div class="audit-stream-label">
+              <span id="hud-audit-title">VULNEYE REAL-TIME TELEMETRY STREAM</span>
+              <span class="audit-pct" id="hud-audit-pct">100% HARDENED</span>
+            </div>
+            <div class="audit-track">
+              <div class="audit-fill" id="hud-audit-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 01: Selected Work (Immersive Flagship Showcase) -->
+    <section id="projects" class="section">
+      <div class="section-container">
+        
+        <div class="section-header-editorial">
+          <div class="section-badge">// SELECTED WORK</div>
+          <h2 class="section-headline">Engineered Products &amp; Platforms</h2>
+          <p class="section-lead">Large immersive case studies demonstrating security intelligence, full-stack architecture, and production frontend engineering.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="project-filters">
+          <button class="filter-pill active" data-filter="all">All Platforms</button>
+          <button class="filter-pill" data-filter="security">Cybersecurity &amp; SOC</button>
+          <button class="filter-pill" data-filter="fullstack">Full Stack &amp; APIs</button>
+          <button class="filter-pill" data-filter="frontend">Frontend &amp; PWA</button>
+        </div>
+
+        <div class="showcase-stack">
+
+          <!-- Project 01: VulnEye (Flagship SOC & Cyber Platform) -->
+          <article class="showcase-card flagship-card" data-category="security fullstack">
+            <div class="card-visual-col">
+              <div class="immersive-visual visual-vulneye">
+                <div class="vis-header">
+                  <span class="vis-beacon"></span>
+                  <span class="vis-tag">VULNEYE // PERIMETER_RADAR_v2.4</span>
+                </div>
+                
+                <!-- Dynamic Threat Radar Metaphor -->
+                <div class="radar-scan-stage">
+                  <div class="radar-grid-ring r-1"></div>
+                  <div class="radar-grid-ring r-2"></div>
+                  <div class="radar-grid-ring r-3"></div>
+                  <div class="radar-sweep-beam"></div>
+                  
+                  <div class="radar-blip blip-1" title="TLS 1.3 Active"></div>
+                  <div class="radar-blip blip-2" title="OWASP CSP Pass"></div>
+                  <div class="radar-blip blip-3" title="Port 27017 Closed"></div>
+                  <div class="radar-blip blip-4" title="No SSRF Leaks"></div>
+                  
+                  <div class="radar-hud-center">
+                    <span>0 CVE</span>
+                    <small>CLEAN</small>
+                  </div>
+                </div>
+
+                <div class="vis-footer-telemetry">
+                  <div><span>SSE STREAM:</span><strong>ACTIVE (200 OK)</strong></div>
+                  <div><span>AI EXPLAINER:</span><strong>EN / HI (DUAL)</strong></div>
+                  <div><span>DOSSIER:</span><strong>REPORTLAB 4.x</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content-col">
+              <div class="card-meta-row">
+                <span class="flagship-badge">FLAGSHIP SOC &amp; CYBERSECURITY PLATFORM</span>
               </div>
 
               <h3 class="project-title">VulnEye</h3>
-              <p class="project-desc">
+              <div class="project-tagline">Enterprise Web Vulnerability &amp; SOC Intelligence Platform</div>
+
+              <p class="project-description">
                 Commercial-grade Web Security Scanner, Real-Time SSE Audit Terminal, AI Bilingual Threat Explainer (EN/HI), and SOC Command Center delivering non-intrusive perimeter intelligence, ReportLab PDF dossiers, and SIEM alerting.
               </p>
 
-              <ul class="project-features-list">
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Multi-vector scanner: TCP port sweeps (21–27017), TLS/SSL, dotfiles (.env/.git), & SSRF safety</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Real-time SSE audit terminal & AI Bilingual Threat Explainer with Nginx/UFW auto-fixes</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>SOC dashboard, continuous 24/7 watchlist, Discord/Slack webhooks & dynamic SVG badges</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="project-card-footer">
-              <div class="project-tags">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Flask</span>
-                <span class="tech-tag">SQLAlchemy</span>
-                <span class="tech-tag">SSE</span>
-                <span class="tech-tag">ReportLab</span>
-                <span class="tech-tag">ApexCharts</span>
-              </div>
-              <div class="project-card-actions">
-                <a href="https://vuln-eye-seven.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Live Demo ↗</a>
-                <button onclick="window.openProjectModal('vulneye')" class="btn btn-outline btn-sm">Details</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- AeroSky - Featured PWA -->
-        <div class="project-card-wrapper" data-categories="frontend fullstack">
-          <div class="glass-card project-card">
-            <div>
-              <div class="project-featured-banner" style="color: var(--accent-cyan);">⚡ PROGRESSIVE WEB APP & WEATHER INTELLIGENCE</div>
-              <div class="project-card-header">
-                <div class="project-icon">🌤️</div>
-                <div class="project-links">
-                  <a href="https://aero-sky.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="Live Deployment">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                  <a href="https://github.com/Urvesh-Shekhawat/AeroSky" target="_blank" class="project-link-icon" title="Source Code">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                  <button onclick="window.openProjectModal('aerosky')" class="project-link-icon" title="View Details">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </button>
+              <div class="project-feature-checklist">
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Multi-Vector Recon:</strong> Non-intrusive TCP socket sweeps (ports 21–27017), TLS/SSL cipher audit, sensitive dotfiles (.env/.git) leak checks, and SSRF subnet safety.</span>
                 </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>AI Threat Explainer:</strong> Bilingual (English &amp; Hindi) vulnerability summaries with automated drop-in Nginx security configs and Linux UFW rules.</span>
+                </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>SOC Command Center:</strong> 24/7 continuous domain watchlist, Discord/Slack SIEM webhooks, dynamic SVG badges, and ReportLab 4.x corporate PDF dossiers.</span>
+                </div>
+              </div>
+
+              <div class="project-tech-rail">
+                <span class="tech-pill">Python 3.9+</span>
+                <span class="tech-pill">Flask 3.x</span>
+                <span class="tech-pill">SQLAlchemy</span>
+                <span class="tech-pill">Server-Sent Events</span>
+                <span class="tech-pill">ApexCharts</span>
+                <span class="tech-pill">ReportLab 4.x</span>
+                <span class="tech-pill">OAuth 2.0</span>
+              </div>
+
+              <div class="project-action-row">
+                <a href="https://vuln-eye-seven.vercel.app/" target="_blank" rel="noopener" class="btn-card btn-card-primary">
+                  <span>Launch Live Platform</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+                <a href="https://github.com/Urvesh-Shekhawat/VulnEye" target="_blank" rel="noopener" class="btn-card btn-card-secondary">
+                  <span>GitHub Code</span>
+                  <span class="btn-arrow">↗</span>
+                </a>
+                <button onclick="window.openProjectModal('vulneye')" class="btn-card btn-card-inspect">
+                  <span>Architecture Spec</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 02: AeroSky (Weather Intelligence PWA) -->
+          <article class="showcase-card" data-category="frontend fullstack">
+            <div class="card-visual-col">
+              <div class="immersive-visual visual-aerosky">
+                <div class="vis-header">
+                  <span class="vis-beacon"></span>
+                  <span class="vis-tag">AEROSKY // METEOROLOGICAL_ENGINE</span>
+                </div>
+                
+                <!-- Weather Sparkline Curve & Sun Arc Metaphor -->
+                <div class="weather-stage">
+                  <svg class="weather-chart-svg" viewBox="0 0 320 120" preserveAspectRatio="none">
+                    <path class="sun-arc-path" d="M 20 100 Q 160 10, 300 100" fill="none" stroke="rgba(245, 158, 11, 0.35)" stroke-dasharray="4,4"/>
+                    <circle cx="160" cy="30" r="8" fill="#f59e0b" class="sun-orb"/>
+                    
+                    <path class="temp-sparkline-path" d="M 0 85 Q 80 40, 160 55 T 320 70" fill="none" stroke="var(--accent-cyan)" stroke-width="3.5"/>
+                    <circle cx="80" cy="48" r="4" fill="var(--accent-cyan)"/>
+                    <circle cx="160" cy="55" r="4" fill="var(--accent-cyan)"/>
+                    <circle cx="240" cy="62" r="4" fill="var(--accent-cyan)"/>
+                  </svg>
+                </div>
+
+                <div class="vis-footer-telemetry">
+                  <div><span>AQI INDEX:</span><strong>28 (HEALTHY)</strong></div>
+                  <div><span>PWA CACHE:</span><strong>OFFLINE READY</strong></div>
+                  <div><span>GEOCODING:</span><strong>OPEN-METEO</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content-col">
+              <div class="card-meta-row">
+                <span class="category-badge">PROGRESSIVE WEB APP // DATA VISUALIZATION</span>
               </div>
 
               <h3 class="project-title">AeroSky</h3>
-              <p class="project-desc">
-                A premium, asynchronous weather intelligence Progressive Web App (PWA) delivering real-time weather metrics, AQI health tracking, dynamic SVG temperature sparklines, sun tracker arcs, and complete offline Service Worker caching.
+              <div class="project-tagline">Weather Intelligence &amp; Analytics PWA</div>
+
+              <p class="project-description">
+                A premium, asynchronous weather intelligence Progressive Web App (PWA) delivering real-time meteorological metrics, AQI health tracking, dynamic SVG sparkline charts, sun tracker arcs, and complete offline Service Worker caching.
               </p>
 
-              <ul class="project-features-list">
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Installable PWA with offline caching via Service Workers (sw.js)</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Hourly SVG sparkline graphs, 7-day high/low range bars & animated sun position arc</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Dynamic weather-shifting themes, AQI metrics, pinned cities & Open-Meteo geocoding</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="project-card-footer">
-              <div class="project-tags">
-                <span class="tech-tag">JavaScript (ES6+)</span>
-                <span class="tech-tag">PWA</span>
-                <span class="tech-tag">Service Workers</span>
-                <span class="tech-tag">Open-Meteo</span>
-                <span class="tech-tag">SVG Charts</span>
-              </div>
-              <div class="project-card-actions">
-                <a href="https://aero-sky.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Live Demo ↗</a>
-                <button onclick="window.openProjectModal('aerosky')" class="btn btn-outline btn-sm">Details</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LaunchDesk -->
-        <div class="project-card-wrapper" data-categories="fullstack frontend">
-          <div class="glass-card project-card">
-            <div>
-              <div class="project-featured-banner" style="color: var(--accent-emerald);">⚡ AI-POWERED CUSTOMER SUPPORT SAAS</div>
-              <div class="project-card-header">
-                <div class="project-icon">🚀</div>
-                <div class="project-links">
-                  <a href="https://launchdesk-pied.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="Live Deployment">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                  <a href="https://github.com/Urvesh-Shekhawat/launchdesk" target="_blank" class="project-link-icon" title="Source Code">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                  <button onclick="window.openProjectModal('launchdesk')" class="project-link-icon" title="View Details">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </button>
+              <div class="project-feature-checklist">
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>PWA Offline Architecture:</strong> Installable cross-platform PWA with Service Worker caching (`sw.js`) and Cache API storage.</span>
                 </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Dynamic SVG Data Viz:</strong> 24-hour hourly sparkline curves, 7-day high/low range visualizations, and animated celestial sun tracker.</span>
+                </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Atmospheric Intelligence:</strong> Real-time Air Quality Index (AQI) health grading, auto-suggest geocoding via Open-Meteo, and live weather-adaptive theme shifting.</span>
+                </div>
+              </div>
+
+              <div class="project-tech-rail">
+                <span class="tech-pill">Vanilla JavaScript (ES6+)</span>
+                <span class="tech-pill">PWA</span>
+                <span class="tech-pill">Service Workers</span>
+                <span class="tech-pill">Open-Meteo API</span>
+                <span class="tech-pill">SVG Sparklines</span>
+              </div>
+
+              <div class="project-action-row">
+                <a href="https://aero-sky.vercel.app/" target="_blank" rel="noopener" class="btn-card btn-card-primary">
+                  <span>Launch Live PWA</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+                <a href="https://github.com/Urvesh-Shekhawat/AeroSky" target="_blank" rel="noopener" class="btn-card btn-card-secondary">
+                  <span>GitHub Code</span>
+                  <span class="btn-arrow">↗</span>
+                </a>
+                <button onclick="window.openProjectModal('aerosky')" class="btn-card btn-card-inspect">
+                  <span>Architecture Spec</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 03: LaunchDesk (AI Support SaaS) -->
+          <article class="showcase-card" data-category="fullstack frontend">
+            <div class="card-visual-col">
+              <div class="immersive-visual visual-launchdesk">
+                <div class="vis-header">
+                  <span class="vis-beacon"></span>
+                  <span class="vis-tag">LAUNCHDESK // COPILOT_INBOX_v1.0</span>
+                </div>
+                
+                <!-- Support Workflow Metaphor -->
+                <div class="inbox-workflow-stage">
+                  <div class="ticket-stream-item item-priority-high">
+                    <span class="t-badge">CRITICAL</span>
+                    <span class="t-title">API Authentication Token Drift</span>
+                    <span class="t-copilot-tag">AI SUMMARY READY</span>
+                  </div>
+                  <div class="ticket-stream-item item-priority-med">
+                    <span class="t-badge">NORMAL</span>
+                    <span class="t-title">Webhook Dispatch Latency Test</span>
+                    <span class="t-copilot-tag">DRAFT GENERATED</span>
+                  </div>
+                </div>
+
+                <div class="vis-footer-telemetry">
+                  <div><span>AI RESPONSE:</span><strong>0.8s DRAFT</strong></div>
+                  <div><span>FRAMEWORK:</span><strong>NEXT.JS 15</strong></div>
+                  <div><span>STATE:</span><strong>PERSISTENT</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content-col">
+              <div class="card-meta-row">
+                <span class="category-badge">AI SAAS // NEXT.JS APP ROUTER</span>
               </div>
 
               <h3 class="project-title">LaunchDesk</h3>
-              <p class="project-desc">
-                Customer support, supercharged by AI. A modern, responsive SaaS frontend engineered with Next.js App Router and TypeScript, featuring a unified ticket inbox, AI Copilot draft summaries, and interactive Recharts analytics.
+              <div class="project-tagline">AI-Supercharged Customer Support SaaS</div>
+
+              <p class="project-description">
+                Customer support, supercharged by AI. A modern, responsive, and highly interactive SaaS frontend engineered with Next.js App Router and TypeScript, featuring a unified ticket inbox, AI Copilot draft summaries, and interactive Recharts analytics.
               </p>
 
-              <ul class="project-features-list">
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Unified inbox with real-time ticket filtering & status orchestration</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>AI Copilot UI for automated response drafts & ticket summaries</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Interactive Recharts analytics & client-side localStorage state persistence</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="project-card-footer">
-              <div class="project-tags">
-                <span class="tech-tag">Next.js</span>
-                <span class="tech-tag">TypeScript</span>
-                <span class="tech-tag">Tailwind CSS v4</span>
-                <span class="tech-tag">Recharts</span>
-                <span class="tech-tag">Lucide React</span>
-              </div>
-              <div class="project-card-actions">
-                <a href="https://launchdesk-pied.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Live Demo ↗</a>
-                <button onclick="window.openProjectModal('launchdesk')" class="btn btn-outline btn-sm">Details</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Aurora Store -->
-        <div class="project-card-wrapper" data-categories="frontend fullstack">
-          <div class="glass-card project-card">
-            <div>
-              <div class="project-featured-banner" style="color: var(--accent-purple);">🛍️ PREMIUM E-COMMERCE SPA</div>
-              <div class="project-card-header">
-                <div class="project-icon">🛍️</div>
-                <div class="project-links">
-                  <a href="https://aurora-inky-chi.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="Live Deployment">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                  <a href="https://github.com/Urvesh-Shekhawat/Aurora" target="_blank" class="project-link-icon" title="Source Code">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                  <button onclick="window.openProjectModal('aurora')" class="project-link-icon" title="View Details">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </button>
+              <div class="project-feature-checklist">
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Unified Ticket Inbox:</strong> Real-time ticket filtering, priority classification, tag orchestration, and fast status switching.</span>
                 </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>AI Copilot Assist:</strong> UI workflow for AI-assisted automated reply drafts, customer sentiment summaries, and team collaboration notes.</span>
+                </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Interactive Analytics:</strong> Dynamic Recharts visualizations for resolution velocity and client-side localStorage state persistence.</span>
+                </div>
+              </div>
+
+              <div class="project-tech-rail">
+                <span class="tech-pill">Next.js (App Router)</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Tailwind CSS v4</span>
+                <span class="tech-pill">Recharts</span>
+                <span class="tech-pill">Lucide React</span>
+              </div>
+
+              <div class="project-action-row">
+                <a href="https://launchdesk-pied.vercel.app/" target="_blank" rel="noopener" class="btn-card btn-card-primary">
+                  <span>Launch Live SaaS</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+                <a href="https://github.com/Urvesh-Shekhawat/launchdesk" target="_blank" rel="noopener" class="btn-card btn-card-secondary">
+                  <span>GitHub Code</span>
+                  <span class="btn-arrow">↗</span>
+                </a>
+                <button onclick="window.openProjectModal('launchdesk')" class="btn-card btn-card-inspect">
+                  <span>Architecture Spec</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 04: Aurora Store (E-Commerce Capstone SPA) -->
+          <article class="showcase-card" data-category="fullstack frontend">
+            <div class="card-visual-col">
+              <div class="immersive-visual visual-aurora">
+                <div class="vis-header">
+                  <span class="vis-beacon"></span>
+                  <span class="vis-tag">AURORA // REDUX_STATE_MATRIX</span>
+                </div>
+                
+                <!-- Product State & Cart Pipeline Metaphor -->
+                <div class="redux-pipeline-stage">
+                  <div class="state-slice-box">
+                    <span class="slice-name">cartSlice</span>
+                    <span class="slice-val">SYNCED</span>
+                  </div>
+                  <div class="slice-arrow">→</div>
+                  <div class="state-slice-box">
+                    <span class="slice-name">authSlice</span>
+                    <span class="slice-val">JWT VERIFIED</span>
+                  </div>
+                  <div class="slice-arrow">→</div>
+                  <div class="state-slice-box">
+                    <span class="slice-name">productSlice</span>
+                    <span class="slice-val">CRUD ADMIN</span>
+                  </div>
+                </div>
+
+                <div class="vis-footer-telemetry">
+                  <div><span>STATE ENGINE:</span><strong>REDUX TOOLKIT</strong></div>
+                  <div><span>TEST SUITE:</span><strong>VITEST RTL</strong></div>
+                  <div><span>ROUTER:</span><strong>v7 SECURE</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content-col">
+              <div class="card-meta-row">
+                <span class="category-badge">ENTERPRISE SPA // REACT 19</span>
               </div>
 
               <h3 class="project-title">Aurora Store</h3>
-              <p class="project-desc">
-                A premium, high-fidelity Single Page Application (SPA) designed with enterprise-grade React 19 & Redux Toolkit architecture, mock JWT authentication, sliding cart drawer, and real-time inventory admin analytics.
+              <div class="project-tagline">Premium E-Commerce Capstone SPA</div>
+
+              <p class="project-description">
+                A premium, high-fidelity Single Page Application (SPA) designed to showcase modern enterprise-grade web engineering practices: Redux Toolkit state sync, mock JWT authentication, sliding cart drawer, and real-time inventory analytics.
               </p>
 
-              <ul class="project-features-list">
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Redux Toolkit state synchronization with localStorage persistence</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Sliding cart drawer with promo codes (AURORA20) & tax/shipping math</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Admin CRUD inventory dashboard & Vitest + RTL test coverage</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="project-card-footer">
-              <div class="project-tags">
-                <span class="tech-tag">React 19</span>
-                <span class="tech-tag">TypeScript</span>
-                <span class="tech-tag">Redux Toolkit</span>
-                <span class="tech-tag">React Router v7</span>
-                <span class="tech-tag">Vitest</span>
-              </div>
-              <div class="project-card-actions">
-                <a href="https://aurora-inky-chi.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Live Demo ↗</a>
-                <button onclick="window.openProjectModal('aurora')" class="btn btn-outline btn-sm">Details</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Zenith Tasks - Featured Kanban PWA -->
-        <div class="project-card-wrapper" data-categories="frontend fullstack">
-          <div class="glass-card project-card">
-            <div>
-              <div class="project-featured-banner" style="color: var(--accent-cyan);">⚡ DYNAMIC WORKSPACE &amp; KANBAN PWA</div>
-              <div class="project-card-header">
-                <div class="project-icon">📋</div>
-                <div class="project-links">
-                  <a href="https://github.com/Urvesh-Shekhawat/Zenith-Tasks" target="_blank" class="project-link-icon" title="Source Code">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                  <button onclick="window.openProjectModal('zenith')" class="project-link-icon" title="View Details">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </button>
+              <div class="project-feature-checklist">
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Redux Toolkit Architecture:</strong> Synchronized state slices for cart, catalog, authentication, and persistent preferences.</span>
                 </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Admin CRUD Dashboard:</strong> Product management, catalog metrics, low-stock notifications, and protected routing.</span>
+                </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Testing &amp; Tooling:</strong> Comprehensive unit and component testing with Vitest and React Testing Library.</span>
+                </div>
+              </div>
+
+              <div class="project-tech-rail">
+                <span class="tech-pill">React 19</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Redux Toolkit</span>
+                <span class="tech-pill">React Router v7</span>
+                <span class="tech-pill">Vitest</span>
+              </div>
+
+              <div class="project-action-row">
+                <a href="https://aurora-inky-chi.vercel.app/" target="_blank" rel="noopener" class="btn-card btn-card-primary">
+                  <span>Launch Live SPA</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+                <a href="https://github.com/Urvesh-Shekhawat/Aurora" target="_blank" rel="noopener" class="btn-card btn-card-secondary">
+                  <span>GitHub Code</span>
+                  <span class="btn-arrow">↗</span>
+                </a>
+                <button onclick="window.openProjectModal('aurora')" class="btn-card btn-card-inspect">
+                  <span>Architecture Spec</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 05: Zenith Tasks (Kanban PWA) -->
+          <article class="showcase-card" data-category="frontend fullstack">
+            <div class="card-visual-col">
+              <div class="immersive-visual visual-zenith">
+                <div class="vis-header">
+                  <span class="vis-beacon"></span>
+                  <span class="vis-tag">ZENITH // WORKSPACE_KANBAN_DND</span>
+                </div>
+                
+                <!-- Interactive Kanban Columns Metaphor -->
+                <div class="kanban-preview-stage">
+                  <div class="k-column">
+                    <span class="k-col-title">TO DO (3)</span>
+                    <div class="k-card-preview">Architect API Endpoints</div>
+                  </div>
+                  <div class="k-column active-col">
+                    <span class="k-col-title">IN PROGRESS</span>
+                    <div class="k-card-preview active-task">TLS Handshake Audit</div>
+                  </div>
+                  <div class="k-column">
+                    <span class="k-col-title">DONE</span>
+                    <div class="k-card-preview done-task">PWA Service Worker</div>
+                  </div>
+                </div>
+
+                <div class="vis-footer-telemetry">
+                  <div><span>INTERACTION:</span><strong>HTML5 DnD</strong></div>
+                  <div><span>STORAGE:</span><strong>LOCAL SYNC</strong></div>
+                  <div><span>ANALYTICS:</span><strong>CHART.JS</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content-col">
+              <div class="card-meta-row">
+                <span class="category-badge">KANBAN WORKSPACE // DRAG &amp; DROP PWA</span>
               </div>
 
               <h3 class="project-title">Zenith Tasks</h3>
-              <p class="project-desc">
-                A sleek, modern, glassmorphic task management workspace featuring a responsive HTML5 drag-and-drop Kanban board, celebratory confetti physics, ambient animations, productivity statistics, and offline PWA architecture.
+              <div class="project-tagline">Dynamic Workspace &amp; Drag-and-Drop Kanban PWA</div>
+
+              <p class="project-description">
+                A sleek, modern task management workspace featuring a responsive HTML5 drag-and-drop Kanban board, celebratory confetti physics, productivity statistics, and offline PWA architecture.
               </p>
 
-              <ul class="project-features-list">
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Interactive Drag &amp; Drop Kanban board across To Do, In Progress &amp; Done</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Explosive canvas-confetti particle celebrations &amp; ambient background glow</span>
-                </li>
-                <li>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Offline-ready PWA with Service Worker caching &amp; localStorage sync</span>
-                </li>
+              <div class="project-feature-checklist">
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>HTML5 Drag &amp; Drop:</strong> Fluid multi-column task orchestration with real-time position updates and column counts.</span>
+                </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>Productivity Analytics:</strong> Chart.js metrics tracking completion velocity, task priority distribution, and velocity streaks.</span>
+                </div>
+                <div class="check-item">
+                  <span class="check-icon">▹</span>
+                  <span><strong>PWA Offline Support:</strong> Service Worker caching enabling immediate boot time and full offline usability.</span>
+                </div>
+              </div>
+
+              <div class="project-tech-rail">
+                <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">HTML5 DnD</span>
+                <span class="tech-pill">PWA</span>
+                <span class="tech-pill">Chart.js</span>
+                <span class="tech-pill">LocalStorage</span>
+              </div>
+
+              <div class="project-action-row">
+                <a href="https://github.com/Urvesh-Shekhawat/Zenith-Tasks" target="_blank" rel="noopener" class="btn-card btn-card-secondary">
+                  <span>GitHub Repository</span>
+                  <span class="btn-arrow">↗</span>
+                </a>
+                <button onclick="window.openProjectModal('zenith')" class="btn-card btn-card-inspect">
+                  <span>Architecture Spec</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Global Repositories Link -->
+        <div class="projects-more-cta">
+          <a href="https://github.com/Urvesh-Shekhawat" target="_blank" rel="noopener" class="btn-hero btn-hero-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            <span>Explore All 20+ Repositories on GitHub</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Interactive Security Lab & Application Attack Surface Simulator -->
+    <section id="security-lab" class="section section-bordered">
+      <div class="section-container">
+        
+        <div class="section-header-editorial">
+          <div class="section-badge">// CYBERSECURITY LAB</div>
+          <h2 class="section-headline">Interactive Defense Surface &amp; Architecture</h2>
+          <p class="section-lead">Simulated multi-layer application defense pipeline. Tap any node below to inspect automated detection telemetry and auto-generated drop-in remediation policies.</p>
+        </div>
+
+        <!-- Interactive Architecture Pipeline Diagram -->
+        <div class="security-pipeline-interactive">
+          <div class="pipeline-title-bar">
+            <span>APPLICATION ARCHITECTURE DEFENSE CHAIN</span>
+            <span class="text-cyan">[TAP ANY NODE TO AUDIT]</span>
+          </div>
+
+          <div class="defense-chain-nodes">
+            <button class="chain-node active" data-vector="owasp">
+              <span class="cn-icon">🛡️</span>
+              <span class="cn-name">WAF &amp; Headers</span>
+              <span class="cn-badge">CSP / HSTS</span>
+            </button>
+            <div class="cn-arrow">→</div>
+            
+            <button class="chain-node" data-vector="recon">
+              <span class="cn-icon">🔍</span>
+              <span class="cn-name">Port Recon</span>
+              <span class="cn-badge">Nmap / Sockets</span>
+            </button>
+            <div class="cn-arrow">→</div>
+
+            <button class="chain-node" data-vector="auth">
+              <span class="cn-icon">🔑</span>
+              <span class="cn-name">Auth &amp; JWT</span>
+              <span class="cn-badge">OAuth 2.0 PKCE</span>
+            </button>
+            <div class="cn-arrow">→</div>
+
+            <button class="chain-node" data-vector="ssrf">
+              <span class="cn-icon">⚡</span>
+              <span class="cn-name">SSRF Shield</span>
+              <span class="cn-badge">Subnet / Dotfiles</span>
+            </button>
+            <div class="cn-arrow">→</div>
+
+            <button class="chain-node" data-vector="siem">
+              <span class="cn-icon">📡</span>
+              <span class="cn-name">SIEM Webhooks</span>
+              <span class="cn-badge">Discord / ReportLab</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Real-Time Defense Telemetry Terminal -->
+        <div class="threat-terminal-panel">
+          <div class="terminal-topbar">
+            <div class="topbar-left">
+              <span class="term-status-dot"></span>
+              <span class="term-target" id="lab-target-title">VECTOR // OWASP_SECURITY_HEADERS</span>
+            </div>
+            <span class="term-protocol">PROTOCOL: TLS 1.3 / STRICT</span>
+          </div>
+
+          <div class="terminal-screen" id="lab-screen-content">
+            <div class="term-line"><span class="term-prompt">&gt;</span> <span class="text-cyan">ANALYZING TARGET PERIMETER DEFENSE POLICY...</span></div>
+            <div class="term-line"><span class="term-prompt">&gt;</span> Content-Security-Policy (CSP): <span class="text-green">PASS (strict-dynamic default-src 'self')</span></div>
+            <div class="term-line"><span class="term-prompt">&gt;</span> HTTP Strict Transport Security (HSTS): <span class="text-green">PASS (max-age=31536000; includeSubDomains; preload)</span></div>
+            <div class="term-line"><span class="term-prompt">&gt;</span> X-Frame-Options: <span class="text-green">PASS (DENY)</span></div>
+            <div class="term-line"><span class="term-prompt">&gt;</span> X-Content-Type-Options: <span class="text-green">PASS (nosniff)</span></div>
+            <div class="term-line"><span class="term-prompt">&gt;</span> Referrer-Policy: <span class="text-green">PASS (strict-origin-when-cross-origin)</span></div>
+            <div class="term-line mt-2"><span class="term-prompt">&gt;</span> <span class="text-amber">AUTOMATED REMEDIATION SCRIPT:</span></div>
+            <div class="code-box-inline"># VulnEye Auto-Generated Nginx Defense Configuration
+add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline';";
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+add_header X-Frame-Options "DENY" always;
+add_header X-Content-Type-Options "nosniff" always;</div>
+          </div>
+
+          <div class="terminal-footer">
+            <button onclick="window.runAuditSimulation()" class="btn-term-action">
+              <span>Run Real-Time Live Audit Simulation</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Profile & Editorial Statement (About Me) -->
+    <section id="about" class="section">
+      <div class="section-container">
+        
+        <div class="section-header-editorial">
+          <div class="section-badge">// PROFILE &amp; PHILOSOPHY</div>
+          <h2 class="section-headline">"I build secure digital products from interface to infrastructure."</h2>
+        </div>
+
+        <div class="editorial-profile-grid">
+          
+          <!-- Left Column: Biography & Connected Discipline Rail -->
+          <div class="profile-narrative">
+            
+            <p class="editorial-lead">
+              I am a Computer Science and Engineering undergraduate at <strong>Amity University, Gwalior (2023–2027)</strong> combining full-stack web engineering with active cybersecurity research and defensive vulnerability analysis.
+            </p>
+
+            <p class="editorial-text">
+              During my production internship at <strong>Oxella Technologies</strong>, I engineered backend API modules, user management endpoints, and hardened authentication workflows for a Real User Monitoring (RUM) platform using <strong>React.js, Node.js, Express, and MySQL</strong>.
+            </p>
+
+            <p class="editorial-text">
+              My engineering philosophy focuses on eliminating the friction between modern, beautiful user interfaces and robust, resilient backend infrastructures. Whether designing real-time SSE streaming architectures in <strong>VulnEye</strong> or optimizing offline Progressive Web Apps in <strong>AeroSky</strong>, I ensure security compliance and performance are foundational requirements.
+            </p>
+
+            <!-- Connected Discipline Rail -->
+            <div class="discipline-timeline-rail">
+              <div class="disc-node">
+                <div class="disc-marker"></div>
+                <div class="disc-info">
+                  <div class="disc-title">FULL STACK ARCHITECTURE</div>
+                  <div class="disc-desc">React 19, Next.js, Node.js, Flask APIs, SQLAlchemy &amp; SQL modeling.</div>
+                </div>
+              </div>
+
+              <div class="disc-node">
+                <div class="disc-marker"></div>
+                <div class="disc-info">
+                  <div class="disc-title">CYBERSECURITY &amp; SOC</div>
+                  <div class="disc-desc">OWASP Top 10, Port Recon, CVE telemetry, TLS audit &amp; SIEM dispatchers.</div>
+                </div>
+              </div>
+
+              <div class="disc-node">
+                <div class="disc-marker"></div>
+                <div class="disc-info">
+                  <div class="disc-title">UI/UX &amp; PWA SYSTEMS</div>
+                  <div class="disc-desc">Progressive Web Apps, Service Workers, Offline caching &amp; Fluid typography.</div>
+                </div>
+              </div>
+
+              <div class="disc-node">
+                <div class="disc-marker"></div>
+                <div class="disc-info">
+                  <div class="disc-title">AUTHENTICATION &amp; AUTHZ</div>
+                  <div class="disc-desc">Google OAuth 2.0, JWT tokenization, RBAC controls &amp; session security.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Profile Showcase & Fast Facts -->
+          <div class="profile-sidebar">
+            
+            <div class="profile-portrait-card">
+              <div class="portrait-wrap">
+                <img src="assets/images/profile.jpg" alt="Urvesh Shekhawat" class="portrait-img">
+                <div class="portrait-overlay-tag">
+                  <span class="portrait-name">Urvesh Shekhawat</span>
+                  <span class="portrait-role">Full Stack Developer &amp; Security Specialist</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fast Facts Blueprint -->
+            <div class="fast-facts-panel">
+              <div class="panel-label">FAST TELEMETRY</div>
+              <ul class="facts-list">
+                <li><span class="f-key">Location:</span><span class="f-val">Gwalior, Madhya Pradesh, India</span></li>
+                <li><span class="f-key">Degree:</span><span class="f-val">B.Tech Computer Science (2023–27)</span></li>
+                <li><span class="f-key">Institution:</span><span class="f-val">Amity University Madhya Pradesh</span></li>
+                <li><span class="f-key">Hackathon:</span><span class="f-val text-amber">2nd Position • MP Police (2025)</span></li>
+                <li><span class="f-key">Campus Role:</span><span class="f-val">Design &amp; Marketing Lead (ACC)</span></li>
+                <li><span class="f-key">Contact:</span><span class="f-val text-cyan">urvesh.shekhawat24@gmail.com</span></li>
               </ul>
             </div>
 
-            <div class="project-card-footer">
-              <div class="project-tags">
-                <span class="tech-tag">JavaScript (ES6+)</span>
-                <span class="tech-tag">HTML5 Drag &amp; Drop</span>
-                <span class="tech-tag">CSS3 Glassmorphism</span>
-                <span class="tech-tag">PWA</span>
-                <span class="tech-tag">Chart.js</span>
-              </div>
-              <div class="project-card-actions">
-                <button onclick="window.openProjectModal('zenith')" class="btn btn-primary btn-sm" style="flex: 1;">Details &amp; Architecture ↗</button>
-              </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Experience Timeline -->
+    <section id="experience" class="section section-bordered">
+      <div class="section-container">
+        
+        <div class="section-header-editorial">
+          <div class="section-badge">// EXPERIENCE</div>
+          <h2 class="section-headline">Industry Experience</h2>
+          <p class="section-lead">Production engineering deployments, enterprise monitoring systems, and team collaboration.</p>
+        </div>
+
+        <div class="experience-block">
+          <div class="exp-left-meta">
+            <span class="exp-period">07 JUL 2025 – 18 AUG 2025</span>
+            <span class="exp-badge">FULL-STACK INTERNSHIP</span>
+            <span class="exp-loc">Jaipur, Rajasthan, India</span>
+          </div>
+
+          <div class="exp-main-body">
+            <div class="exp-company-header">
+              <h3 class="exp-role">Full Stack Developer Intern</h3>
+              <div class="exp-company-name">Oxella Technologies Pvt. Ltd.</div>
+            </div>
+
+            <p class="exp-summary">
+              Engineered critical modules for an enterprise Real User Monitoring (RUM) platform, designing scalable REST APIs and secure authentication pipelines.
+            </p>
+
+            <ul class="exp-checklist">
+              <li>
+                <span class="exp-check-bullet">▹</span>
+                <span>Architected backend and frontend components for the RUM dashboard using <strong>React.js, Node.js, Express.js, and MySQL</strong>.</span>
+              </li>
+              <li>
+                <span class="exp-check-bullet">▹</span>
+                <span>Implemented hardened authentication workflows with <strong>Google OAuth 2.0</strong> and <strong>JWT-based authorization</strong> for session persistence and protected routes.</span>
+              </li>
+              <li>
+                <span class="exp-check-bullet">▹</span>
+                <span>Engineered high-throughput RESTful APIs for user login, team creation, and member invitation workflows with unified error handling.</span>
+              </li>
+              <li>
+                <span class="exp-check-bullet">▹</span>
+                <span>Integrated API clients with <strong>Axios</strong> on responsive React interfaces and tested endpoints extensively via <strong>Postman</strong>.</span>
+              </li>
+            </ul>
+
+            <div class="exp-stack-tags">
+              <span>React.js</span>
+              <span>Node.js</span>
+              <span>Express.js</span>
+              <span>MySQL</span>
+              <span>Google OAuth 2.0</span>
+              <span>JWT</span>
+              <span>Axios</span>
+              <span>REST APIs</span>
+              <span>Postman</span>
             </div>
           </div>
         </div>
+
       </div>
+    </section>
 
-      <div style="text-align: center; margin-top: 50px;">
-
-        <a href="https://github.com/Urvesh-Shekhawat" target="_blank" class="btn btn-secondary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-          Explore All Repositories on GitHub
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Hackathon & Leadership Spotlight -->
-  <section id="achievements" class="section" style="background: rgba(15, 23, 42, 0.3);">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">
-          <span>// 04. HONORS & LEADERSHIP</span>
+    <!-- Section: Honors & Leadership Spotlight -->
+    <section id="achievements" class="section">
+      <div class="section-container">
+        
+        <div class="section-header-editorial">
+          <div class="section-badge">// HONORS &amp; RECOGNITION</div>
+          <h2 class="section-headline">Hackathon &amp; Leadership</h2>
         </div>
-        <h2 class="section-title">Achievements & Campus Roles</h2>
-        <p class="section-subtitle">Recognition in state-level cybersecurity competitions and community leadership.</p>
-      </div>
 
-      <div class="achievements-grid">
-        <!-- Hackathon Card -->
-        <div class="glass-card achievement-card-hackathon">
-          <div class="hackathon-trophy">🥈</div>
-          <span class="badge badge-amber" style="margin-bottom: 12px;">State-Level Competition</span>
-          <h3 style="font-size: 1.5rem; margin-bottom: 8px;">2nd Position — MP Police Cyber Security Hackathon</h3>
-          <div style="font-family: var(--font-mono); color: var(--accent-amber); font-size: 0.9rem; margin-bottom: 16px;">
-            February 2025 • Madhya Pradesh Police Department
+        <div class="honors-grid">
+          
+          <!-- Hackathon Major Hero Block with Shield Metaphor -->
+          <div class="hackathon-hero-card">
+            <div class="trophy-meta">
+              <div class="trophy-giant">2ND</div>
+              <div class="trophy-badge-wrap">
+                <span class="trophy-badge">POSITION // STATE-LEVEL</span>
+                <span class="trophy-sub">MP POLICE CYBER HACKATHON</span>
+              </div>
+            </div>
+
+            <div class="hackathon-content">
+              <div class="hackathon-title-group">
+                <h3 class="hackathon-name">MP POLICE CYBER SECURITY HACKATHON</h3>
+                <div class="hackathon-date">FEBRUARY 2025 • MADHYA PRADESH POLICE DEPARTMENT</div>
+              </div>
+
+              <p class="hackathon-desc">
+                Awarded <strong>2nd Place</strong> in the statewide cybersecurity hackathon organized by the MP Police Department. Recognized for rapid perimeter vulnerability detection, simulated offensive-defensive vector analysis, and architecting actionable defensive countermeasures against critical infrastructure threats.
+              </p>
+
+              <div class="hackathon-pillars">
+                <div class="pillar-pill">Defensive Mitigation</div>
+                <div class="pillar-pill">Vulnerability Auditing</div>
+                <div class="pillar-pill">Threat Intelligence</div>
+                <div class="pillar-pill">Rapid Incident Response</div>
+              </div>
+            </div>
           </div>
-          <p style="color: var(--text-secondary); font-size: 0.96rem; line-height: 1.7;">
-            Awarded <strong>2nd Place</strong> in the prestigious cybersecurity hackathon organized by MP Police. Recognized for rapid vulnerability detection, simulated offensive-defensive vector analysis, and architecting actionable defensive countermeasures against critical cyber threats.
+
+          <!-- Leadership & Community Column -->
+          <div class="leadership-column">
+            <div class="panel-label">COMMUNITY &amp; CAMPUS LEADERSHIP</div>
+
+            <div class="leadership-timeline-list">
+              
+              <div class="lead-item">
+                <div class="lead-marker"></div>
+                <div class="lead-info">
+                  <div class="lead-header">
+                    <h4 class="lead-role">Lead, Design and Marketing Team</h4>
+                    <span class="lead-time">March 2026 – Present</span>
+                  </div>
+                  <div class="lead-org">Amity Coding Club (ACC)</div>
+                  <p class="lead-desc">Heading visual brand strategy, major hackathon campaigns, and flagship tech events across the university.</p>
+                </div>
+              </div>
+
+              <div class="lead-item">
+                <div class="lead-marker"></div>
+                <div class="lead-info">
+                  <div class="lead-header">
+                    <h4 class="lead-role">Coordinator, Design &amp; Marketing</h4>
+                    <span class="lead-time">May 2025 – March 2026</span>
+                  </div>
+                  <div class="lead-org">Amity Coding Club (ACC)</div>
+                  <p class="lead-desc">Coordinated engagement strategy and creative digital branding for coding workshops and competitive bootcamps.</p>
+                </div>
+              </div>
+
+              <div class="lead-item">
+                <div class="lead-marker"></div>
+                <div class="lead-info">
+                  <div class="lead-header">
+                    <h4 class="lead-role">Class Representative (CR)</h4>
+                    <span class="lead-time">2023 – Present</span>
+                  </div>
+                  <div class="lead-org">Amity University Madhya Pradesh</div>
+                  <p class="lead-desc">Representing the B.Tech Computer Science cohort, liaising between students and faculty leadership.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Technical Stack Matrix -->
+    <section id="stack" class="section section-bordered">
+      <div class="section-container">
+        
+        <div class="section-header-editorial">
+          <div class="section-badge">// TECHNICAL STACK</div>
+          <h2 class="section-headline">Engineering Toolchain</h2>
+          <p class="section-lead">Structured categorization of languages, frameworks, security utilities, and infrastructure tools.</p>
+        </div>
+
+        <div class="stack-categories-grid">
+          
+          <!-- Category 1: Frontend -->
+          <div class="stack-card">
+            <div class="stack-card-header">
+              <span class="stack-icon">⚛️</span>
+              <h3 class="stack-cat-title">Frontend Engineering</h3>
+            </div>
+            <div class="stack-pills-wrap">
+              <span class="stack-pill"><span class="p-dot"></span>React 19 / React.js</span>
+              <span class="stack-pill"><span class="p-dot"></span>Next.js (App Router)</span>
+              <span class="stack-pill"><span class="p-dot"></span>TypeScript</span>
+              <span class="stack-pill"><span class="p-dot"></span>JavaScript (ES6+)</span>
+              <span class="stack-pill"><span class="p-dot"></span>Redux Toolkit</span>
+              <span class="stack-pill"><span class="p-dot"></span>Tailwind CSS v4</span>
+              <span class="stack-pill"><span class="p-dot"></span>PWA &amp; Service Workers</span>
+              <span class="stack-pill"><span class="p-dot"></span>HTML5 &amp; CSS3</span>
+              <span class="stack-pill"><span class="p-dot"></span>Recharts / ApexCharts</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Backend & Systems -->
+          <div class="stack-card">
+            <div class="stack-card-header">
+              <span class="stack-icon">⚡</span>
+              <h3 class="stack-cat-title">Backend &amp; APIs</h3>
+            </div>
+            <div class="stack-pills-wrap">
+              <span class="stack-pill"><span class="p-dot"></span>Python 3.x</span>
+              <span class="stack-pill"><span class="p-dot"></span>Flask 3.x</span>
+              <span class="stack-pill"><span class="p-dot"></span>Node.js</span>
+              <span class="stack-pill"><span class="p-dot"></span>Express.js</span>
+              <span class="stack-pill"><span class="p-dot"></span>SQLAlchemy</span>
+              <span class="stack-pill"><span class="p-dot"></span>RESTful APIs</span>
+              <span class="stack-pill"><span class="p-dot"></span>Server-Sent Events (SSE)</span>
+              <span class="stack-pill"><span class="p-dot"></span>Java</span>
+              <span class="stack-pill"><span class="p-dot"></span>C / C++</span>
+            </div>
+          </div>
+
+          <!-- Category 3: Cybersecurity & SOC -->
+          <div class="stack-card">
+            <div class="stack-card-header">
+              <span class="stack-icon">🛡️</span>
+              <h3 class="stack-cat-title">Cybersecurity &amp; SOC</h3>
+            </div>
+            <div class="stack-pills-wrap">
+              <span class="stack-pill"><span class="p-dot"></span>OWASP Top 10</span>
+              <span class="stack-pill"><span class="p-dot"></span>Vulnerability Auditing</span>
+              <span class="stack-pill"><span class="p-dot"></span>TCP Recon &amp; Nmap</span>
+              <span class="stack-pill"><span class="p-dot"></span>TLS / SSL Ciphers</span>
+              <span class="stack-pill"><span class="p-dot"></span>CVSS v3.1 Scoring</span>
+              <span class="stack-pill"><span class="p-dot"></span>SSRF Mitigation</span>
+              <span class="stack-pill"><span class="p-dot"></span>Security Headers</span>
+              <span class="stack-pill"><span class="p-dot"></span>Google OAuth 2.0 / JWT</span>
+              <span class="stack-pill"><span class="p-dot"></span>SIEM Webhook Alerts</span>
+            </div>
+          </div>
+
+          <!-- Category 4: Databases & Infrastructure -->
+          <div class="stack-card">
+            <div class="stack-card-header">
+              <span class="stack-icon">🗄️</span>
+              <h3 class="stack-cat-title">Databases &amp; Cloud</h3>
+            </div>
+            <div class="stack-pills-wrap">
+              <span class="stack-pill"><span class="p-dot"></span>PostgreSQL</span>
+              <span class="stack-pill"><span class="p-dot"></span>MySQL</span>
+              <span class="stack-pill"><span class="p-dot"></span>SQLite</span>
+              <span class="stack-pill"><span class="p-dot"></span>Docker</span>
+              <span class="stack-pill"><span class="p-dot"></span>Vercel Serverless</span>
+              <span class="stack-pill"><span class="p-dot"></span>Render</span>
+              <span class="stack-pill"><span class="p-dot"></span>Git &amp; GitHub</span>
+              <span class="stack-pill"><span class="p-dot"></span>Linux / Bash</span>
+            </div>
+          </div>
+
+          <!-- Category 5: Tooling & Testing -->
+          <div class="stack-card">
+            <div class="stack-card-header">
+              <span class="stack-icon">🛠️</span>
+              <h3 class="stack-cat-title">Tooling &amp; Testing</h3>
+            </div>
+            <div class="stack-pills-wrap">
+              <span class="stack-pill"><span class="p-dot"></span>Vitest</span>
+              <span class="stack-pill"><span class="p-dot"></span>React Testing Library</span>
+              <span class="stack-pill"><span class="p-dot"></span>Postman</span>
+              <span class="stack-pill"><span class="p-dot"></span>ReportLab 4.x</span>
+              <span class="stack-pill"><span class="p-dot"></span>VS Code</span>
+              <span class="stack-pill"><span class="p-dot"></span>Vite 8</span>
+            </div>
+          </div>
+
+          <!-- Category 6: Design & Leadership -->
+          <div class="stack-card">
+            <div class="stack-card-header">
+              <span class="stack-icon">🎨</span>
+              <h3 class="stack-cat-title">Design &amp; Media</h3>
+            </div>
+            <div class="stack-pills-wrap">
+              <span class="stack-pill"><span class="p-dot"></span>UI/UX Architecture</span>
+              <span class="stack-pill"><span class="p-dot"></span>Visual Communication</span>
+              <span class="stack-pill"><span class="p-dot"></span>Canva</span>
+              <span class="stack-pill"><span class="p-dot"></span>Branding &amp; Typography</span>
+              <span class="stack-pill"><span class="p-dot"></span>Team Leadership</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Contact & Final CTA -->
+    <section id="contact" class="section">
+      <div class="section-container">
+        
+        <div class="contact-editorial-header">
+          <div class="section-badge">// GET IN TOUCH</div>
+          <h2 class="contact-giant-title">
+            LET'S BUILD<br>
+            <span class="text-gradient-cyan">SOMETHING SECURE.</span>
+          </h2>
+          <p class="contact-lead-text">
+            Have a project in mind, an engineering role, or a security audit opportunity? Let's talk.
           </p>
         </div>
 
-        <!-- Leadership Timeline Card -->
-        <div class="glass-card">
-          <h3 style="font-size: 1.3rem; margin-bottom: 18px; display: flex; align-items: center; gap: 10px;">
-            <span>🏛️</span>
-            <span>Leadership Journey</span>
-          </h3>
-
-          <div class="leadership-timeline">
-            <div class="leader-item">
-              <div class="leader-icon">👑</div>
-              <div class="leader-details">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <h4>Lead, Design and Marketing Team</h4>
-                  <span class="leader-date">March 2026 – Present</span>
+        <div class="contact-split-grid">
+          
+          <!-- Left: Direct Endpoints -->
+          <div class="contact-endpoints-col">
+            
+            <div class="endpoint-card">
+              <div class="ep-left">
+                <span class="ep-icon">📧</span>
+                <div class="ep-text">
+                  <span class="ep-label">DIRECT EMAIL</span>
+                  <a href="mailto:urvesh.shekhawat24@gmail.com" class="ep-value">urvesh.shekhawat24@gmail.com</a>
                 </div>
-                <p>Amity Coding Club (ACC) • Heading visual brand strategy, major hackathon campaigns &amp; tech events.</p>
               </div>
+              <button class="btn-copy-sm" data-copy="urvesh.shekhawat24@gmail.com" data-copy-label="Email address copied to clipboard!">Copy</button>
             </div>
 
-            <div class="leader-item">
-              <div class="leader-icon">⚡</div>
-              <div class="leader-details">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <h4>Coordinator, Design and Marketing</h4>
-                  <span class="leader-date">May 2025 – March 2026</span>
+            <div class="endpoint-card">
+              <div class="ep-left">
+                <span class="ep-icon">📱</span>
+                <div class="ep-text">
+                  <span class="ep-label">PHONE / WHATSAPP</span>
+                  <a href="tel:+917378254896" class="ep-value">+91 7378254896</a>
                 </div>
-                <p>Amity Coding Club (ACC) • Coordinated social media engagement and creative branding for coding workshops.</p>
               </div>
+              <button class="btn-copy-sm" data-copy="+917378254896" data-copy-label="Phone number copied to clipboard!">Copy</button>
             </div>
 
-            <div class="leader-item">
-              <div class="leader-icon">🎨</div>
-              <div class="leader-details">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <h4>Member, Design and Marketing Team</h4>
-                  <span class="leader-date">2024 – May 2025</span>
+            <div class="endpoint-card">
+              <div class="ep-left">
+                <span class="ep-icon">💼</span>
+                <div class="ep-text">
+                  <span class="ep-label">LINKEDIN</span>
+                  <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" rel="noopener" class="ep-value">linkedin.com/in/urvesh-shekhawat</a>
                 </div>
-                <p>Amity Coding Club (ACC) • Created visual assets, social promotional kits, and event graphics.</p>
               </div>
+              <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" rel="noopener" class="btn-copy-sm">Visit ↗</a>
             </div>
 
-            <div class="leader-item">
-              <div class="leader-icon">🎓</div>
-              <div class="leader-details">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <h4>Class Representative</h4>
-                  <span class="leader-date">2023 – Present</span>
+            <div class="endpoint-card">
+              <div class="ep-left">
+                <span class="ep-icon">🐙</span>
+                <div class="ep-text">
+                  <span class="ep-label">GITHUB</span>
+                  <a href="https://github.com/Urvesh-Shekhawat" target="_blank" rel="noopener" class="ep-value">github.com/Urvesh-Shekhawat</a>
                 </div>
-                <p>B.Tech Computer Science &amp; Engineering • Amity University Madhya Pradesh, Gwalior.</p>
               </div>
+              <a href="https://github.com/Urvesh-Shekhawat" target="_blank" rel="noopener" class="btn-copy-sm">Visit ↗</a>
+            </div>
+
+          </div>
+
+          <!-- Right: Interactive Contact Form -->
+          <div class="contact-form-col">
+            <div class="form-container">
+              <h3 class="form-title">Send Direct Dispatch</h3>
+              
+              <form id="contact-form" class="direct-form">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="form-name">NAME *</label>
+                    <input type="text" id="form-name" required placeholder="e.g. Alex Morgan" autocomplete="name">
+                  </div>
+                  <div class="form-field">
+                    <label for="form-email">EMAIL *</label>
+                    <input type="email" id="form-email" required placeholder="e.g. alex@company.com" autocomplete="email">
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="form-subject">SUBJECT</label>
+                  <input type="text" id="form-subject" placeholder="e.g. Full Stack Engineering / Security Opportunity">
+                </div>
+
+                <div class="form-field">
+                  <label for="form-message">MESSAGE *</label>
+                  <textarea id="form-message" rows="4" required placeholder="Hello Urvesh, I'd like to discuss..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-hero btn-hero-primary btn-block">
+                  <span class="btn-text">TRANSMIT MESSAGE</span>
+                  <span class="btn-arrow">→</span>
+                </button>
+              </form>
             </div>
           </div>
+
         </div>
+
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Technical Skills Matrix Section -->
-  <section id="skills" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">
-          <span>// 05. TECHNICAL EXPERTISE</span>
-        </div>
-        <h2 class="section-title">Skills & Technologies</h2>
-        <p class="section-subtitle">A comprehensive breakdown of my engineering toolchain, frameworks, and proficiencies.</p>
-      </div>
+  </main>
 
-      <div class="skills-categories-grid">
-        <!-- Category 1: Languages -->
-        <div class="glass-card skill-category-card">
-          <div class="skill-cat-header">
-            <div class="skill-cat-icon">💻</div>
-            <h3 style="font-size: 1.15rem;">Languages</h3>
-          </div>
-          <div class="skill-items-wrap">
-            <div class="skill-pill"><span class="skill-dot"></span>Python</div>
-            <div class="skill-pill"><span class="skill-dot"></span>JavaScript (ES6+)</div>
-            <div class="skill-pill"><span class="skill-dot"></span>TypeScript</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Java</div>
-            <div class="skill-pill"><span class="skill-dot"></span>C / C++</div>
-            <div class="skill-pill"><span class="skill-dot"></span>SQL</div>
-            <div class="skill-pill"><span class="skill-dot"></span>HTML5 / CSS3</div>
-          </div>
-        </div>
-
-        <!-- Category 2: Frameworks & Full Stack -->
-        <div class="glass-card skill-category-card">
-          <div class="skill-cat-header">
-            <div class="skill-cat-icon">⚛️</div>
-            <h3 style="font-size: 1.15rem;">Frameworks &amp; Web</h3>
-          </div>
-          <div class="skill-items-wrap">
-            <div class="skill-pill"><span class="skill-dot"></span>React 19 / React.js</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Next.js (App Router)</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Flask 3.x (Python)</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Node.js</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Express.js</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Redux Toolkit</div>
-            <div class="skill-pill"><span class="skill-dot"></span>React Router v7</div>
-            <div class="skill-pill"><span class="skill-dot"></span>SQLAlchemy</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Tailwind CSS v4</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Recharts</div>
-            <div class="skill-pill"><span class="skill-dot"></span>PWA &amp; Service Workers</div>
-          </div>
-        </div>
-
-        <!-- Category 3: Security & Databases -->
-        <div class="glass-card skill-category-card">
-          <div class="skill-cat-header">
-            <div class="skill-cat-icon">🛡️</div>
-            <h3 style="font-size: 1.15rem;">Cybersecurity &amp; SOC</h3>
-          </div>
-          <div class="skill-items-wrap">
-            <div class="skill-pill"><span class="skill-dot"></span>OWASP Top 10</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Web Vulnerability Audit</div>
-            <div class="skill-pill"><span class="skill-dot"></span>TCP Port Reconnaissance</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Nmap</div>
-            <div class="skill-pill"><span class="skill-dot"></span>TLS / SSL Ciphers</div>
-            <div class="skill-pill"><span class="skill-dot"></span>CVSS v3.1 Scoring</div>
-            <div class="skill-pill"><span class="skill-dot"></span>SIEM Webhook Alerts</div>
-            <div class="skill-pill"><span class="skill-dot"></span>SSRF Mitigation</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Security Headers</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Google OAuth 2.0 / JWT</div>
-          </div>
-        </div>
-
-        <!-- Category 4: Databases & Storage -->
-        <div class="glass-card skill-category-card">
-          <div class="skill-cat-header">
-            <div class="skill-cat-icon">🗄️</div>
-            <h3 style="font-size: 1.15rem;">Databases &amp; Cloud</h3>
-          </div>
-          <div class="skill-items-wrap">
-            <div class="skill-pill"><span class="skill-dot"></span>PostgreSQL</div>
-            <div class="skill-pill"><span class="skill-dot"></span>MySQL</div>
-            <div class="skill-pill"><span class="skill-dot"></span>SQLite</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Docker</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Vercel Serverless</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Render</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Gunicorn</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Git &amp; GitHub</div>
-          </div>
-        </div>
-
-        <!-- Category 5: Developer Tools & Testing -->
-        <div class="glass-card skill-category-card">
-          <div class="skill-cat-header">
-            <div class="skill-cat-icon">🛠️</div>
-            <h3 style="font-size: 1.15rem;">Testing &amp; Tooling</h3>
-          </div>
-          <div class="skill-items-wrap">
-            <div class="skill-pill"><span class="skill-dot"></span>Vitest</div>
-            <div class="skill-pill"><span class="skill-dot"></span>React Testing Library</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Postman</div>
-            <div class="skill-pill"><span class="skill-dot"></span>VS Code</div>
-            <div class="skill-pill"><span class="skill-dot"></span>ReportLab 4.x</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Linux / Bash</div>
-          </div>
-        </div>
-
-        <!-- Category 6: Design & Leadership -->
-        <div class="glass-card skill-category-card">
-          <div class="skill-cat-header">
-            <div class="skill-cat-icon">🎨</div>
-            <h3 style="font-size: 1.15rem;">Design &amp; Leadership</h3>
-          </div>
-          <div class="skill-items-wrap">
-            <div class="skill-pill"><span class="skill-dot"></span>UI/UX Design</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Canva</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Visual Communication</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Branding &amp; Media</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Responsive Web Design</div>
-            <div class="skill-pill"><span class="skill-dot"></span>Team Leadership</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education & Coursework Section -->
-  <section id="education" class="section" style="background: rgba(15, 23, 42, 0.3);">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">
-          <span>// 06. ACADEMICS</span>
-        </div>
-        <h2 class="section-title">Education &amp; Coursework</h2>
-        <p class="section-subtitle">Academic foundation in Computer Science and Systems Engineering.</p>
-      </div>
-
-      <div class="glass-card education-card">
-        <div class="edu-main">
-          <div style="font-size: 2.2rem; margin-bottom: 8px;">🎓</div>
-          <h3>Amity University, Gwalior</h3>
-          <div class="edu-degree">Bachelor of Technology in Computer Science and Engineering</div>
-          <div class="edu-timeline">2023 – 2027 • Gwalior, Madhya Pradesh</div>
-        </div>
-
-        <div class="edu-coursework">
-          <h4 style="font-size: 1.05rem; margin-bottom: 12px; color: var(--accent-cyan);">Relevant Coursework</h4>
-          <div class="coursework-wrap">
-            <span class="course-chip">Data Structures</span>
-            <span class="course-chip">Algorithms Analysis</span>
-            <span class="course-chip">Database Management (DBMS)</span>
-            <span class="course-chip">Artificial Intelligence</span>
-            <span class="course-chip">Systems Programming</span>
-            <span class="course-chip">Software Methodology</span>
-            <span class="course-chip">Internet Technology</span>
-            <span class="course-chip">Computer Architecture</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact & Connect Section -->
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">
-          <span>// 07. GET IN TOUCH</span>
-        </div>
-        <h2 class="section-title">Let's Connect & Collaborate</h2>
-        <p class="section-subtitle">Whether you have an exciting software role, a security project, or just want to chat tech, my inbox is always open.</p>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Contact Info & Quick Copy Channels -->
-        <div class="contact-info-col">
-          <div class="contact-channel-card">
-            <div class="channel-left">
-              <div class="channel-icon">📧</div>
-              <div class="channel-text">
-                <h4>Email Address</h4>
-                <a href="mailto:urvesh.shekhawat24@gmail.com">urvesh.shekhawat24@gmail.com</a>
-              </div>
-            </div>
-            <button class="copy-btn" data-copy="urvesh.shekhawat24@gmail.com" data-copy-label="Email address copied!">Copy</button>
-          </div>
-
-          <div class="contact-channel-card">
-            <div class="channel-left">
-              <div class="channel-icon">📱</div>
-              <div class="channel-text">
-                <h4>Phone / WhatsApp</h4>
-                <a href="tel:+917378254896">+91 7378254896</a>
-              </div>
-            </div>
-            <button class="copy-btn" data-copy="+917378254896" data-copy-label="Phone number copied!">Copy</button>
-          </div>
-
-          <div class="contact-channel-card">
-            <div class="channel-left">
-              <div class="channel-icon">💼</div>
-              <div class="channel-text">
-                <h4>LinkedIn</h4>
-                <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank">linkedin.com/in/urvesh-shekhawat</a>
-              </div>
-            </div>
-            <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" class="copy-btn" style="text-align: center;">Visit</a>
-          </div>
-
-          <div class="contact-channel-card">
-            <div class="channel-left">
-              <div class="channel-icon">🐙</div>
-              <div class="channel-text">
-                <h4>GitHub</h4>
-                <a href="https://github.com/Urvesh-Shekhawat" target="_blank">github.com/Urvesh-Shekhawat</a>
-              </div>
-            </div>
-            <a href="https://github.com/Urvesh-Shekhawat" target="_blank" class="copy-btn" style="text-align: center;">Visit</a>
-          </div>
-        </div>
-
-        <!-- Interactive Contact Form -->
-        <div class="glass-card">
-          <h3 style="font-size: 1.3rem; margin-bottom: 20px;">Send a Direct Message</h3>
-          <form id="contact-form" class="contact-form">
-            <div class="form-group">
-              <label for="form-name">Your Name *</label>
-              <input type="text" id="form-name" class="form-input" placeholder="e.g. John Doe" required>
-            </div>
-
-            <div class="form-group">
-              <label for="form-email">Your Email *</label>
-              <input type="email" id="form-email" class="form-input" placeholder="e.g. john@example.com" required>
-            </div>
-
-            <div class="form-group">
-              <label for="form-subject">Subject</label>
-              <input type="text" id="form-subject" class="form-input" placeholder="e.g. Full Stack Opportunity / Project Collaboration">
-            </div>
-
-            <div class="form-group">
-              <label for="form-message">Message *</label>
-              <textarea id="form-message" class="form-textarea" placeholder="Hello Urvesh, I'd like to discuss..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
+  <!-- Editorial Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <div class="footer-top-row">
         <div class="footer-brand">
-          <div class="nav-logo-badge" style="width: 32px; height: 32px; font-size: 0.85rem;">US</div>
-          <span style="font-weight: 700; font-family: var(--font-heading);">Urvesh Shekhawat</span>
+          <div class="brand-monogram">
+            <span class="monogram-text">US</span>
+          </div>
+          <div>
+            <div class="footer-name">URVESH SHEKHAWAT</div>
+            <div class="footer-tagline">Full Stack Engineer &amp; Cybersecurity Specialist</div>
+          </div>
         </div>
 
-        <ul class="footer-nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#achievements">Achievements</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <a href="#projects">Selected Work</a>
+          <a href="#security-lab">Security Lab</a>
+          <a href="#about">Profile</a>
+          <a href="#experience">Experience</a>
+          <a href="#achievements">Honors</a>
+          <a href="#stack">Stack</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-        <div>
-          <a href="#hero" class="btn-icon" title="Back to top">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="18 15 12 9 6 15"></polyline>
-            </svg>
-          </a>
+        <a href="#hero" class="btn-back-top" title="Back to top" aria-label="Back to top">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </a>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div class="footer-copy">
+          © 2026 Urvesh Shekhawat. Engineered with Semantic HTML5, Vanilla CSS &amp; JavaScript.
+        </div>
+        <div class="footer-status-tag">
+          <span class="status-pulse"></span> ALL DEFENSE SYSTEMS OPERATIONAL
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p>© 2026 Urvesh Shekhawat. Built with clean HTML5, CSS3 & JavaScript. Designed for high performance.</p>
-      </div>
     </div>
   </footer>
 
   <!-- Command Palette Modal (Ctrl/Cmd + K) -->
-  <div id="cmd-palette-backdrop" class="cmd-palette-backdrop">
-    <div class="cmd-palette-window">
+  <div id="cmd-palette-backdrop" class="cmd-palette-backdrop" aria-hidden="true">
+    <div class="cmd-palette-window" role="dialog" aria-modal="true" aria-label="Command Palette">
       <div class="cmd-palette-input-wrap">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <input type="text" id="cmd-palette-input" class="cmd-palette-input" placeholder="Type a command or jump to section..." autocomplete="off">
-        <span class="cmd-item-shortcut">ESC</span>
+        <kbd class="cmd-item-shortcut">ESC</kbd>
       </div>
       <ul id="cmd-palette-list" class="cmd-palette-list">
-        <!-- Populated dynamically -->
+        <!-- Dynamically rendered -->
       </ul>
     </div>
   </div>
 
-  <!-- Project Detail Modal -->
-  <div id="project-modal-backdrop" class="modal-backdrop">
-    <div class="modal-window">
+  <!-- Project Architecture Details Modal -->
+  <div id="project-modal-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-window" role="dialog" aria-modal="true" aria-label="Project Details">
       <div class="modal-header">
-        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan);">// PROJECT ARCHITECTURE</div>
-        <button id="project-modal-close" class="modal-close-btn">&times;</button>
+        <div class="modal-label">// ARCHITECTURE_SPECIFICATION</div>
+        <button id="project-modal-close" class="modal-close-btn" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body" id="project-modal-body">
-        <!-- Populated dynamically -->
+        <!-- Dynamically injected -->
       </div>
     </div>
   </div>
 
   <!-- Toast Notification Container -->
-  <div id="toast-container" class="toast-container"></div>
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-  <!-- Mobile Floating Bottom HUD Dock (Exclusive to Mobile) -->
-  <nav class="mobile-bottom-dock" aria-label="Mobile bottom navigation">
-    <a href="#hero" class="mobile-dock-item active" data-dock="hero">
-      <span class="dock-icon">⚡</span>
-      <span class="dock-label">Home</span>
+  <!-- Premium Floating Glass/Metal Navigation Dock (Mobile) -->
+  <nav class="floating-metal-dock" aria-label="Mobile Quick Dock">
+    <a href="#hero" class="dock-nav-item active" data-dock="hero">
+      <span class="dock-label">HOME</span>
     </a>
-    <a href="#projects" class="mobile-dock-item" data-dock="projects">
-      <span class="dock-icon">🚀</span>
-      <span class="dock-label">Projects</span>
+    <a href="#projects" class="dock-nav-item" data-dock="projects">
+      <span class="dock-label">WORK</span>
     </a>
-    <button onclick="window.runAuditSimulation()" class="mobile-dock-item dock-scan-btn" data-dock="scan" title="Run SOC Audit">
-      <span class="dock-icon-radar">🛡️</span>
-      <span class="dock-label">Audit</span>
+    <button onclick="window.runAuditSimulation()" class="dock-center-beacon-btn" data-dock="scan" title="Run VulnEye SOC Audit">
+      <span class="beacon-inner-radar">◉</span>
     </button>
-    <a href="#skills" class="mobile-dock-item" data-dock="skills">
-      <span class="dock-icon">🛠️</span>
-      <span class="dock-label">Skills</span>
+    <a href="#security-lab" class="dock-nav-item" data-dock="security-lab">
+      <span class="dock-label">LAB</span>
     </a>
-    <a href="#contact" class="mobile-dock-item" data-dock="contact">
-      <span class="dock-icon">💬</span>
-      <span class="dock-label">Connect</span>
+    <a href="#contact" class="dock-nav-item" data-dock="contact">
+      <span class="dock-label">CONTACT</span>
     </a>
   </nav>
 
-  <!-- Scripts -->
+  <!-- Core JavaScript Modules -->
   <script src="assets/js/terminal.js"></script>
   <script src="assets/js/command-palette.js"></script>
   <script src="assets/js/main.js"></script>
