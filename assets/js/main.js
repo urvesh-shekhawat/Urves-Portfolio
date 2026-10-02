@@ -1,75 +1,30 @@
 /**
- * Urvesh Shekhawat Portfolio — Main Application Engine (v3.0)
- * Command Center Visuals, Interactive Topology Engine, Custom Cursor & Telemetry HUD
+ * Urvesh Shekhawat — Portfolio Application Engine
+ * Minimal, accessible, and responsive client-side interactions.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   
-  // --- 1. Custom Desktop Cursor ---
-  const cursorGlow = document.getElementById('cursor-glow');
-  const cursorDot = document.getElementById('cursor-dot');
-
-  if (cursorGlow && cursorDot && window.matchMedia('(pointer: fine)').matches) {
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let glowX = mouseX;
-    let glowY = mouseY;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-    });
-
-    function animateCursor() {
-      glowX += (mouseX - glowX) * 0.15;
-      glowY += (mouseY - glowY) * 0.15;
-      cursorGlow.style.left = `${glowX}px`;
-      cursorGlow.style.top = `${glowY}px`;
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    // Expand cursor on interactive elements
-    const hoverTargets = document.querySelectorAll('a, button, .satellite-node, .core-hub-node, .showcase-card, .chain-node');
-    hoverTargets.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorDot.style.transform = 'translate(-50%, -50%) scale(2.2)';
-        cursorDot.style.backgroundColor = 'var(--accent-cyan)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-      });
-    });
-  }
-
-  // --- 2. Theme Engine ---
+  // --- 1. Theme Engine (Default: Light / Off-White) ---
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const themeIcon = document.getElementById('theme-icon');
   
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
 
   window.toggleTheme = function() {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', nextTheme);
     localStorage.setItem('theme', nextTheme);
     updateThemeIcon(nextTheme);
-    window.showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} Mode`);
+    window.showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} theme`);
   };
 
   function updateThemeIcon(theme) {
     if (!themeIcon) return;
-    if (theme === 'light') {
-      themeIcon.innerHTML = `
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      `;
-    } else {
+    if (theme === 'dark') {
       themeIcon.innerHTML = `
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"></circle>
@@ -83,6 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
       `;
+    } else {
+      themeIcon.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      `;
     }
   }
 
@@ -90,231 +51,22 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggleBtn.addEventListener('click', window.toggleTheme);
   }
 
-  // --- 3. Ambient Canvas Particles ---
-  const canvas = document.getElementById('ambient-canvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+  // --- 2. Project Filtering ---
+  const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
+  const projectCards = document.querySelectorAll('.project-card[data-category]');
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-    const particles = [];
-    const numParticles = Math.min(Math.floor(window.innerWidth / 32), 40);
+      const filterVal = btn.getAttribute('data-filter');
 
-    for (let i = 0; i < numParticles; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 1.5 + 0.6,
-        color: i % 2 === 0 ? 'rgba(0, 242, 254, ' : 'rgba(99, 102, 241, '
-      });
-    }
-
-    function renderParticles() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 110) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 242, 254, ${0.12 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.6;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + '0.45)';
-        ctx.fill();
-      });
-
-      requestAnimationFrame(renderParticles);
-    }
-    renderParticles();
-  }
-
-  // --- 4. Hero Interactive Security System Architecture Topology ---
-  const coreHub = document.querySelector('.core-hub-node');
-  const satNodes = document.querySelectorAll('.satellite-node[data-sat]');
-  const heroNodeText = document.getElementById('hero-node-text');
-  const heroLiveScanText = document.getElementById('hero-live-scan-text');
-
-  const heroNodeData = {
-    core: '<span class="text-cyan">CORE ARCHITECTURE:</span> Full stack engineer building end-to-end applications with hardened perimeter security, high-throughput APIs, and modern responsive interfaces.',
-    web: '<span class="text-cyan">WEB SYSTEMS LAYER:</span> React 19, Next.js (App Router), TypeScript, Progressive Web Apps with offline Service Worker resilience & fluid responsive typography.',
-    api: '<span class="text-cyan">API GATEWAY & BACKEND:</span> Python Flask, Node.js, Express, Server-Sent Events (SSE) telemetry, and strict RESTful schema verification.',
-    soc: '<span class="text-cyan">SOC & PERIMETER DEFENSE:</span> Non-intrusive TCP port reconnaissance (21–27017), TLS/SSL cipher inspections, OWASP Top 10 compliance, and automated Nginx/UFW remediation.',
-    auth: '<span class="text-cyan">AUTH &amp; DATABASE LAYER:</span> Hardened Google OAuth 2.0 PKCE workflows, JWT authorization with HttpOnly session cookies, and PostgreSQL / MySQL connection pools with parameterized queries.'
-  };
-
-  if (coreHub) {
-    coreHub.addEventListener('click', () => {
-      satNodes.forEach(s => s.classList.remove('active'));
-      coreHub.classList.add('active');
-      if (heroNodeText) heroNodeText.innerHTML = heroNodeData.core;
-      if (heroLiveScanText) heroLiveScanText.textContent = 'SCANNER: IDLE // THREAT LEVEL: ZERO';
-    });
-  }
-
-  satNodes.forEach(node => {
-    node.addEventListener('click', () => {
-      satNodes.forEach(s => s.classList.remove('active'));
-      if (coreHub) coreHub.classList.remove('active');
-      node.classList.add('active');
-
-      const satKey = node.getAttribute('data-sat');
-      if (heroNodeText && heroNodeData[satKey]) {
-        heroNodeText.innerHTML = heroNodeData[satKey];
-      }
-      if (heroLiveScanText) {
-        heroLiveScanText.innerHTML = `<span class="text-cyan">AUDITING NODE: ${satKey.toUpperCase()} // STATUS: PASS</span>`;
-      }
-    });
-  });
-
-  // --- 5. Interactive Security Lab Chain Nodes Switcher ---
-  const chainNodes = document.querySelectorAll('.chain-node[data-vector]');
-  const labTargetTitle = document.getElementById('lab-target-title');
-  const labScreenContent = document.getElementById('lab-screen-content');
-
-  const labVectorsData = {
-    owasp: {
-      title: 'VECTOR // OWASP_SECURITY_HEADERS',
-      html: `
-        <div class="term-line"><span class="term-prompt">&gt;</span> <span class="text-cyan">ANALYZING TARGET PERIMETER DEFENSE POLICY...</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Content-Security-Policy (CSP): <span class="text-green">PASS (strict-dynamic default-src 'self')</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> HTTP Strict Transport Security (HSTS): <span class="text-green">PASS (max-age=31536000; includeSubDomains; preload)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> X-Frame-Options: <span class="text-green">PASS (DENY)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> X-Content-Type-Options: <span class="text-green">PASS (nosniff)</span></div>
-        <div class="term-line mt-2"><span class="term-prompt">&gt;</span> <span class="text-amber">AUTOMATED REMEDIATION SCRIPT:</span></div>
-        <div class="code-box-inline"># VulnEye Auto-Generated Nginx Defense Configuration
-add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline';";
-add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-add_header X-Frame-Options "DENY" always;
-add_header X-Content-Type-Options "nosniff" always;</div>
-      `
-    },
-    recon: {
-      title: 'VECTOR // TCP_PORT_RECON_SWEEP',
-      html: `
-        <div class="term-line"><span class="term-prompt">&gt;</span> <span class="text-cyan">INITIATING NON-INTRUSIVE MULTI-THREADED SOCKET PROBE...</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Port 80 (HTTP)       : <span class="text-amber">REDIRECT (301 Permanent -&gt; 443)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Port 443 (HTTPS)     : <span class="text-green">OPEN (TLS 1.3 / AES-256-GCM)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Port 22 (SSH)        : <span class="text-green">FILTERED (Key Auth Only / Non-Standard)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Port 3306 (MySQL)    : <span class="text-green">CLOSED (No Public Exposure)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Port 27017 (MongoDB) : <span class="text-green">CLOSED (Perimeter Isolated)</span></div>
-        <div class="term-line mt-2"><span class="term-prompt">&gt;</span> <span class="text-amber">AUTOMATED FIREWALL HARDENING:</span></div>
-        <div class="code-box-inline"># VulnEye Auto-Generated Linux UFW Rules
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow 443/tcp
-sudo ufw enable</div>
-      `
-    },
-    auth: {
-      title: 'VECTOR // AUTHENTICATION_AND_JWT_HARDENING',
-      html: `
-        <div class="term-line"><span class="term-prompt">&gt;</span> <span class="text-cyan">VERIFYING AUTHENTICATION PIPELINES &amp; SIGNATURE INTEGRITY...</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Auth Provider        : <span class="text-green">Google OAuth 2.0 (PKCE Workflow)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> JWT Algorithm        : <span class="text-green">HS256 (256-bit Secret Key Signature)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Token Storage        : <span class="text-green">Secure HttpOnly SameSite=Strict Cookies</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Brute-Force Shield   : <span class="text-green">Redis IP Rate Limiter (5 attempts / lockout)</span></div>
-        <div class="term-line mt-2"><span class="term-prompt">&gt;</span> <span class="text-amber">FLASK AUTH VALIDATOR HOOK:</span></div>
-        <div class="code-box-inline"># Hardened Token Verification Decorator
-@jwt_required()
-def protected_soc_endpoint():
-    claims = get_jwt()
-    if claims.get('role') != 'sec_admin':
-        return jsonify({'error': 'Forbidden: Insufficient Permissions'}), 403</div>
-      `
-    },
-    ssrf: {
-      title: 'VECTOR // SSRF_AND_SENSITIVE_FILE_SHIELD',
-      html: `
-        <div class="term-line"><span class="term-prompt">&gt;</span> <span class="text-cyan">AUDITING SUBRESOURCE PATHS &amp; SENSITIVE DOTFILES...</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Path /.env           : <span class="text-green">404 NOT FOUND (Protected)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Path /.git/HEAD      : <span class="text-green">404 NOT FOUND (Protected)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Path /backup.sql     : <span class="text-green">404 NOT FOUND (Protected)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> SSRF Internal Probe  : <span class="text-green">BLOCKED (127.0.0.1 &amp; 169.254.169.254 Denied)</span></div>
-        <div class="term-line mt-2"><span class="term-prompt">&gt;</span> <span class="text-amber">NGINX SENSITIVE FILE BLOCK:</span></div>
-        <div class="code-box-inline"># Block Dotfile & Backup Exfiltration
-location ~ /\\.(env|git|htaccess|bak|sql) {
-    deny all;
-    return 404;
-}</div>
-      `
-    },
-    siem: {
-      title: 'VECTOR // SIEM_WEBHOOKS_AND_REPORTLAB',
-      html: `
-        <div class="term-line"><span class="term-prompt">&gt;</span> <span class="text-cyan">CHECKING REAL-TIME SIEM DISPATCH STATUS...</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Discord Webhook Sync : <span class="text-green">ACTIVE (Instant Alert on High CVE)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> Slack Ops Webhook    : <span class="text-green">ACTIVE (Channel: #soc-alerts)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> SVG Risk Badge Engine: <span class="text-green">LIVE (/api/v1/badge?domain=...)</span></div>
-        <div class="term-line"><span class="term-prompt">&gt;</span> PDF Executive Dossier: <span class="text-green">ReportLab 4.x Engine Ready</span></div>
-        <div class="term-line mt-2"><span class="term-prompt">&gt;</span> <span class="text-amber">DISCORD SIEM ALERT PAYLOAD:</span></div>
-        <div class="code-box-inline">payload = {
-    "username": "VulnEye SOC Watchdog",
-    "embeds": [{"title": "🚨 Security Perimeter Alert", "color": 0xef4444, "fields": [...]}]
-}
-requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
-      `
-    }
-  };
-
-  chainNodes.forEach(node => {
-    node.addEventListener('click', () => {
-      chainNodes.forEach(n => n.classList.remove('active'));
-      node.classList.add('active');
-
-      const vec = node.getAttribute('data-vector');
-      const data = labVectorsData[vec];
-      if (data && labTargetTitle && labScreenContent) {
-        labTargetTitle.textContent = data.title;
-        labScreenContent.innerHTML = data.html;
-      }
-    });
-  });
-
-  // --- 6. Projects Filtering Engine ---
-  const filterPills = document.querySelectorAll('.filter-pill[data-filter]');
-  const showcaseCards = document.querySelectorAll('.showcase-card[data-category]');
-
-  filterPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      filterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-
-      const filterVal = pill.getAttribute('data-filter');
-
-      showcaseCards.forEach(card => {
-        const cat = card.getAttribute('data-category') || '';
-        if (filterVal === 'all' || cat.includes(filterVal)) {
-          card.style.display = 'grid';
-          card.style.animation = 'fadeIn 0.3s ease-in-out';
+      projectCards.forEach(card => {
+        const categories = card.getAttribute('data-category') || '';
+        if (filterVal === 'all' || categories.includes(filterVal)) {
+          card.style.display = card.classList.contains('flagship') && window.innerWidth >= 860 ? 'grid' : 'flex';
+          card.style.opacity = '1';
         } else {
           card.style.display = 'none';
         }
@@ -322,91 +74,187 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
     });
   });
 
-  // --- 7. Project Architecture Data & Modal Handler ---
-  const projectData = {
+  // --- 3. Security Lab Vector Inspector ---
+  const vectorTabs = document.querySelectorAll('.vector-tab-btn[data-vector]');
+  const labTerminalTitle = document.getElementById('lab-terminal-title');
+  const labTerminalContent = document.getElementById('lab-terminal-content');
+
+  const securityVectors = {
+    owasp: {
+      title: 'OWASP Security Headers Policy',
+      html: `
+        <div class="term-output-line"><span class="term-text-blue">[+] Auditing HTTP Response Security Headers...</span></div>
+        <div class="term-output-line">• Content-Security-Policy (CSP): <span class="term-text-green">PASS (strict-dynamic default-src 'self')</span></div>
+        <div class="term-output-line">• HTTP Strict Transport Security (HSTS): <span class="term-text-green">PASS (max-age=31536000; includeSubDomains)</span></div>
+        <div class="term-output-line">• X-Frame-Options: <span class="term-text-green">PASS (DENY)</span></div>
+        <div class="term-output-line">• X-Content-Type-Options: <span class="term-text-green">PASS (nosniff)</span></div>
+        <div class="term-output-line">• Referrer-Policy: <span class="term-text-green">PASS (strict-origin-when-cross-origin)</span></div>
+        <div class="term-output-line mt-2"><span class="term-text-amber">[#] Auto-Generated Nginx Defense Configuration:</span></div>
+        <div class="term-code-snippet"># Drop-in HTTP Security Headers for Nginx
+add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline';";
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+add_header X-Frame-Options "DENY" always;
+add_header X-Content-Type-Options "nosniff" always;</div>
+      `
+    },
+    recon: {
+      title: 'TCP Port Reconnaissance & Firewall Rules',
+      html: `
+        <div class="term-output-line"><span class="term-text-blue">[+] Probing target perimeter ports with non-intrusive sockets...</span></div>
+        <div class="term-output-line">• Port 80 (HTTP)       : <span class="term-text-amber">REDIRECT (301 Permanent -> HTTPS)</span></div>
+        <div class="term-output-line">• Port 443 (HTTPS)     : <span class="term-text-green">OPEN (TLS 1.3 / AES-256-GCM)</span></div>
+        <div class="term-output-line">• Port 22 (SSH)        : <span class="term-text-green">FILTERED (Key Auth Only)</span></div>
+        <div class="term-output-line">• Port 3306 (MySQL)    : <span class="term-text-green">CLOSED (No Public Exposure)</span></div>
+        <div class="term-output-line">• Port 27017 (MongoDB) : <span class="term-text-green">CLOSED (Perimeter Isolated)</span></div>
+        <div class="term-output-line mt-2"><span class="term-text-amber">[#] Linux UFW Firewall Hardening:</span></div>
+        <div class="term-code-snippet"># Baseline Minimal Firewall Policy
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 443/tcp
+sudo ufw enable</div>
+      `
+    },
+    auth: {
+      title: 'Authentication & Session Integrity',
+      html: `
+        <div class="term-output-line"><span class="term-text-blue">[+] Verifying authentication pipelines & signature handling...</span></div>
+        <div class="term-output-line">• Identity Provider   : <span class="term-text-green">Google OAuth 2.0 (PKCE Workflow)</span></div>
+        <div class="term-output-line">• JWT Signing         : <span class="term-text-green">HS256 (Signed with strong secret key)</span></div>
+        <div class="term-output-line">• Cookie Storage      : <span class="term-text-green">HttpOnly, Secure, SameSite=Strict</span></div>
+        <div class="term-output-line">• Rate Limiting       : <span class="term-text-green">Enabled (5 attempts / lockout period)</span></div>
+        <div class="term-output-line mt-2"><span class="term-text-amber">[#] Flask JWT Route Decorator:</span></div>
+        <div class="term-code-snippet">@jwt_required()
+def protected_dashboard():
+    current_user = get_jwt_identity()
+    return jsonify({"status": "authenticated", "user": current_user})</div>
+      `
+    },
+    ssrf: {
+      title: 'SSRF & Sensitive Dotfile Protection',
+      html: `
+        <div class="term-output-line"><span class="term-text-blue">[+] Testing path traversal & sensitive file exfiltration...</span></div>
+        <div class="term-output-line">• Path /.env           : <span class="term-text-green">404 NOT FOUND (Blocked by Nginx rule)</span></div>
+        <div class="term-output-line">• Path /.git/HEAD      : <span class="term-text-green">404 NOT FOUND (Blocked by Nginx rule)</span></div>
+        <div class="term-output-line">• Path /backup.sql     : <span class="term-text-green">404 NOT FOUND (Protected)</span></div>
+        <div class="term-output-line">• SSRF Subnet Filter   : <span class="term-text-green">127.0.0.1 & 169.254.169.254 Prohibited</span></div>
+        <div class="term-output-line mt-2"><span class="term-text-amber">[#] Nginx Hidden Dotfile Guard:</span></div>
+        <div class="term-code-snippet">location ~ /\\.(env|git|htaccess|bak|sql) {
+    deny all;
+    return 404;
+}</div>
+      `
+    },
+    siem: {
+      title: 'SIEM Alert Webhooks & PDF Reports',
+      html: `
+        <div class="term-output-line"><span class="term-text-blue">[+] Verifying alerting pipelines and report compilation...</span></div>
+        <div class="term-output-line">• Discord SIEM Webhook : <span class="term-text-green">CONNECTED (Dispatches on High/Critical findings)</span></div>
+        <div class="term-output-line">• Slack SOC Channel    : <span class="term-text-green">READY</span></div>
+        <div class="term-output-line">• Executive PDF Dossier: <span class="term-text-green">ReportLab 4.x Template Active</span></div>
+        <div class="term-output-line">• Dynamic Risk Badges  : <span class="term-text-green">Generated dynamically via SVG</span></div>
+        <div class="term-output-line mt-2"><span class="term-text-amber">[#] Python Discord Webhook Dispatcher:</span></div>
+        <div class="term-code-snippet">payload = {
+    "embeds": [{
+        "title": "Perimeter Vulnerability Alert",
+        "description": "Port 3306 exposed on host",
+        "color": 15548997
+    }]
+}
+requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
+      `
+    }
+  };
+
+  vectorTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      vectorTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const vec = tab.getAttribute('data-vector');
+      const data = securityVectors[vec];
+      if (data && labTerminalTitle && labTerminalContent) {
+        labTerminalTitle.textContent = data.title;
+        labTerminalContent.innerHTML = data.html;
+      }
+    });
+  });
+
+  // --- 4. Project Details Modal ---
+  const projectDetails = {
     vulneye: {
-      title: 'VulnEye — Enterprise Web Vulnerability & SOC Intelligence Platform',
-      badge: 'Cybersecurity & SOC Intelligence • Flask & Python',
-      status: 'Flagship Production Platform',
-      description: 'VulnEye is an enterprise-grade cybersecurity scanning and threat intelligence platform engineered for security engineers, DevOps specialists, and penetration testers. It delivers non-intrusive perimeter audits that detect critical exposures—such as missing OWASP security headers, exposed database ports, TLS/SSL cipher weaknesses, sensitive dotfile leaks (.env, .git), and CORS misconfigurations—without launching destructive payloads. Paired with an AI Threat Explainer delivering dual-language (English & Hindi) remediation guides and automated Nginx/Linux UFW hardening scripts.',
-      highlights: [
-        'Multi-Vector Perimeter Scanner: Multi-threaded TCP sweep across 13+ ports (21-27017), TLS/SSL protocol inspection, OWASP headers (HSTS, CSP, X-Frame-Options), sensitive file exposure (.env, .git, .sql), CORS wildcard checks, and built-in SSRF-safe subnet blocking.',
-        'Real-Time SSE Audit Terminal: Live telemetry streaming via Server-Sent Events (/scan/stream) with visual HUD radar animations and Web Audio sound synthesizer feedback.',
-        'AI Bilingual Threat Explainer (/analyzer): Dual-language executive summaries and exploit walkthroughs (English & Hindi / हिंग्लिश) with auto-generated drop-in Nginx server blocks and UFW firewall commands.',
-        'Executive SOC Command Center & 24/7 Watchlist: ApexCharts risk distribution charts, continuous domain risk drift monitoring, and side-by-side target audit comparator (/compare).',
-        'Cyber Defense Utilities Suite (/tools): Integrated CVSS v3.1 calculator, SSL certificate chain inspector, OWASP headers checker, subdomain enumerator, and password entropy calculator.',
-        'SIEM Alerts & Dynamic Badges: Automated Discord/Slack webhook alert dispatchers for high/critical risks, dynamic SVG security grade badges (/api/v1/badge), and ReportLab 4.x corporate PDF dossiers.',
-        'Commercial SaaS Tiering: 3 membership tiers with working multi-gateway checkout (Credit Cards, UPI/QR, PayPal, Crypto) and auto-generated PDF receipts.'
+      title: 'VulnEye',
+      tagline: 'Web Vulnerability Scanner & SOC Intelligence Platform',
+      badge: 'Cybersecurity • Python & Flask',
+      description: 'VulnEye is an automated web vulnerability scanning and security intelligence platform designed to identify critical perimeter risks without intrusive payloads. It checks for missing OWASP security headers, open database ports, TLS/SSL cipher weaknesses, and sensitive dotfile leaks (.env, .git). Includes bilingual AI remediation guides (English & Hindi) and auto-generated Nginx/UFW configuration files.',
+      features: [
+        'Multi-vector reconnaissance probing TCP ports (21-27017), TLS/SSL cipher suites, and OWASP response headers.',
+        'Real-time scan telemetry streamed directly to the frontend using Server-Sent Events (SSE).',
+        'Bilingual threat explainer (English/Hindi) generating actionable fix guides and Linux firewall rules.',
+        'Continuous domain risk watchlist and executive ReportLab PDF report generation.'
       ],
-      techStack: ['Python 3.9+', 'Flask 3.x', 'SQLAlchemy', 'PostgreSQL / SQLite', 'Server-Sent Events (SSE)', 'ApexCharts', 'ReportLab 4.x', 'Authlib (Google OAuth 2.0)', 'Web Audio API', 'Vercel / Render'],
-      github: 'https://github.com/Urvesh-Shekhawat/VulnEye',
-      liveDemo: 'https://vuln-eye-seven.vercel.app/'
+      techStack: ['Python 3.9+', 'Flask 3.x', 'SQLAlchemy', 'Server-Sent Events (SSE)', 'ApexCharts', 'ReportLab 4.x', 'OAuth 2.0'],
+      liveDemo: 'https://vuln-eye-seven.vercel.app/',
+      github: 'https://github.com/Urvesh-Shekhawat/VulnEye'
     },
     aerosky: {
-      title: 'AeroSky — Advanced Weather Dashboard & Analytics PWA',
-      badge: 'Progressive Web App • Vanilla JS • Open-Meteo',
-      status: 'Live & Offline-Ready',
-      description: 'AeroSky is a premium, modern, and fully asynchronous weather dashboard built with Vanilla JavaScript, HTML5, and CSS3. Designed as an installable Progressive Web App (PWA) with offline support through Service Workers and caching, it delivers real-time weather metrics, comprehensive Air Quality Index (AQI) data, a detailed 7-day forecast, and an hourly forecast complete with dynamic SVG sparkline charts and live weather-based theme shifting.',
-      highlights: [
-        'Progressive Web App (PWA): Fully installable on mobile and desktop devices with complete offline UI resilience powered by Service Workers (sw.js) and Cache API storage.',
-        'Real-Time Weather Metrics & AQI: High-accuracy tracking of temperature, feels-like, humidity, wind speed, barometric pressure, cloud cover, UV index, and dedicated Air Quality Index health grading.',
-        'Dynamic SVG Sparklines & Sun Tracker: Horizontally scrollable 24-hour forecast with custom SVG sparkline graphs and an animated SVG arc tracking the sun\'s position between sunrise and sunset.',
-        '7-Day Meteorological Predictions: Daily high/low temperature range visualizations and 7-day weather outlooks with instant °C / °F client-side conversion without data re-fetching.',
-        'Dynamic Glassmorphic Themes & Pinned Cities: UI palette shifts in real time based on active weather conditions (sunny, night, rain, snow, thunderstorm) with localStorage pinned favorite locations.',
-        'Smart Geolocation & Location Search: Auto-suggest geocoding via Open-Meteo API and reverse geocoding via OpenStreetMap Nominatim with HTML5 Geolocation support.'
+      title: 'AeroSky',
+      tagline: 'Weather Intelligence & Analytics PWA',
+      badge: 'Progressive Web App • Vanilla JS',
+      description: 'AeroSky is an asynchronous weather dashboard Progressive Web App built with Vanilla JavaScript, HTML5, and CSS3. It features offline support via Service Workers, real-time meteorological metrics, dedicated Air Quality Index (AQI) ratings, dynamic SVG sparklines, and sunrise/sunset sun tracking.',
+      features: [
+        'Installable cross-platform PWA with offline UI resilience powered by Service Workers (`sw.js`).',
+        '24-hour hourly forecast visualizer using custom SVG sparkline graphs.',
+        'Open-Meteo API integration for weather forecasting and Air Quality Index (AQI) health grading.',
+        'Client-side °C / °F switching and pinned favorite cities in localStorage.'
       ],
-      techStack: ['JavaScript (ES6+)]', 'HTML5', 'CSS3 (Variables)', 'PWA', 'Service Workers', 'Open-Meteo API', 'OSM Nominatim', 'SVG Charts', 'Lucide Icons'],
-      github: 'https://github.com/Urvesh-Shekhawat/AeroSky',
-      liveDemo: 'https://aero-sky.vercel.app/'
+      techStack: ['JavaScript (ES6+)', 'PWA', 'Service Workers', 'Open-Meteo API', 'SVG Charts', 'LocalStorage'],
+      liveDemo: 'https://aero-sky.vercel.app/',
+      github: 'https://github.com/Urvesh-Shekhawat/AeroSky'
     },
     launchdesk: {
-      title: 'LaunchDesk — AI-Supercharged Customer Support SaaS',
-      badge: 'Next.js App Router • TypeScript • AI Copilot',
-      status: 'Live & Fully Interactive',
-      description: 'Customer support, supercharged by AI. LaunchDesk is a modern, responsive, and highly interactive SaaS frontend engineered for customer support teams. It demonstrates production-level UI/UX, robust state management, and detailed component architecture designed to streamline support workflows.',
-      highlights: [
-        'Unified Support Inbox: Manage, filter, and reply to customer tickets in real-time with priority categorization and search.',
-        'AI Copilot UI: Interface design for AI-generated response drafts, intelligent ticket summaries, and internal team collaboration notes.',
-        'Interactive Analytics Dashboard: Comprehensive support performance metrics, resolution tracking, and charts built with Recharts.',
-        'Client-Side State Persistence: Global AppContext state management saving ticket creations, profile changes, and avatars directly to browser localStorage without a backend.',
-        'Production Component Architecture: Engineered with Next.js App Router, strict TypeScript interfaces, Tailwind CSS v4, Lucide React icons, and seamless dark/light theme toggle.'
+      title: 'LaunchDesk',
+      tagline: 'AI-Supercharged Customer Support SaaS',
+      badge: 'Next.js App Router • TypeScript',
+      description: 'LaunchDesk is a customer support SaaS application designed to streamline support team workflows. Built with the Next.js App Router and TypeScript, it features a unified ticket inbox, simulated AI reply draft generation, customer sentiment summaries, and interactive resolution charts.',
+      features: [
+        'Unified support inbox with live priority filtering, search, and status tracking.',
+        'AI copilot workflow for automated ticket responses and sentiment summaries.',
+        'Performance analytics and resolution trends built with Recharts.',
+        'Client-side persistence using AppContext and localStorage.'
       ],
-      techStack: ['Next.js (App Router)', 'TypeScript', 'Tailwind CSS v4', 'Recharts', 'Lucide React', 'React.js', 'LocalStorage'],
-      github: 'https://github.com/Urvesh-Shekhawat/launchdesk',
-      liveDemo: 'https://launchdesk-pied.vercel.app/'
+      techStack: ['Next.js (App Router)', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Lucide React'],
+      liveDemo: 'https://launchdesk-pied.vercel.app/',
+      github: 'https://github.com/Urvesh-Shekhawat/launchdesk'
     },
     aurora: {
-      title: 'Aurora Store — Premium E-Commerce Capstone Project',
-      badge: 'React 19 • Redux Toolkit • Full Stack',
-      status: 'Live & Fully Tested',
-      description: 'Aurora Store is a premium, high-fidelity Single Page Application (SPA) designed to showcase modern enterprise-grade web engineering practices. It features a scalable Redux Toolkit architecture, robust routing with React Router v7, a secure mock authentication system, an interactive shopping cart drawer, a validated checkout process, and an administrative dashboard to manage products with real-time inventory analytics.',
-      highlights: [
-        'Enterprise State Management: Built on Redux Toolkit (cartSlice, productSlice, themeSlice, authSlice) for predictable, synchronized state that seamlessly persists sessions, cart contents, and themes to localStorage.',
-        'Industry Standard Routing & Security: Powered by React Router v7 with <ProtectedRoute> wrappers securing Admin Dashboard & Checkout views behind mock JWT authentication.',
-        'Sliding Cart Drawer: Blur-backdrop sliding drawer with promo coupon inputs (e.g., AURORA20 for 20% off), real-time tax/shipping calculations, and item quantity controls.',
-        'Validated Checkout & Billing: Secure payment checkout form with 16-digit credit card masking, expiry validation, and payment authorization feedback loaders.',
-        'Admin CRUD Dashboard: Administrative panel with real-time analytics overview cards (Inventory Valuations, Catalog Items, Average Ratings, Low Stock alerts) and full Product CRUD forms.',
-        'Comprehensive Testing & Modern Tooling: Integrated Vitest and React Testing Library unit test suites for core business logic, bundled via Vite 8 (Rolldown) and styled with Tailwind CSS v4 and custom design tokens.'
+      title: 'Aurora Store',
+      tagline: 'E-Commerce Capstone SPA',
+      badge: 'React 19 • Redux Toolkit',
+      description: 'Aurora Store is a Single Page Application demonstrating enterprise front-end patterns. Built on React 19, Redux Toolkit, and React Router v7, it features synchronized cart state, mock JWT authentication, admin product CRUD management, and a comprehensive Vitest test suite.',
+      features: [
+        'Redux Toolkit architecture managing synchronized cart, product, and authentication state.',
+        'Protected route wrappers securing checkout and admin inventory management.',
+        'Sliding cart drawer with coupon validation and price calculation.',
+        'Unit and component testing with Vitest and React Testing Library.'
       ],
-      techStack: ['React 19', 'TypeScript', 'Redux Toolkit', 'React Router v7', 'Vite 8', 'Vitest', 'Tailwind CSS v4', 'Lucide React'],
-      github: 'https://github.com/Urvesh-Shekhawat/Aurora',
-      liveDemo: 'https://aurora-inky-chi.vercel.app/'
+      techStack: ['React 19', 'TypeScript', 'Redux Toolkit', 'React Router v7', 'Vitest', 'Tailwind CSS'],
+      liveDemo: 'https://aurora-inky-chi.vercel.app/',
+      github: 'https://github.com/Urvesh-Shekhawat/Aurora'
     },
     zenith: {
-      title: 'Zenith Tasks — Dynamic Workspace & Kanban PWA',
-      badge: 'Progressive Web App • Drag-and-Drop • Kanban',
-      status: 'Offline-Ready PWA',
-      description: 'Zenith Tasks is a sleek, modern task management web application designed to help users organize their daily workflows. It features a responsive UI with dark/light theme switching, interactive drag-and-drop Kanban board, powerful category filtering and sorting, celebratory confetti physics, and an offline-ready Progressive Web App (PWA) architecture.',
-      highlights: [
-        'Interactive Drag-and-Drop Kanban Board: Intuitive HTML5 Drag & Drop API interface allowing users to move tasks fluidly between "To Do", "In Progress", and "Done" columns.',
-        'Quick-Add & Confetti Celebrations: Inline quick brain-dump field for rapid task entry paired with celebratory confetti particle feedback when completing objectives.',
-        'Progressive Web App (PWA) & Offline Support: Built-in Service Worker (sw.js) and Cache API storage enabling full offline resilience and instant load times.',
-        'Productivity Analytics Dashboard: Visual SVG progress rings and Chart.js integration tracking real-time completion velocity and category breakdown.',
-        'Persistent Local Storage: Full client-side state synchronization persisting task metadata, priority labels, due dates, and column arrangements directly in localStorage.'
+      title: 'Zenith Tasks',
+      tagline: 'Drag-and-Drop Task Management PWA',
+      badge: 'PWA • HTML5 DnD',
+      description: 'Zenith Tasks is a task workspace featuring native HTML5 drag-and-drop Kanban columns, category filtering, productivity statistics, and offline Progressive Web App architecture.',
+      features: [
+        'HTML5 Drag & Drop API interface for moving tasks across customizable workflow columns.',
+        'Productivity velocity charts and category statistics with Chart.js.',
+        'Service Worker caching for instant offline load times.',
+        'Client-side state persistence in localStorage.'
       ],
-      techStack: ['Vanilla JavaScript (ES6+)', 'HTML5 (Drag & Drop)', 'CSS3', 'PWA', 'Service Workers', 'Chart.js', 'LocalStorage'],
-      github: 'https://github.com/Urvesh-Shekhawat/Zenith-Tasks',
-      liveDemo: ''
+      techStack: ['Vanilla JavaScript', 'HTML5 Drag & Drop', 'PWA', 'Chart.js', 'LocalStorage'],
+      liveDemo: null,
+      github: 'https://github.com/Urvesh-Shekhawat/Zenith-Tasks'
     }
   };
 
@@ -414,45 +262,47 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
   const projectModalBody = document.getElementById('project-modal-body');
   const projectModalClose = document.getElementById('project-modal-close');
 
-  window.openProjectModal = function(projectId) {
-    const data = projectData[projectId];
+  window.openProjectModal = function(id) {
+    const data = projectDetails[id];
     if (!data || !projectModalBackdrop || !projectModalBody) return;
 
     projectModalBody.innerHTML = `
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); font-weight: 700;">${data.badge}</span>
-        <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-emerald); font-weight: 700;">● ${data.status}</span>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+        <span class="project-badge-pill">${data.badge}</span>
       </div>
-      <h2 style="font-family: var(--font-display); font-size: clamp(1.3rem, 2.5vw, 1.8rem); margin-bottom: 16px; font-weight: 800;">${data.title}</h2>
-      <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px;">
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">${data.title}</h3>
+      <div style="font-size: 0.875rem; font-weight: 600; color: var(--accent-text); margin-bottom: 16px;">${data.tagline}</div>
+      
+      <p style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.65; margin-bottom: 20px;">
         ${data.description}
       </p>
 
-      <h4 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 14px; color: var(--text-primary); font-weight: 700;">Architecture &amp; Core Highlights</h4>
-      <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; padding: 0;">
-        ${data.highlights.map(h => `
-          <li style="position: relative; padding-left: 20px; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
-            <span style="position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold;">▹</span>
-            ${h}
+      <h4 style="font-size: 0.9375rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">Key Features</h4>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+        ${data.features.map(f => `
+          <li style="position: relative; padding-left: 18px; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.5;">
+            <span style="position: absolute; left: 0; color: var(--accent-primary); font-weight: bold;">•</span>
+            ${f}
           </li>
         `).join('')}
       </ul>
 
-      <h4 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 14px; color: var(--text-primary); font-weight: 700;">Technologies &amp; Frameworks</h4>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px;">
-        ${data.techStack.map(t => `<span class="tech-pill">${t}</span>`).join('')}
+      <h4 style="font-size: 0.9375rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">Tech Stack</h4>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px;">
+        ${data.techStack.map(t => `<span class="tech-tag">${t}</span>`).join('')}
       </div>
 
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--border-subtle);">
         ${data.liveDemo ? `
-          <a href="${data.liveDemo}" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-primary">
-            Launch Live Deployment ↗
+          <a href="${data.liveDemo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <span>Live Demo</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
         ` : ''}
-        <a href="${data.github}" target="_blank" rel="noopener noreferrer" class="btn-card ${data.liveDemo ? 'btn-card-secondary' : 'btn-card-primary'}">
-          Explore Repository on GitHub
+        <a href="${data.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          <span>GitHub Repository</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
         </a>
-        <button onclick="window.closeProjectModal()" class="btn-card btn-card-inspect">Close Specification</button>
       </div>
     `;
 
@@ -479,7 +329,34 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
     });
   }
 
-  // Escape key global listener for modal and drawer
+  // --- 5. Mobile Drawer ---
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+  const drawerBackdrop = document.getElementById('drawer-backdrop');
+  const drawerLinks = document.querySelectorAll('.drawer-link');
+
+  function openMobileDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.add('active');
+    if (drawerBackdrop) drawerBackdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.remove('active');
+    if (drawerBackdrop) drawerBackdrop.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (mobileToggle) mobileToggle.addEventListener('click', openMobileDrawer);
+  if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', closeMobileDrawer);
+  if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeMobileDrawer);
+
+  drawerLinks.forEach(l => {
+    l.addEventListener('click', closeMobileDrawer);
+  });
+
+  // Global Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       window.closeProjectModal();
@@ -487,164 +364,92 @@ requests.post(DISCORD_WEBHOOK_URL, json=payload, timeout=5)</div>
     }
   });
 
-  // --- 8. Mobile Drawer Handlers ---
-  const mobileToggle = document.getElementById('mobile-menu-toggle');
-  const mobileDrawer = document.getElementById('mobile-drawer');
-  const mobileDrawerClose = document.getElementById('mobile-drawer-close');
-  const drawerBackdrop = document.getElementById('drawer-backdrop');
-  const drawerLinks = document.querySelectorAll('.drawer-link');
-
-  if (mobileToggle && mobileDrawer) {
-    mobileToggle.addEventListener('click', () => {
-      mobileDrawer.classList.add('active');
-      if (drawerBackdrop) drawerBackdrop.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-
-  function closeMobileDrawer() {
-    if (mobileDrawer) {
-      mobileDrawer.classList.remove('active');
-      if (drawerBackdrop) drawerBackdrop.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-  window.closeMobileDrawer = closeMobileDrawer;
-
-  if (mobileDrawerClose) {
-    mobileDrawerClose.addEventListener('click', closeMobileDrawer);
-  }
-
-  if (drawerBackdrop) {
-    drawerBackdrop.addEventListener('click', closeMobileDrawer);
-  }
-
-  drawerLinks.forEach(link => {
-    link.addEventListener('click', closeMobileDrawer);
-  });
-
-  // --- 9. Navbar & Mobile Floating Dock Scrollspy ---
+  // --- 6. Scrollspy ---
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
-  const dockItems = document.querySelectorAll('.dock-item[data-dock]');
 
   window.addEventListener('scroll', () => {
-    let currentSectionId = '';
-    const scrollPos = window.scrollY + 200;
+    let currentId = '';
+    const scrollPos = window.scrollY + 100;
 
     sections.forEach(sec => {
       const top = sec.offsetTop;
       const height = sec.offsetHeight;
       if (scrollPos >= top && scrollPos < top + height) {
-        currentSectionId = sec.getAttribute('id');
+        currentId = sec.getAttribute('id');
       }
     });
 
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === `#${currentSectionId}`) {
+      if (link.getAttribute('href') === `#${currentId}`) {
         link.classList.add('active');
-      }
-    });
-
-    dockItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.getAttribute('data-dock') === currentSectionId) {
-        item.classList.add('active');
       }
     });
   }, { passive: true });
 
-  // --- 10. Toast Notifications & Clipboard Utilities ---
-  window.showToast = function(msg) {
+  // --- 7. Toast & Copy Utilities ---
+  window.showToast = function(message) {
     const container = document.getElementById('toast-container');
     if (!container) return;
 
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-      </svg>
-      <span>${msg}</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+      <span>${message}</span>
     `;
 
     container.appendChild(toast);
 
     setTimeout(() => {
       toast.style.opacity = '0';
-      toast.style.transform = 'translateY(10px)';
-      toast.style.transition = 'all 0.3s ease';
-      setTimeout(() => toast.remove(), 300);
-    }, 3500);
+      toast.style.transform = 'translateY(6px)';
+      toast.style.transition = 'all 0.2s ease';
+      setTimeout(() => toast.remove(), 200);
+    }, 3000);
   };
 
-  function fallbackCopyText(text, label) {
-    try {
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.top = '-999999px';
-      textArea.style.left = '-999999px';
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      const success = document.execCommand('copy');
-      document.body.removeChild(textArea);
-      if (success) {
-        window.showToast(label);
-      } else {
-        window.showToast('Copied: ' + text);
-      }
-    } catch (err) {
-      window.showToast('Copied: ' + text);
-    }
-  }
-
-  window.copyToClipboard = function(text, label = 'Copied to clipboard!') {
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(() => {
-        window.showToast(label);
-      }).catch(() => {
-        fallbackCopyText(text, label);
-      });
-    } else {
-      fallbackCopyText(text, label);
-    }
-  };
-
-  document.querySelectorAll('[data-copy]').forEach(el => {
-    el.addEventListener('click', (e) => {
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const val = el.getAttribute('data-copy');
-      const label = el.getAttribute('data-copy-label') || 'Copied!';
-      window.copyToClipboard(val, label);
+      const text = btn.getAttribute('data-copy');
+      const label = btn.getAttribute('data-copy-label') || 'Copied to clipboard!';
+      
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => window.showToast(label));
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        window.showToast(label);
+      }
     });
   });
 
-  // --- 11. Contact Form Transmission ---
+  // --- 8. Contact Form ---
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('form-name').value.trim();
       const email = document.getElementById('form-email').value.trim();
-      const subject = document.getElementById('form-subject').value.trim();
+      const subject = document.getElementById('form-subject').value.trim() || `Portfolio Contact from ${name}`;
       const message = document.getElementById('form-message').value.trim();
 
       if (!name || !email || !message) {
-        window.showToast('⚠️ Please complete all required fields.');
+        window.showToast('Please fill out all required fields.');
         return;
       }
 
-      const mailtoUrl = `mailto:urvesh.shekhawat24@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Inquiry from ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-      
-      window.showToast('🚀 Transmission initiated! Launching email client...');
-      setTimeout(() => {
-        window.location.href = mailtoUrl;
-      }, 500);
-
+      const mailtoUrl = `mailto:urvesh.shekhawat24@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+      window.location.href = mailtoUrl;
+      window.showToast('Opening email client...');
       contactForm.reset();
     });
   }

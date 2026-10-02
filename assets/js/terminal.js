@@ -1,173 +1,128 @@
 /**
- * Interactive Cyber Terminal Simulator & Multi-Vector SOC Audit Engine
- * Urvesh Shekhawat Portfolio
+ * Urvesh Shekhawat — Security Lab Terminal & CLI Simulator
+ * Clean, practical security inspection tool for developers and technical recruiters.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const terminalBody = document.getElementById('terminal-body');
-  const terminalInput = document.getElementById('terminal-input');
-  const auditIndicator = document.getElementById('sys-audit-indicator');
+  const terminalContent = document.getElementById('lab-terminal-content');
+  const cliInput = document.getElementById('terminal-cli-input');
 
-  // Automated Quick Scan Simulation
-  window.runAuditSimulation = function() {
-    const hudFill = document.getElementById('hud-audit-fill');
-    const hudPct = document.getElementById('hud-audit-pct');
-    const hudTitle = document.getElementById('hud-audit-title');
-    const liveScanText = document.getElementById('hero-live-scan-text');
-
-    if (window.showToast) window.showToast('🛡️ Initiating VulnEye Perimeter Assessment...');
-
-    if (hudFill) hudFill.style.width = '25%';
-    if (hudPct) hudPct.textContent = '25% RESOLVING';
-    if (hudTitle) hudTitle.textContent = 'RESOLVING TARGET & TLS 1.3 CIPHERS...';
-    if (liveScanText) liveScanText.innerHTML = '<span class="text-amber">SCANNER: PROBING PORTS &amp; TLS...</span>';
-
-    setTimeout(() => {
-      if (hudFill) hudFill.style.width = '60%';
-      if (hudPct) hudPct.textContent = '60% AUDITING';
-      if (hudTitle) hudTitle.textContent = 'PROBING OWASP HEADERS (CSP, HSTS, X-FRAME)...';
-    }, 600);
-
-    setTimeout(() => {
-      if (hudFill) hudFill.style.width = '88%';
-      if (hudPct) hudPct.textContent = '88% ANALYZING';
-      if (hudTitle) hudTitle.textContent = 'AI BILINGUAL THREAT EXPLAINER COMPILING DOSSIER...';
-      if (liveScanText) liveScanText.innerHTML = '<span class="text-cyan">SCANNER: AI THREAT ANALYSIS ACTIVE</span>';
-    }, 1200);
-
-    setTimeout(() => {
-      if (hudFill) hudFill.style.width = '100%';
-      if (hudPct) hudPct.textContent = '100% HARDENED';
-      if (hudTitle) hudTitle.textContent = 'VULNEYE REAL-TIME TELEMETRY STREAM';
-      if (liveScanText) liveScanText.innerHTML = 'SCANNER: IDLE // THREAT LEVEL: ZERO';
-      if (window.showToast) window.showToast('🛡️ VulnEye Audit Complete: All Perimeters Hardened (0 CVEs)');
-    }, 2000);
-  };
-
-  // Interactive CLI Logic
-  if (!terminalBody || !terminalInput) return;
+  if (!terminalContent || !cliInput) return;
 
   const commandHistory = [];
   let historyIndex = -1;
 
-  const welcomeBanner = [
-    '<span class="text-cyan">┌────────────────────────────────────────────────────────────┐</span>',
-    '<span class="text-cyan">│</span> <span class="text-green">VulnEye SOC Terminal v2.5</span> — <span class="text-cyan">Automated Perimeter Engine</span>   <span class="text-cyan">│</span>',
-    '<span class="text-cyan">│</span> Engineer: <span class="text-amber">Urvesh Shekhawat</span> | Status: <span class="text-green">ACTIVE // READY</span>         <span class="text-cyan">│</span>',
-    '<span class="text-cyan">└────────────────────────────────────────────────────────────┘</span>',
-    '<span style="color: var(--text-muted);">Type </span><span class="text-cyan">help</span><span style="color: var(--text-muted);"> or </span><span class="text-cyan">scan [url]</span><span style="color: var(--text-muted);"> for interactive telemetry commands.</span>',
-  ];
-
-  function printLine(html) {
+  function printLine(text, className = '') {
     const line = document.createElement('div');
-    line.style.marginBottom = '4px';
-    line.innerHTML = html;
-    terminalBody.appendChild(line);
-    terminalBody.scrollTop = terminalBody.scrollHeight;
-  }
-
-  function initTerminal() {
-    welcomeBanner.forEach(msg => printLine(msg));
+    line.className = `term-output-line ${className}`;
+    line.innerHTML = text;
+    terminalContent.appendChild(line);
+    terminalContent.scrollTop = terminalContent.scrollHeight;
   }
 
   const commands = {
     help: () => [
-      '<span class="text-amber">Available Telemetry &amp; Profile Directives:</span>',
-      '  <span class="text-cyan">whoami</span>       — Display engineer summary &amp; credentials',
-      '  <span class="text-cyan">scan [url]</span>   — Run VulnEye perimeter audit (e.g. scan domain.local)',
-      '  <span class="text-cyan">skills</span>       — List core engineering &amp; security capabilities',
-      '  <span class="text-cyan">projects</span>     — Output flagship systems with live URLs',
-      '  <span class="text-cyan">hackathon</span>    — MP Police Cyber Security Hackathon honor',
-      '  <span class="text-cyan">experience</span>   — Oxella Technologies RUM internship details',
-      '  <span class="text-cyan">contact</span>      — Show direct email, phone, and profiles',
-      '  <span class="text-cyan">clear</span>        — Clear active terminal screen'
+      '<span class="term-text-blue">Available commands:</span>',
+      '  <span class="term-text-green">whoami</span>       - Developer background and role',
+      '  <span class="term-text-green">scan [domain]</span> - Simulate web perimeter security audit',
+      '  <span class="term-text-green">projects</span>     - List selected software & security projects',
+      '  <span class="term-text-green">skills</span>       - List core technical toolsets & languages',
+      '  <span class="term-text-green">experience</span>   - Oxella Technologies internship details',
+      '  <span class="term-text-green">hackathon</span>    - MP Police Cyber Security Hackathon achievement',
+      '  <span class="term-text-green">contact</span>      - Direct email and professional profiles',
+      '  <span class="term-text-green">clear</span>        - Clear the terminal screen'
     ],
     whoami: () => [
-      '<span class="text-green">Urvesh Shekhawat</span>',
-      '<span style="color: var(--text-muted);">Role:</span> Full Stack Developer &amp; Cybersecurity Specialist',
-      '<span style="color: var(--text-muted);">Education:</span> B.Tech Computer Science @ Amity University, Gwalior (2023–2027)',
-      '<span style="color: var(--text-muted);">Focus:</span> Web Security Perimeter Auditing, React/Node.js Architecture, Python/Flask SOC Tools',
-      '<span class="text-amber">Achievement: 2nd Position in MP Police Cyber Security Hackathon (2025)</span>'
-    ],
-    skills: () => [
-      '<span class="text-amber">⚡ Languages:</span> Python, Java, C, C++, JavaScript (ES6+), TypeScript, SQL, HTML5, CSS3',
-      '<span class="text-cyan">⚡ Frameworks &amp; Web:</span> React 19, Next.js (App Router), Flask, Node.js, Express.js, Redux Toolkit, React Router v7, SQLAlchemy, Tailwind CSS v4, Recharts, PWA',
-      '<span class="text-green">⚡ Security &amp; Tools:</span> OWASP Top 10, TCP Recon, Nmap, TLS/SSL, CVSS v3.1, SIEM Alerting, SSRF Mitigation, Google OAuth 2.0, JWT, Postman, Docker, Git'
+      '<span class="term-text-green">Urvesh Shekhawat</span>',
+      'Role: Full Stack Developer &amp; Cybersecurity Enthusiast',
+      'Education: B.Tech Computer Science @ Amity University Madhya Pradesh (2023–2027)',
+      'Focus: Scalable Web Applications, Python/Flask Security Tools, Perimeter Auditing'
     ],
     projects: () => [
-      '1. <span class="text-cyan">VulnEye</span> — Enterprise Web Vulnerability &amp; SOC Platform (Python, Flask, SSE, ApexCharts, AI) | <a href="https://vuln-eye-seven.vercel.app/" target="_blank" class="text-green">Live Demo ↗</a>',
-      '2. <span class="text-cyan">AeroSky</span> — Weather Intelligence &amp; Analytics PWA (Vanilla JS, Open-Meteo, AQI, Sparklines) | <a href="https://aero-sky.vercel.app/" target="_blank" class="text-green">Live Demo ↗</a>',
-      '3. <span class="text-cyan">LaunchDesk</span> — AI-Supercharged Customer Support SaaS (Next.js, TypeScript, Tailwind CSS v4, Recharts) | <a href="https://launchdesk-pied.vercel.app/" target="_blank" class="text-green">Live Demo ↗</a>',
-      '4. <span class="text-cyan">Aurora Store</span> — Premium E-Commerce Capstone SPA (React 19, Redux Toolkit, React Router v7, Vitest) | <a href="https://aurora-inky-chi.vercel.app/" target="_blank" class="text-green">Live Demo ↗</a>',
-      '5. <span class="text-cyan">Zenith Tasks</span> — Dynamic Workspace &amp; Kanban PWA (HTML5 Drag &amp; Drop, PWA, Chart.js)'
+      '1. <strong class="term-text-blue">VulnEye</strong>: Web Vulnerability Scanner &amp; SOC Platform (Python, Flask, SSE) | <a href="https://vuln-eye-seven.vercel.app/" target="_blank" style="color: #4ade80; text-decoration: underline;">Live Demo ↗</a>',
+      '2. <strong class="term-text-blue">AeroSky</strong>: Weather Intelligence PWA (Vanilla JS, Service Workers, Open-Meteo) | <a href="https://aero-sky.vercel.app/" target="_blank" style="color: #4ade80; text-decoration: underline;">Live Demo ↗</a>',
+      '3. <strong class="term-text-blue">LaunchDesk</strong>: AI-Supercharged Customer Support SaaS (Next.js, TypeScript, Tailwind) | <a href="https://launchdesk-pied.vercel.app/" target="_blank" style="color: #4ade80; text-decoration: underline;">Live Demo ↗</a>',
+      '4. <strong class="term-text-blue">Aurora Store</strong>: E-Commerce Capstone SPA (React 19, Redux Toolkit, Vitest) | <a href="https://aurora-inky-chi.vercel.app/" target="_blank" style="color: #4ade80; text-decoration: underline;">Live Demo ↗</a>',
+      '5. <strong class="term-text-blue">Zenith Tasks</strong>: Drag-and-Drop Task Management PWA (HTML5 DnD, PWA, Chart.js)'
     ],
-    hackathon: () => [
-      '<span class="text-amber">🏆 Achievement Spotlight:</span>',
-      'Secured <span class="text-green">2nd Position</span> in <span class="text-cyan">MP Police Cyber Security Hackathon</span> (Feb 2025)',
-      'Recognized for rapid vulnerability analysis, defensive perimeter strategy, and threat intelligence tooling.'
+    skills: () => [
+      '<span class="term-text-blue">Languages:</span> Python, JavaScript (ES6+), TypeScript, Java, C/C++, SQL, HTML5, CSS3',
+      '<span class="term-text-blue">Frontend:</span> React 19, Next.js (App Router), Redux Toolkit, Tailwind CSS, PWA, Recharts',
+      '<span class="term-text-blue">Backend:</span> Python (Flask), Node.js, Express.js, REST APIs, Server-Sent Events (SSE), SQLAlchemy',
+      '<span class="term-text-blue">Databases:</span> PostgreSQL, MySQL, SQLite',
+      '<span class="term-text-blue">Security:</span> OWASP Top 10, Port Recon, TLS/SSL, CVSS v3.1, SSRF Mitigation, OAuth 2.0 &amp; JWT'
     ],
     experience: () => [
-      '<span class="text-green">Oxella Technologies Pvt. Ltd.</span> | Full Stack Developer Intern (Jaipur, Rajasthan)',
-      '<span style="color: var(--text-muted);">Duration:</span> 7 July 2025 – 18 Aug 2025 (Real User Monitoring RUM Team)',
-      '• Built RUM backend and frontend modules using React.js, Node.js, Express.js, and MySQL',
-      '• Implemented Google OAuth 2.0 &amp; JWT-based authorization for protected user sessions',
-      '• Created validated RESTful APIs with Axios frontend integration &amp; Postman testing'
+      '1. <strong class="term-text-green">State Cyber Police Zone, Gwalior (M.P.)</strong> — Cyber Forensics &amp; Security Intern (August 2026)',
+      '   • Completed 15-day intensive program on Cyber Forensics, Cybercrime Investigation &amp; Digital Evidence Handling.',
+      '   • Gained hands-on experience in practical cyber policing workflows, chain-of-custody protocols &amp; threat awareness.',
+      '2. <strong class="term-text-green">Oxella Technologies Pvt. Ltd.</strong> — Full Stack Developer Intern (July–August 2025)',
+      '   • Built frontend &amp; backend modules for a Real User Monitoring (RUM) platform using React, Node.js, Express, MySQL.',
+      '   • Implemented Google OAuth 2.0 &amp; JWT authentication workflows for secure session handling.',
+      '   • Developed validated RESTful APIs integrated via Axios and tested via Postman.'
+    ],
+    hackathon: () => [
+      '<span class="term-text-amber">🥈 MP Police Cyber Security Hackathon (Feb 2025)</span>',
+      'Secured 2nd Place in the state-level hackathon organized by Madhya Pradesh Police Department.',
+      'Evaluated on real-time perimeter vulnerability analysis, threat detection, and defensive remediation.'
     ],
     contact: () => [
-      '<span class="text-amber">📡 Contact Endpoints:</span>',
-      '• <span style="color: var(--text-muted);">Email:</span> <a href="mailto:urvesh.shekhawat24@gmail.com" class="text-cyan">urvesh.shekhawat24@gmail.com</a>',
-      '• <span style="color: var(--text-muted);">Phone:</span> <span class="text-green">+91 7378254896</span>',
-      '• <span style="color: var(--text-muted);">LinkedIn:</span> <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" class="text-cyan">linkedin.com/in/urvesh-shekhawat</a>',
-      '• <span style="color: var(--text-muted);">GitHub:</span> <a href="https://github.com/Urvesh-Shekhawat" target="_blank" class="text-cyan">github.com/Urvesh-Shekhawat</a>'
+      '• Email: <a href="mailto:urvesh.shekhawat24@gmail.com" class="term-text-blue">urvesh.shekhawat24@gmail.com</a>',
+      '• LinkedIn: <a href="https://linkedin.com/in/urvesh-shekhawat" target="_blank" class="term-text-blue">linkedin.com/in/urvesh-shekhawat ↗</a>',
+      '• GitHub: <a href="https://github.com/Urvesh-Shekhawat" target="_blank" class="term-text-blue">github.com/Urvesh-Shekhawat ↗</a>',
+      '• Phone: +91 7378254896'
     ],
     clear: () => {
-      terminalBody.innerHTML = '';
+      terminalContent.innerHTML = '';
       return [];
     }
   };
 
-  terminalInput.addEventListener('keydown', (e) => {
+  cliInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-      const fullCmd = terminalInput.value.trim();
+      const fullCmd = cliInput.value.trim();
       if (!fullCmd) return;
 
-      printLine(`<span class="cli-prompt">urvesh@soc:~$</span> <span class="text-primary">${fullCmd}</span>`);
+      printLine(`<span class="term-text-green">urvesh@audit:~$</span> <strong>${fullCmd}</strong>`);
       commandHistory.push(fullCmd);
       historyIndex = commandHistory.length;
-      terminalInput.value = '';
+      cliInput.value = '';
 
       const [cmdName, ...args] = fullCmd.toLowerCase().split(' ');
 
       if (cmdName === 'scan') {
-        const target = args[0] || 'perimeter.local';
-        printLine(`<span class="text-cyan">[*] Launching VulnEye socket sweep against: ${target}...</span>`);
-        printLine(`<span class="text-green">[✔] TLS 1.3 Strict Ciphers / HSTS Enforced</span>`);
-        printLine(`<span class="text-green">[✔] OWASP Top 10 Headers: CSP, X-Frame-Options PASS</span>`);
-        printLine(`<span class="text-green">[✔] 0 High-Risk Vulnerabilities Detected</span>`);
+        const target = args[0] || 'example.com';
+        printLine(`<span class="term-text-blue">[+] Initiating socket probe against: ${target}...</span>`);
+        setTimeout(() => {
+          printLine(`• Port 443 (HTTPS)     : <span class="term-text-green">OPEN (TLS 1.3 / Strict Ciphers)</span>`);
+          printLine(`• OWASP Top 10 Headers: <span class="term-text-green">PASS (CSP, HSTS, X-Frame Enforced)</span>`);
+          printLine(`• Sensitive Dotfiles  : <span class="term-text-green">404 NOT FOUND (Protected)</span>`);
+          printLine(`• Subnet SSRF Filter   : <span class="term-text-green">ACTIVE (Private IPs Denied)</span>`);
+          printLine(`<span class="term-text-green">[✔] Audit Complete: Target perimeter hardened.</span>`);
+        }, 300);
         return;
       }
 
       if (commands[cmdName]) {
-        const output = commands[cmdName]();
-        output.forEach(line => printLine(line));
+        const lines = commands[cmdName]();
+        lines.forEach(l => printLine(l));
       } else {
-        printLine(`<span style="color: #ef4444;">Command not recognized: '${cmdName}'. Type '<span class="text-cyan">help</span>' for options.</span>`);
+        printLine(`<span style="color: #ef4444;">Command '${cmdName}' not recognized. Type '<span class="term-text-green">help</span>' for a list of commands.</span>`);
       }
     } else if (e.key === 'ArrowUp') {
       if (historyIndex > 0) {
         historyIndex--;
-        terminalInput.value = commandHistory[historyIndex];
+        cliInput.value = commandHistory[historyIndex];
       }
     } else if (e.key === 'ArrowDown') {
       if (historyIndex < commandHistory.length - 1) {
         historyIndex++;
-        terminalInput.value = commandHistory[historyIndex];
+        cliInput.value = commandHistory[historyIndex];
       } else {
         historyIndex = commandHistory.length;
-        terminalInput.value = '';
+        cliInput.value = '';
       }
     }
   });
 
-  initTerminal();
 });
