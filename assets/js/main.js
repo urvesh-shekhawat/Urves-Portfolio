@@ -5,11 +5,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   
-  // --- 1. Theme Engine (Default: Light / Off-White) ---
+  // --- 1. Theme Engine (Default: Dark) ---
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const themeIcon = document.getElementById('theme-icon');
   
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
 
