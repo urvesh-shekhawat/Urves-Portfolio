@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: 'Projects', category: 'Navigation', shortcut: 'G P', action: () => scrollToSection('#projects') },
     { title: 'Security Lab', category: 'Navigation', shortcut: 'G L', action: () => scrollToSection('#security-lab') },
     { title: 'Skills', category: 'Navigation', shortcut: 'G S', action: () => scrollToSection('#skills') },
+    { title: 'Achievements', category: 'Navigation', shortcut: 'G A', action: () => scrollToSection('#achievements') },
     { title: 'Contact', category: 'Navigation', shortcut: 'G C', action: () => scrollToSection('#contact') },
     
     { title: 'VulnEye Live Demo', category: 'Projects', shortcut: 'L V', action: () => window.open('https://vuln-eye-seven.vercel.app/', '_blank') },

@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       projectCards.forEach(card => {
         const categories = card.getAttribute('data-category') || '';
         if (filterVal === 'all' || categories.includes(filterVal)) {
-          card.style.display = card.classList.contains('flagship') && window.innerWidth >= 860 ? 'grid' : 'flex';
+          card.style.display = '';
           card.style.opacity = '1';
         } else {
           card.style.display = 'none';
